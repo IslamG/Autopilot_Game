@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FloorTest.unity
     guid: 9eb3ca90196e09740ab5310243a7d96f
+  - enabled: 1
+    path: Assets/Opening.unity
+    guid: a761bcd60d12caf44810acb10b2a7926
   m_configObjects: {}

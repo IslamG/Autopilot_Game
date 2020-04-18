@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class CharAnimCtrl : Sit
 {
     private Animator anim;
     private Camera cam;
     private bool isSitting=false, isCrouched= false;
+    private FirstPersonController fpc;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = gameObject.GetComponentInChildren<Animator>();
         cam = Camera.main;
+        fpc = GetComponentInParent<FirstPersonController>();
     }
 
     // Update is called once per frame
@@ -21,7 +24,8 @@ public class CharAnimCtrl : Sit
         Vector3 camPos = cam.transform.localPosition;
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")){
             anim.SetInteger("motionState",1);
-        } else if (Input.GetKey("space"))
+        } 
+        else if (Input.GetKey("space"))
         {
             anim.SetInteger("motionState", 3);
         }
@@ -47,6 +51,8 @@ public class CharAnimCtrl : Sit
                 anim.SetInteger("motionState", 6);
                 cam.transform.localPosition = new Vector3(0, 0.8f, 0);
                 isSitting = true;
+                fpc.CanMove = false;
+                fpc.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
         }
         else if (Input.GetKey("k"))
@@ -56,6 +62,8 @@ public class CharAnimCtrl : Sit
                 anim.SetInteger("motionState", 7);
                 cam.transform.localPosition = camPos;
                 isSitting = false;
+                fpc.CanMove = true;
+                fpc.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
         }
         else

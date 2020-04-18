@@ -14,6 +14,12 @@ public class Sit : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inRange = true;
+            if (GetComponent<Rigidbody>() != null)
+            {
+                Rigidbody rigidbody = GetComponent<Rigidbody>();
+                rigidbody.velocity = Vector3.zero;
+                rigidbody.angularVelocity = Vector3.zero;
+            }
         }
      }
     private void OnTriggerExit(Collider other)

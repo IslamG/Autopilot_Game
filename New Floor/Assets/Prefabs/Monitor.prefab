@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 872644517082783820}
   - component: {fileID: 2998486305665659159}
   - component: {fileID: 3408083448618376817}
+  - component: {fileID: 391609486289399993}
+  - component: {fileID: 6552028471101027670}
   m_Layer: 0
   m_Name: Monitor
   m_TagString: Untagged
@@ -93,3 +95,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.3917475, y: 3.352957, z: 1.7862134}
   m_Center: {x: 0.00035232306, y: 0.12902534, z: 0.4104344}
+--- !u!65 &391609486289399993
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057887115288676658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 339.1747, y: 178.62135, z: 335.29575}
+  m_Center: {x: 0.03371429, y: 41.04344, z: -12.902536}
+--- !u!114 &6552028471101027670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057887115288676658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a92a69a3dde9847a882aea99e64679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

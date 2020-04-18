@@ -56,7 +56,8 @@ GameObject:
   - component: {fileID: 3719382203228838919}
   - component: {fileID: 4279279935163420244}
   - component: {fileID: 723392824430605111}
-  - component: {fileID: 5750089141037156972}
+  - component: {fileID: 1482548392254102980}
+  - component: {fileID: 33095410118844744}
   m_Layer: 0
   m_Name: Laptop
   m_TagString: Untagged
@@ -139,7 +140,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.02, z: 0.0017}
   m_Center: {x: 0.0000050542435, y: -0.0067, z: -0.0053}
---- !u!114 &5750089141037156972
+--- !u!114 &1482548392254102980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,7 +149,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1046658032742431797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f34714cbe564748b46775e4dafc061, type: 3}
+  m_Script: {fileID: 11500000, guid: 92a92a69a3dde9847a882aea99e64679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowMat: {fileID: 2100000, guid: 3f4eb7af05a88124f9692e9632f8feaa, type: 2}
+--- !u!65 &33095410118844744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046658032742431797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019999998, y: 0.0017, z: 0.022}
+  m_Center: {x: 0.0000050542435, y: 0.004, z: 0.0059}

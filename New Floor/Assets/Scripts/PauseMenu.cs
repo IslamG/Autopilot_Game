@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("MainScreen");
     }
     //Quit to desktop
