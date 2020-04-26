@@ -15,17 +15,17 @@ public class PuzzlePieceManager : MonoBehaviour
                 PuzzlePiece hitPiece = hit.transform.gameObject.GetComponent<PuzzlePiece>();
                 if ( hitPiece != null)
                 {
-                    Debug.Log("Clicked= " + hitPiece.name + " isSolved= " + hitPiece.IsSolved() + " isActive= " + hitPiece.IsActive());
+                    //Debug.Log("Clicked= " + hitPiece.name + " isSolved= " + hitPiece.IsSolved() + " isActive= " + hitPiece.IsActive());
                     CheckItem(hitPiece);
                 }
                 else
                 {
-                    Debug.Log("not hit");
+                    //Debug.Log("not hit");
                 }
             }
             else
             {
-                Debug.Log("out of range");
+                //Debug.Log("out of range");
                 // You didn't click on anything.
                 // Either out of range or empty skybox behind mouse cursor
             }
@@ -51,7 +51,7 @@ public class PuzzlePieceManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Item is locked");
+                //Debug.Log("Item is locked");
             }
         }
     }

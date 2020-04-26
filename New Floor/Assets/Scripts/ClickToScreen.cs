@@ -6,13 +6,15 @@ public class ClickToScreen : MonoBehaviour
 {
     public GameObject screen;
     public Camera cam;
-    private float screenBounds;
     //private Plane screen;
     Ray ray;
+    Transform screenTransform;
     // Start is called before the first frame update
     void Start()
     {
-         //screen = screenObj.GetComponent<Plane>();
+        //screen = screenObj.GetComponent<Plane>();
+        screenTransform = screen.transform;
+        Debug.Log("Screen: "+screenTransform);
     }
     
     // Update is called once per frame
@@ -37,15 +39,18 @@ public class ClickToScreen : MonoBehaviour
         {
             point = ray.GetPoint(distance);
         }*/
+        
+        
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (hit.collider != null)
+            if (hit.collider.gameObject.name == "screenDisplay")
             {
                 //RaycastReturn = hit.collider.gameObject.name;
                 //FoundObject = GameObject.Find(RaycastReturn);
                 //Destroy(FoundObject);
                 Debug.Log("did hit "+ hit.collider.gameObject+ " at "
                     +hit.point);
+                Debug.Log(RectTransformUtility.RectangleContainsScreenPoint((RectTransform)screenTransform,hit.point));
             }
         }
         return point;

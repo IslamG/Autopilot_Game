@@ -26,7 +26,7 @@ public class BlindsFold : MonoBehaviour
     {
         if (clicked)
         {
-            float distance = Mathf.Abs(transform.position.y - startPos);
+            _ = Mathf.Abs(transform.position.y - startPos);
             //.transform.Translate(0, +distance, 0, Space.Self);
             nextBlind.GetComponent<Rigidbody>().AddForce(0, 3f, 0);
             //Debug.Log(distance);

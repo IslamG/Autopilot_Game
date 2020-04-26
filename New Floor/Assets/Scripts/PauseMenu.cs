@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
     public FirstPersonController fpc;
+    CursorLockMode currentMouse;
 
     void Update()
     {
@@ -17,26 +18,28 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPaused)
             {
-                resume();
+                Resume();
             }
             else
             {
-                pause();
+                Pause();
             }
         }
     }
     //Remove pause menu and resume gametime and fpc controller
-    public void resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = currentMouse;
         fpc.enabled = true;
     }
     //Display pause menu and pause gametime and fpc controller
-    void pause()
+    void Pause()
     {
+        currentMouse = Cursor.lockState;
+        Debug.Log("Pause mousestate: " + currentMouse);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -44,7 +47,7 @@ public class PauseMenu : MonoBehaviour
         fpc.enabled = false;
     }
     //Go to main
-    public void loadMenu()
+    public void LoadMenu()
     {
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
@@ -52,7 +55,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainScreen");
     }
     //Quit to desktop
-    public void quitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }

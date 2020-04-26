@@ -7,6 +7,8 @@ TagManager:
   - Body
   - IdleCamera
   - CloseUpCam
+  - Astroid
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -17,9 +19,9 @@ TagManager:
   - 
   - 
   - ExtraScreens
-  - 
-  - 
-  - 
+  - Ship
+  - Bullet
+  - Astroid
   - 
   - 
   - 
@@ -46,4 +48,7 @@ TagManager:
     locked: 0
   - name: Elsewhere
     uniqueID: 1742683243
+    locked: 0
+  - name: Behind
+    uniqueID: 3153573825
     locked: 0
