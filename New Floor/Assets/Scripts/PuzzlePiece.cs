@@ -22,7 +22,6 @@ public class PuzzlePiece : MonoBehaviour
         if (PreReq.Count == 0)
         {
             isActive = true;
-            //Debug.Log("Unlocking " + this.name);
             return true;
         }
         //else if all prerequisites are met unlock
@@ -31,22 +30,17 @@ public class PuzzlePiece : MonoBehaviour
             foreach (PuzzlePiece item in PreReq)
             {
                 step++;
-                //Debug.Log("outerloop "+item.name+" issolved "+item.IsSolved());
                 if (!item.IsSolved())
                 {
-                   // Debug.Log("checking prereq " + item.name + " issolved= " + item.IsSolved());
                     step = 0;
                     return false;
-                    //break;
                 }
             }
             if (step == PreReq.Count)
             {
                 isActive=true;
-                //Debug.Log("Unlocking " + this.name);
                 return true;
             }
-            //Debug.Log("Reached outer loop");
             return false;
         }
     }
@@ -60,7 +54,6 @@ public class PuzzlePiece : MonoBehaviour
     {
         //Replace with puzzle game code or call
         solved = true;
-        //Debug.Log("now solved " + this.name);
         
     }
     //Return solved state
@@ -75,7 +68,6 @@ public class PuzzlePiece : MonoBehaviour
             //do puzzle
             //if done correctly
             //Solve();
-            //Debug.Log("inside puzzle "+ this.name);
         }
         else
         {

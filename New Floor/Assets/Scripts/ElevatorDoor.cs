@@ -6,14 +6,14 @@ public class ElevatorDoor : MonoBehaviour
 {
     public Animator anim;
     private bool doorOpen = false;
-
-    public void Start()
-    {
-        //anim = GetComponent<Animator>();
-    }
+    
+    //When elevator button clicked
     public void OnMouseDown()
     {
+        //Switch door states
         doorOpen = !doorOpen;
+        //Play correct animation for state
+        //And push button in or out accordingly
         if (doorOpen)
         {
             anim.Play("ElevatorOpen");

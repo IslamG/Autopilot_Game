@@ -12,10 +12,13 @@ public class CameraLook : MonoBehaviour
 	{
 		//Cursor.lockState=CursorLockMode.Locked; 
 	}
+	//Get mouse position on screen and change camera rotation
+	//tbd add slerpt to smooth movement
 	void Update()
 	{
 		rotation.y += Input.GetAxis("Mouse X");
 		rotation.x += -Input.GetAxis("Mouse Y");
+		//Clamp to limit view
 		rotation.x = Mathf.Clamp(rotation.x, minX, maxX);
 		rotation.y = Mathf.Clamp(rotation.y, minY, maxY);
 		transform.eulerAngles = (Vector2) rotation * speed;

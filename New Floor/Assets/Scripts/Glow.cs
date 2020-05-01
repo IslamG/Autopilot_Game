@@ -16,6 +16,7 @@ public class Glow : MonoBehaviour
     {
         glow(gameObject);
     }
+    //Attach glow material to object
     public void glow(GameObject obj)
     {
         Renderer renderer = obj.GetComponent<Renderer>();
@@ -26,6 +27,7 @@ public class Glow : MonoBehaviour
         }
         else
         {
+            //Return original materials
             Material[] currentlyAssignedMaterials = renderer.materials;
             Destroy(currentlyAssignedMaterials[0]);
             renderer.materials = origMaterials;

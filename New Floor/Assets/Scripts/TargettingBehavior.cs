@@ -14,17 +14,18 @@ public class TargettingBehavior : MonoBehaviour
         transform.LookAt(target);
         Move();
     }
+    //When NPC is too close to an object
     private void OnTriggerEnter(Collider other)
     {
         //transform.position -= transform.forward * speed * Time.deltaTime;
         inRange = true;
-        Debug.Log("In range");
     }
+    //When NPC leaves range
     private void OnTriggerExit(Collider other)
     {
         inRange = false;
-        Debug.Log("Out of range");
     }
+    //Continue moving towards target
     private void Move()
     {
         int amount;

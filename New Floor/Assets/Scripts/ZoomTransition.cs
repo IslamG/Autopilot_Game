@@ -7,6 +7,7 @@ public class ZoomTransition : MonoBehaviour
     private MainMenu menu;
     void Start()
     {
+        //tbd add slerp to smooth animation
         menu = transform.parent.GetComponentInChildren<MainMenu>();
     }
     public void Switch()

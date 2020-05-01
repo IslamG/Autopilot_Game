@@ -8,10 +8,12 @@ public class BlindsFold : MonoBehaviour
     private float startPos;
     private bool clicked = false;
 
+    //Store start position
     void Start()
     {
         startPos = transform.localPosition.y;
     }
+    //Control the movement on click and release
     void OnMouseDown()
     {
         clicked = true;
@@ -21,20 +23,13 @@ public class BlindsFold : MonoBehaviour
         clicked = false;
     }
 
-    // Update is called once per frame
+    // Add force when being pulled
     void Update()
     {
         if (clicked)
         {
             _ = Mathf.Abs(transform.position.y - startPos);
-            //.transform.Translate(0, +distance, 0, Space.Self);
             nextBlind.GetComponent<Rigidbody>().AddForce(0, 3f, 0);
-            //Debug.Log(distance);
         }
-        //if (distance <= Mathf.Floor( 0.03f)){
-        //    Debug.Log("Is less");
-        //}
-
-
     }
 }

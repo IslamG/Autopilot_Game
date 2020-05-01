@@ -15,7 +15,6 @@ public class PuzzlePieceManager : MonoBehaviour
                 PuzzlePiece hitPiece = hit.transform.gameObject.GetComponent<PuzzlePiece>();
                 if ( hitPiece != null)
                 {
-                    //Debug.Log("Clicked= " + hitPiece.name + " isSolved= " + hitPiece.IsSolved() + " isActive= " + hitPiece.IsActive());
                     CheckItem(hitPiece);
                 }
                 else
@@ -37,7 +36,6 @@ public class PuzzlePieceManager : MonoBehaviour
         if (hitPiece.IsActive())
         {
             //Call puzzle game normally
-            //Debug.Log("clicked is " + hitPiece.name);
             hitPiece.Puzzle();
             hitPiece.Solve();
         }

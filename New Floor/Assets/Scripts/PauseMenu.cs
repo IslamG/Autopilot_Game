@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public FirstPersonController fpc;
     CursorLockMode currentMouse;
+    float timeScale;
+    bool fpcEnabled;
 
     void Update()
     {
@@ -30,16 +32,20 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = timeScale;
+        fpc.enabled = fpcEnabled;
         isPaused = false;
         Cursor.lockState = currentMouse;
-        fpc.enabled = true;
+
     }
     //Display pause menu and pause gametime and fpc controller
     void Pause()
     {
         currentMouse = Cursor.lockState;
+        timeScale = Time.timeScale;
+        fpcEnabled = fpc.enabled;
         Debug.Log("Pause mousestate: " + currentMouse);
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
