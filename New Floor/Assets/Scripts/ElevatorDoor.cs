@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ElevatorDoor : MonoBehaviour
 {
-    public Animator anim;
+    [SerializeField]
+    private Animator anim;
     private bool doorOpen = false;
     
     //When elevator button clicked
-    public void OnMouseDown()
+    void OnMouseDown()
     {
         //Switch door states
         doorOpen = !doorOpen;

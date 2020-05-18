@@ -5,7 +5,8 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour
 {
     private bool switchOn = true;
-    public Light[] lights;
+    [SerializeField]
+    private Light[] lights;
 
     public void OnMouseDown()
     {

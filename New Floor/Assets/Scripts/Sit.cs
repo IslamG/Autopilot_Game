@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Sit : MonoBehaviour
 {
+    [SerializeField]
+    private TMP_Text helperText;
     private GameObject player;
     private static bool inRange = false;
+    private string sitText, standText;
 
+    private void Start()
+    {
+        sitText = "Press J to sit";
+        standText = "Press K to stand";
+    }
     private void OnTriggerEnter(Collider other)
     {
         //tbd when in vecinity of chair display message indicating sit
@@ -15,6 +24,7 @@ public class Sit : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inRange = true;
+            helperText.text = sitText;
             if (GetComponent<Rigidbody>() != null)
             {
                 //Remove any force so chair doens't slide away
@@ -31,6 +41,7 @@ public class Sit : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inRange = false;
+            helperText.text = "";
         }
     }
     //Return if character is in range to sit

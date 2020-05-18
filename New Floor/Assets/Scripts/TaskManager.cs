@@ -1,45 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class TaskManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject taskMenu, starBurst;
-    private Rect menuRect, smallRect;
+    private TaskMenu taskMenu;
+    private static List<Task> taskList=new List<Task>();
 
-    void Start()
+    private void Start()
     {
-        //Replace for check for unseen tasks
-        //Turn on notification for new task
-        starBurst.SetActive(true);
-        //Get and store menu dimensions
-        menuRect = taskMenu.GetComponent<RawImage>().rectTransform.rect;
-        smallRect = menuRect;
+        //Task task=gameObject.AddComponent<Task>();
+        //AddSelf(task);
+        EventManager.AddQuestListener(AddNewTask);
     }
-     void Update()
+    private void AddNewTask()
     {
-        //If menu button pressed
+        //taskList.Add(newTask);
+        Debug.Log("New Task Added");
+    }
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            //Hide notifications
-            starBurst.SetActive(false);
-            //Show menu in full size
-            DisplayMenu();
+            foreach(Task _task in taskList)
+            {
+                if (_task.IsActive)
+                {
+                    Debug.Log("Task: " + _task + " List: " + taskList);
+                    //Task aTask = _task;
+                    taskMenu.AddTask(_task);
+                    taskList = taskList.Distinct().ToList();
+                }
+            }
         }
-    }
-    //Open up menue in screen middle
-    private void DisplayMenu()
-    {
-        //Enlarging ration, use to resize width accordingly
-        float ratio = Screen.height / menuRect.height;
-        //change menu size
-        menuRect.height = Screen.height;
-        menuRect.width *= ratio;
-        taskMenu.GetComponent<RectTransform>().sizeDelta= new Vector2(menuRect.width,menuRect.height);
-        taskMenu.GetComponent<RectTransform>().SetPositionAndRotation(
-            new Vector3(Screen.width/2-(menuRect.width/2),
-            0, 0), Quaternion.identity);
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Task aTask = gameObject.AddComponent<Task>();
+            //Instantiate<Task>(aTask);
+            aTask.IsActive = true;
+        }
     }
 }

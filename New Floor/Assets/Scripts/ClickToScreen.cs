@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ClickToScreen : MonoBehaviour
 {
-    public GameObject screen;
-    public Camera cam;
+    [SerializeField]
+    GameObject screen;
+    [SerializeField]
+    Camera cam;
     Ray ray;
     Transform screenTransform;
 

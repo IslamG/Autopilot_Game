@@ -5,15 +5,15 @@ using UnityEngine;
 public class CameraLook : MonoBehaviour
 {
 	Vector2 rotation = new Vector2(0, 0);
-	public float speed = 3;
-	public float minX, minY, maxX, maxY;
+	[SerializeField]
+	private float speed = 3, minX, minY, maxX, maxY;
 
 	private void Start()
 	{
-		//Cursor.lockState=CursorLockMode.Locked; 
+		Cursor.lockState=CursorLockMode.Locked; 
 	}
 	//Get mouse position on screen and change camera rotation
-	//tbd add slerpt to smooth movement
+	//tbd add slerp to smooth movement
 	void Update()
 	{
 		rotation.y += Input.GetAxis("Mouse X");

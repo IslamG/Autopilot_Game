@@ -6,9 +6,12 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class ElevatorKeypad : MonoBehaviour
 {
-    public ElevatorSequence sequence; 
-    public FirstPersonController fpc;
-    public GameObject padImage, crosshair;
+    [SerializeField]
+    private ElevatorSequence sequence; 
+    [SerializeField]
+    private FirstPersonController fpc;
+    [SerializeField]
+    private GameObject padImage, crosshair;
     private bool isPaused;
     CursorLockMode currentMouse;
 

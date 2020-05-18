@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Animator transition;
+    [SerializeField]
+    private Animator transition;
+    //[SerializeField]
+    //ZoomTransition zt;
     //Start game from main menu
     public void PlayGame()  
     {
         gameObject.SetActive(false);
         transition.SetBool("startNew", true);
+        //zt.MoveToCenter();
+
     }
     //Quit game from main menu
     public void QuitGame()

@@ -8,6 +8,7 @@ public class ButtonPress : MonoBehaviour
 
     //Turn on and off based on click
     //Moving button to be pushed in or out
+    //Tbd add sound on click
     public void OnMouseDown()
     {
         machineOn = !machineOn;

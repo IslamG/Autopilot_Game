@@ -7,19 +7,33 @@ using UnityEngine.Video;
 
 public class TurnOnScreen : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject loginScreen, crosshair;
+    [SerializeField]
+    private Camera closeUpCamera, screenCamera;
+    [SerializeField]
+    private RenderTexture content;
 
     private VideoPlayer vidPlayer;
-    public GameObject loginScreen, crosshair, screen;
-    public Camera closeUpCamera, screenCamera;
     private Camera mainCam;
-    public RenderTexture content;
+    private static bool introVideoPlayed = false;
 
     void Start()
     {
         //initialize variables
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
+    }
+    //Switch view from closeup camera to main 
+    private void Update()
+    {
+        if((Input.GetKeyDown(KeyCode.Backspace)) && closeUpCamera.isActiveAndEnabled)
+        {
+            mainCam.gameObject.SetActive(true);
+            closeUpCamera.gameObject.SetActive(false);
+        }
     }
     private void Awake()
     {
@@ -32,26 +46,39 @@ public class TurnOnScreen : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
         Debug.Log(gameObject.name+" is on");
-        //Play start up animation
-        vidPlayer.Play();
+        if (!introVideoPlayed)
+        {
+            //Play start up animation
+            vidPlayer.Play();
+            introVideoPlayed = true;
+        }
+        else
+        {
+            SwitchToLogin();
+        }
         //change view to close up of screen
         closeUpCamera.gameObject.SetActive(true);
-        mainCam.gameObject.SetActive(false);
-        crosshair.SetActive(false);
+        mainCam.gameObject.SetActive(false);       
     }
     //When startup animation finished playing
     void EndReached(VideoPlayer videoPlayer)
     {
-        Debug.Log("Screen is visible");
-        //Showlogin screen
-        loginScreen.SetActive(true);
+        SwitchToLogin();
+    }
+    //Bring up login screen UI
+    private void SwitchToLogin()
+    {
+        //Show login screen
+        loginScreen.GetComponent<LoginScreen>().MakeVisible(true);
         screenCamera.gameObject.SetActive(true);
-        //closeUpCamera.gameObject.SetActive(false);
+
+        crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
-        //screen.GetComponent<ClickToScreen>().enabled = true;
+        Cursor.visible = true;
+
         //clear screen and revert back to main camera
+        //for viewing login screen
         content.DiscardContents();
         mainCam.gameObject.SetActive(true);
-        this.enabled = false;
     }
 }

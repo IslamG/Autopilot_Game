@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BlindsFold : MonoBehaviour
 {
-    public GameObject nextBlind;
+    [SerializeField]
+    private GameObject nextBlind;
+
     private float startPos;
     private bool clicked = false;
 

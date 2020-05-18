@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Task : MonoBehaviour
 {
-    private Text taskText;
-    public bool isActive=false;
-    private bool isCompleted = false;
+    private bool isCompleted = false, notAdded=true;
+    private AddTaskEvent addTaskEvent= new AddTaskEvent();
 
-    //Access active attribute
-    public void SetActive()
+    //Get Set some properties
+    public bool IsActive { get; set; } = false;
+    public string TaskText { get; set; }
+
+    private void Start()
     {
-        isActive = true;
+        EventManager.AddTaskInvoker(this);
     }
-    //Change text according to task
-    private void SetText()
+    //tbd replace with event call
+    public void AddListener(UnityAction<Task> handler)
     {
-        taskText.text = "Get into your computer";
+        addTaskEvent.AddListener(handler);
+    }
+    //tbd set text dynamically 
+    public void TaskAdd()
+    {
+        addTaskEvent.Invoke(this);
+        Debug.Log(TaskText);
     }
 }

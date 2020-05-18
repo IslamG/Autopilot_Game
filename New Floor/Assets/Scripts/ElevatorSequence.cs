@@ -6,11 +6,14 @@ using TMPro;
 
 public class ElevatorSequence : MonoBehaviour
 {
+    [SerializeField]
+    private Animator elevatorAnimator, lightAnimator;
+    [SerializeField]
+    private GameObject doorAnim, elevator, player;
+
     private const string sequence="11513249";
     private static string input = "";
     private static bool isUnlocked= false;
-    public Animator elevatorAnimator, lightAnimator;
-    public GameObject doorAnim, elevator, player;
     private Timer timer;
     private void Start()
     {

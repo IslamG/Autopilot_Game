@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DistanceConstraint : MonoBehaviour
 {
-    public bool xConstrain, yConstrain, zConstrain;
-    public float minX, maxX, minY, maxY, minZ, maxZ;
+    [SerializeField]
+    private bool xConstrain, yConstrain, zConstrain;
+    [SerializeField]
+    private float minX, maxX, minY, maxY, minZ, maxZ;
+    private Vector3 currentPosition;
     void Update()
     {
         // get the position to a variable
-        Vector3 currentPosition = transform.localPosition;
+        currentPosition = transform.localPosition;
         if (xConstrain) { 
         // modify the variable to keep x within minX to maxX
         currentPosition.x =
