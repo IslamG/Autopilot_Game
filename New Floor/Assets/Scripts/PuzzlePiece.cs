@@ -1,28 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting;
 using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
     public List<PuzzlePiece> PreReq;
-    private bool isActive, solved;
+    private bool isActive = false, isSolved = false;
 
-    private void Start()
-    {
-        isActive = false;
-        solved = false;
-        //check if item is unlocked on start (leaf or solved)
-        Unlock();
-    }
+    public bool IsActive { get => isActive;}
+    public bool IsSolved { get => isSolved;}
+
     //Unlock/make active item to access puzzle game
-    public bool Unlock()
+    private void CheckRequisites()
     {
         int step = 0;
         //if is leaf item unlock
         if (PreReq.Count == 0)
         {
-            isActive = true;
-            return true;
+            Debug.Log("Pre req = zero");
+            Activate();
         }
         //else if all prerequisites are met unlock
         else
@@ -30,48 +27,67 @@ public class PuzzlePiece : MonoBehaviour
             foreach (PuzzlePiece item in PreReq)
             {
                 step++;
-                if (!item.IsSolved())
+                if (!item.IsSolved)
                 {
                     step = 0;
-                    return false;
                 }
             }
             if (step == PreReq.Count)
             {
-                isActive=true;
-                return true;
+                Activate();
             }
-            return false;
         }
     }
-    //Return active state
-    public bool IsActive()
-    {
-        return isActive;
-    }
     //Puzzle Piece can only be solved if is active
-    public void Solve ()
-    {
-        //Replace with puzzle game code or call
-        solved = true;
-        
+    //Replace with puzzle game code or call
+    private void Solve ()
+    {       
     }
-    //Return solved state
-    public bool IsSolved()
+    private void Puzzle()
     {
-        return solved;
-    }
-    public void Puzzle()
-    {
-        if (IsActive())
+        if (IsActive)
         {
             //do puzzle
             //if done correctly
             //Solve();
+            Debug.Log("Puzzling");
         }
+    }
+    private bool Activate()
+    {
+        isActive = true;
+        gameObject.GetComponent<Task>().ActivateTask();
+        return true;
+    }
+    private void OnMouseDown()
+    {
+        //check if item is unlocked (leaf or solved)
+        CheckRequisites();
+        if (IsActive)
+        {
+            CheckItem();
+        }
+    }
+    private void CheckItem()
+    {
+        if (IsActive)
+        {
+            //Call puzzle game normally
+            Puzzle();
+            Solve();
+        }/*
         else
         {
-            Unlock();
-        }
+            //Unlock if pre requistes are solved
+            bool isUnlocked = Unlock();
+            if (isUnlocked)
+            {
+                CheckItem();
+            }
+            else
+            {
+                Debug.Log("Item is locked");
+            }
+        }*/
     }
 }

@@ -59,11 +59,13 @@ public class PauseMenu : MonoBehaviour
                 cam.enabled = true;
             }
         }
-
-        if (vid.isPaused)
+        if (vid != null)
         {
-            vid.Play();
-        }
+            if (vid.isPaused)
+            {
+                vid.Play();
+            }
+        }  
     }
     //Display pause menu and pause gametime and fpc controller
     void Pause()

@@ -5,26 +5,25 @@ using UnityEngine.Events;
 
 public class Task : MonoBehaviour
 {
-    private bool isCompleted = false, notAdded=true;
-    private AddTaskEvent addTaskEvent= new AddTaskEvent();
-
+    //private bool isCompleted = false, notAdded=true;
+    private TaskOnBecameActive taskActivated = new TaskOnBecameActive();
     //Get Set some properties
-    public bool IsActive { get; set; } = false;
-    public string TaskText { get; set; }
+    [SerializeField]
+    private string taskText;
+    public string TaskText { get => taskText;}
 
     private void Start()
     {
-        EventManager.AddTaskInvoker(this);
+        TaskEventManager.AddTaskInvoker(this);
     }
     //tbd replace with event call
     public void AddListener(UnityAction<Task> handler)
     {
-        addTaskEvent.AddListener(handler);
+        taskActivated.AddListener(handler);
     }
-    //tbd set text dynamically 
-    public void TaskAdd()
+    public void ActivateTask()
     {
-        addTaskEvent.Invoke(this);
-        Debug.Log(TaskText);
+        Debug.Log("Invoke call");
+        taskActivated.Invoke(this);
     }
 }

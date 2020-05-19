@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PuzzlePieceManager : MonoBehaviour
 {
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -15,6 +15,7 @@ public class PuzzlePieceManager : MonoBehaviour
                 PuzzlePiece hitPiece = hit.transform.gameObject.GetComponent<PuzzlePiece>();
                 if ( hitPiece != null)
                 {
+                    Debug.Log("Pre Check");
                     CheckItem(hitPiece);
                 }
                 else
@@ -29,13 +30,14 @@ public class PuzzlePieceManager : MonoBehaviour
                 // Either out of range or empty skybox behind mouse cursor
             }
         }
-    }
+    }*/
 
-    private void CheckItem(PuzzlePiece hitPiece)
+    /*private void CheckItem(PuzzlePiece hitPiece)
     {
-        if (hitPiece.IsActive())
+        if (hitPiece.IsActive)
         {
             //Call puzzle game normally
+            Debug.Log("Call game puzzle from manager");
             hitPiece.Puzzle();
             hitPiece.Solve();
         }
@@ -49,8 +51,8 @@ public class PuzzlePieceManager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Item is locked");
+                Debug.Log("Item is locked");
             }
         }
-    }
+    }*/
 }

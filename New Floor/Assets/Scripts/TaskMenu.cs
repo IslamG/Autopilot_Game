@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +9,14 @@ public class TaskMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject starBurst, taskPanel;
+    [SerializeField]
+    private TMP_Text taskText;
     private Rect menuRect, smallRect;
     private bool isDisplayed = false;
     private Vector2 menuPosition;
+
+    private List<Task> activeTaskList = new List<Task>();
+    private List<Task> completedTaskList = new List<Task>();
 
     void Start()
     {
@@ -20,6 +27,7 @@ public class TaskMenu : MonoBehaviour
         menuRect = GetComponent<RawImage>().rectTransform.rect;
         smallRect = menuRect;
         menuPosition = GetComponent<RawImage>().rectTransform.transform.position;
+        TaskEventManager.AddTaskListener(AddActiveTaskToList);
     }
     void Update()
     {
@@ -33,7 +41,6 @@ public class TaskMenu : MonoBehaviour
                 starBurst.SetActive(false);
                 //Show menu in full size
                 DisplayMenu();
-                //AddTask();
             }
             else
             {
@@ -66,19 +73,19 @@ public class TaskMenu : MonoBehaviour
             taskPanel.GetComponent<Text>().gameObject.SetActive(false);
     }
     //Add active tasks to the list
-    public void AddTask(Task task)
+    private void AddActiveTaskToList(Task task)
     {
-        Text aTask = taskPanel.AddComponent<Text>();
-        aTask.text = "";
-        aTask.text = task.TaskText;
-        Debug.Log("Some text: "+task.TaskText);
-        //Set visuals
-        Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        aTask.font = ArialFont;
-        aTask.material = ArialFont.material;
-        aTask.fontSize = 36;
-        aTask.resizeTextForBestFit = true;
-        aTask.alignment = TextAnchor.UpperCenter;
-        aTask.color = Color.black;    
+        activeTaskList.Add(task);
+        activeTaskList = activeTaskList.Distinct().ToList();
+        AddTaskToMenu();
+    }
+    private void AddTaskToMenu()
+    {
+        foreach(Task task in activeTaskList)
+        {
+            //Text aTask = taskPanel.AddComponent<Text>();
+            taskText.text += task.TaskText;
+            taskText.text += "\n";
+        }
     }
 }
