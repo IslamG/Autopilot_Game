@@ -7,8 +7,8 @@ TagManager:
   - Body
   - IdleCamera
   - CloseUpCam
-  - Astroid
-  - Bullet
+  - Selectable
+  - Clickable
   layers:
   - Default
   - TransparentFX

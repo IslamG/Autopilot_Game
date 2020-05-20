@@ -10,9 +10,8 @@ public class GameInitializer : MonoBehaviour
     /// <summary>
     /// Awake is called before Start
     /// </summary>
-	void Awake()
+	void Start()
     {
-        // initialize screen utils
-        ScreenUtils.Initialize();
+        gameObject.GetComponent<Task>().ActivateTask();
     }
 }

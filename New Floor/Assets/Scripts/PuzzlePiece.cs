@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
-    public List<PuzzlePiece> PreReq;
+    [SerializeField]
+    private List<PuzzlePiece> PreReq;//, List<Puzzle> puzzleList;
     private bool isActive = false, isSolved = false;
 
     public bool IsActive { get => isActive;}
@@ -53,11 +54,17 @@ public class PuzzlePiece : MonoBehaviour
             Debug.Log("Puzzling");
         }
     }
-    private bool Activate()
+    private void Activate()
     {
         isActive = true;
         gameObject.GetComponent<Task>().ActivateTask();
-        return true;
+        DropSpot ds = gameObject.GetComponent<DropSpot>();
+        if (ds != null)
+        {
+            ds.TargetSpot.SetActive(true);
+        }
+            
+        //return true;
     }
     private void OnMouseDown()
     {

@@ -14,11 +14,12 @@ public class Task : MonoBehaviour
 
     private void Start()
     {
-        TaskEventManager.AddTaskInvoker(this);
+        Debug.Log("Call to add as invoker");
+        EventManager.AddInvoker(this);
     }
-    //tbd replace with event call
     public void AddListener(UnityAction<Task> handler)
     {
+        Debug.Log("Registering event on Task");
         taskActivated.AddListener(handler);
     }
     public void ActivateTask()

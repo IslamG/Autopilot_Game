@@ -20,14 +20,11 @@ public class TaskMenu : MonoBehaviour
 
     void Start()
     {
-        //Replace for check for unseen tasks
-        //Turn on notification for new task
-        starBurst.SetActive(true);
         //Get and store menu dimensions
         menuRect = GetComponent<RawImage>().rectTransform.rect;
         smallRect = menuRect;
         menuPosition = GetComponent<RawImage>().rectTransform.transform.position;
-        TaskEventManager.AddTaskListener(AddActiveTaskToList);
+        EventManager.AddListener(AddActiveTaskToList);
     }
     void Update()
     {
@@ -75,17 +72,28 @@ public class TaskMenu : MonoBehaviour
     //Add active tasks to the list
     private void AddActiveTaskToList(Task task)
     {
+        starBurst.SetActive(true);
         activeTaskList.Add(task);
         activeTaskList = activeTaskList.Distinct().ToList();
         AddTaskToMenu();
     }
     private void AddTaskToMenu()
     {
+        taskText.text = "";
         foreach(Task task in activeTaskList)
         {
             //Text aTask = taskPanel.AddComponent<Text>();
             taskText.text += task.TaskText;
             taskText.text += "\n";
         }
+    }
+    public void RemoveTaskFromList(Task task)
+    {
+        activeTaskList.Remove(task);
+        if (activeTaskList.Count < 1)
+        {
+            starBurst.SetActive(false);
+        }
+        AddTaskToMenu();
     }
 }
