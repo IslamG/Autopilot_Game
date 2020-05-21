@@ -13,6 +13,7 @@ public class OutOfBounds : MonoBehaviour
     private Timer textTimeout;
     private bool textDisplayed = false;
 
+    //Reset text after some time
     private void Start()
     {
         textTimeout = gameObject.AddComponent<Timer>();

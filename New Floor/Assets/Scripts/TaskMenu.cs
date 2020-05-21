@@ -77,16 +77,19 @@ public class TaskMenu : MonoBehaviour
         activeTaskList = activeTaskList.Distinct().ToList();
         AddTaskToMenu();
     }
+    //Show task text on menu
+    //Called when a new task becomes active
     private void AddTaskToMenu()
     {
         taskText.text = "";
         foreach(Task task in activeTaskList)
         {
-            //Text aTask = taskPanel.AddComponent<Text>();
             taskText.text += task.TaskText;
             taskText.text += "\n";
         }
     }
+    //Remove task text from menu
+    //Used mainly when active task is completed
     public void RemoveTaskFromList(Task task)
     {
         activeTaskList.Remove(task);

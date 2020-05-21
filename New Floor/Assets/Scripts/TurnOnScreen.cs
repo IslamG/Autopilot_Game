@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine.Video;
-
+using TMPro;
 public class TurnOnScreen : MonoBehaviour
 {
     [SerializeField]
@@ -13,10 +12,13 @@ public class TurnOnScreen : MonoBehaviour
     private Camera closeUpCamera, screenCamera;
     [SerializeField]
     private RenderTexture content;
+    [SerializeField]
+    private TMP_Text helperText;
 
     private VideoPlayer vidPlayer;
     private Camera mainCam;
-    private static bool introVideoPlayed = false;
+    private static bool introVideoPlayed = false, helperDisplayed = false;
+    private Timer textTimer;
 
     void Start()
     {
@@ -34,11 +36,17 @@ public class TurnOnScreen : MonoBehaviour
             mainCam.gameObject.SetActive(true);
             closeUpCamera.gameObject.SetActive(false);
         }
+        if (textTimer.Finished && helperDisplayed)
+        {
+            helperText.text = "";
+        }
     }
     private void Awake()
     {
         vidPlayer = GetComponentInChildren<VideoPlayer>();
         vidPlayer.targetTexture.Release();
+        textTimer = gameObject.AddComponent<Timer>();
+        textTimer.Duration = 5;
     }
     public void OnMouseDown()
     {
@@ -64,6 +72,13 @@ public class TurnOnScreen : MonoBehaviour
     void EndReached(VideoPlayer videoPlayer)
     {
         SwitchToLogin();
+
+        if (!helperDisplayed)
+        {
+            helperText.text = "I think I wrote my password down somewhere";
+            textTimer.Run();
+            helperDisplayed = true;
+        }
     }
     //Bring up login screen UI
     private void SwitchToLogin()

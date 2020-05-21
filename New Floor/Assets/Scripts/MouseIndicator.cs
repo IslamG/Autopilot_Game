@@ -15,21 +15,26 @@ public class MouseIndicator : MonoBehaviour
 
     Camera viewCamera;
     private Transform _selection;
-
+    //Camera that's being used for main control
+    //tbd manage camera switching
     private void Start()
     {
         viewCamera = gameObject.GetComponent<Camera>();
     }
     private void Update()
     {
+        //If not currently over any special object
         if (_selection != null)
         {
             crosshair.sprite = defaultMouse;
         }
+
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, reach))
         {
+            //tbd add state for when mouse held down (holding object)
+            //If hovering over special object, use correct mouse icon
             GameObject selection = hit.transform.gameObject;
             if (selection.CompareTag("Selectable"))
             {

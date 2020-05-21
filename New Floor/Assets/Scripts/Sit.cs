@@ -18,8 +18,6 @@ public class Sit : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //tbd when in vecinity of chair display message indicating sit
-        Debug.Log("On");
         //Only if it's the character in vecinity
         if (other.gameObject.CompareTag("Player"))
         {

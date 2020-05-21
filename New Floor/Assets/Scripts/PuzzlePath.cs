@@ -6,5 +6,7 @@ public class PuzzlePath: ScriptableObject
 {
     [SerializeField]
     PuzzlePiece[] pieces;
+    //possible to be removed
+    //tbd hold puzzle path progress
 
 }

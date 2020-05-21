@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargettingBehavior : MonoBehaviour
 {
+    //possible remove
+    //or replace with switching between animations
     public Transform target;
     public float speed = 2.5f;
     private bool inRange = false;

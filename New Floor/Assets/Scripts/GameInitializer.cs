@@ -12,6 +12,13 @@ public class GameInitializer : MonoBehaviour
     /// </summary>
 	void Start()
     {
-        gameObject.GetComponent<Task>().ActivateTask();
+        //If there is a task that comes with beginning of game
+        //activate it
+        Task task = gameObject.GetComponent<Task>();
+        if (task != null)
+        {
+            task.ActivateTask();
+        }
+        
     }
 }

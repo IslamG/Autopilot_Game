@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,7 +16,9 @@ public class TipsControl : MonoBehaviour
     private bool tipsEnabled = true;
     private Timer tipTimer;
     private Tip tip;
+    private List<Tip> finishedTipList = new List<Tip>();
 
+    //Return and set enabled property
     public bool TipsEnabled { get => tipsEnabled; set => tipsEnabled = value; }
 
     private void Start()
@@ -25,8 +26,8 @@ public class TipsControl : MonoBehaviour
         EventManager.AddListener(GenerateTip);
         tipTimer=gameObject.AddComponent<Timer>();
         tipTimer.Duration = 5;
-        //GenerateTip(tip);
     }
+    //tbd manage several tips triggered near the same time
     private void Update()
     {
         if (tipTimer != null)
@@ -35,13 +36,23 @@ public class TipsControl : MonoBehaviour
                 {
                     tipHolder.gameObject.SetActive(false);
                     tip.WasDisplayed = true;
+                    finishedTipList.Add(tip);
                 }
         }
-        
     }
+    //tbd more effective method of checking if used
+    //utilize WasDisplayed
     public void GenerateTip(Tip tip)
     {
-        if (!tip.WasDisplayed)
+        bool isUsed=false;
+        foreach(Tip aTip in finishedTipList)
+        {
+            if (aTip.ID == tip.ID)
+            {
+                isUsed = true;
+            }
+        }
+        if (!isUsed)
         {
             tipHolder.gameObject.SetActive(true);
             tipText.text=tip.DisplayText;
@@ -50,7 +61,6 @@ public class TipsControl : MonoBehaviour
             tipTimer.Run();
             this.tip = tip;
         }
-        
     }
 
 }

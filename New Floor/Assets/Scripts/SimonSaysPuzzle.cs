@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimonSaysPuzzle : Glow
 {
+    //Possibly reconstruct as puzzle path
     public GameObject usb, laptop, mop, coffeeMachine;
     private static bool preReq = false;
     private static GameObject nextObj;

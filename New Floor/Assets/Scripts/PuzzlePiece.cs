@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting;
 using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
@@ -59,6 +58,7 @@ public class PuzzlePiece : MonoBehaviour
         isActive = true;
         gameObject.GetComponent<Task>().ActivateTask();
         DropSpot ds = gameObject.GetComponent<DropSpot>();
+        //if dropppable object
         if (ds != null)
         {
             ds.TargetSpot.SetActive(true);

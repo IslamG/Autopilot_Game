@@ -7,22 +7,24 @@ using UnityEngine.Events;
 public class Tip : ScriptableObject
 {
     OnHaulmarkReachedEvent haulmarkReached = new OnHaulmarkReachedEvent();
+    //Returning and setting main properties of tips
+    //possibly trim down
     public Sprite TipSprite { get; set; } 
     public string DisplayText { get; set; }
     public bool WasDisplayed { get; set; }
+    public int ID { get; set; }
+
+    //Add as invoker of OnHaulmarkReached
     private void Start()
     {
-        Debug.Log("Call to add as invoker");
         EventManager.AddInvoker(this);
     }
     public void AddListener(UnityAction<Tip> handler)
     {
-        Debug.Log("Registering event on Task");
         haulmarkReached.AddListener(handler);
     }
     public void GenerateTask()
     {
-        Debug.Log("Invoke call");
         haulmarkReached.Invoke(this);
     }
 }
