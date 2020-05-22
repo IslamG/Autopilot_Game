@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8567933695631842747}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -4624,7 +4624,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8567933695631842747}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -5218,7 +5218,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8567933695631842747}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -5264,7 +5264,7 @@ RectTransform:
   - {fileID: 2981238399027787425}
   - {fileID: 1480172598671975065}
   m_Father: {fileID: 8567933695631842748}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6095,8 +6095,8 @@ RectTransform:
   - {fileID: 8072087419930223090}
   - {fileID: 7322129945587091528}
   - {fileID: 1666461941311472466}
-  - {fileID: 4972848012210113582}
   - {fileID: 5794501938570504489}
+  - {fileID: 4972848012210113582}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6583,7 +6583,7 @@ RectTransform:
   m_Children:
   - {fileID: 5904543340403004616}
   m_Father: {fileID: 8567933695631842748}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

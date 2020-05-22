@@ -8,12 +8,17 @@ public class AllTips: MonoBehaviour
     TipsControl tipsControl;
 
     private string menuTip, pickUp, disableTips, returnScreen;
+    private int menuId=1, pickUpId=2, disableId=3, returnId=4;
 
     //Porperties for specific tips
     public string MenuTip { get => menuTip;}
     public string PickUp { get => pickUp;}
     public string DisableTips { get => disableTips;}
     public string ReturnScreen { get => returnScreen;}
+    public int MenuId { get => menuId;}
+    public int PickUpId { get => pickUpId;}
+    public int DisableId { get => disableId;}
+    public int ReturnId { get => returnId;}
 
     //Initiate values of game tips
     //tbd switch hardcoded buttons to input axis
@@ -27,9 +32,7 @@ public class AllTips: MonoBehaviour
     //tbd find appropriate place to trigger tip generation
     private void OnMouseDown()
     {
-        Tip tip = Tip.CreateInstance<Tip>();
-        tip.DisplayText = ReturnScreen;
-        tip.ID = 1;
-        tipsControl.GenerateTip(tip);
+        tipsControl.GenerateTip(ReturnScreen);
     }
+   
 }

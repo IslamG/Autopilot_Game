@@ -23,7 +23,7 @@ public class Tip : ScriptableObject
     {
         haulmarkReached.AddListener(handler);
     }
-    public void GenerateTask()
+    public void GenerateTip()
     {
         haulmarkReached.Invoke(this);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class TipsControl : MonoBehaviour
 {
@@ -13,17 +14,18 @@ public class TipsControl : MonoBehaviour
     [SerializeField]
     private TMP_Text tipText;
 
-    private bool tipsEnabled = true;
+    private bool tipsEnabled = true, nothingDisplayed = true;
     private Timer tipTimer;
     private Tip tip;
-    private List<Tip> finishedTipList = new List<Tip>();
+    private List<Tip> finishedTipList = new List<Tip>(); 
+    private List<Tip> listQueue=new List<Tip>();
 
     //Return and set enabled property
     public bool TipsEnabled { get => tipsEnabled; set => tipsEnabled = value; }
 
     private void Start()
     {
-        EventManager.AddListener(GenerateTip);
+        EventManager.AddListener(DisplayTip);
         tipTimer=gameObject.AddComponent<Timer>();
         tipTimer.Duration = 5;
     }
@@ -32,24 +34,31 @@ public class TipsControl : MonoBehaviour
     {
         if (tipTimer != null)
         {
-            if (tipTimer.Finished)
+            if (tipTimer.Finished && !nothingDisplayed)
+            {
+                tipHolder.gameObject.SetActive(false);
+                tip.WasDisplayed = true;
+                finishedTipList.Add(tip);
+                nothingDisplayed = true;
+                listQueue.Remove(tip);
+                if (listQueue.Count>0)
                 {
-                    tipHolder.gameObject.SetActive(false);
-                    tip.WasDisplayed = true;
-                    finishedTipList.Add(tip);
+                    DisplayTip(listQueue.First());
                 }
+            }
         }
     }
     //tbd more effective method of checking if used
     //utilize WasDisplayed
-    public void GenerateTip(Tip tip)
+    public void DisplayTip(Tip tip)
     {
         bool isUsed=false;
-        foreach(Tip aTip in finishedTipList)
+        foreach (Tip aTip in finishedTipList)
         {
             if (aTip.ID == tip.ID)
             {
                 isUsed = true;
+                break;
             }
         }
         if (!isUsed)
@@ -59,7 +68,21 @@ public class TipsControl : MonoBehaviour
             int index = Random.Range(0, sprites.Length);
             tipHolder.sprite = sprites[index];
             tipTimer.Run();
+            nothingDisplayed = false;
             this.tip = tip;
+        }
+        
+    }
+    public void GenerateTip(string text)
+    {
+        Tip tip = Tip.CreateInstance<Tip>();
+        tip.DisplayText = text;
+        tip.ID = 1;
+        if(nothingDisplayed)
+            DisplayTip(tip);
+        else
+        {
+            listQueue.Add(tip);
         }
     }
 

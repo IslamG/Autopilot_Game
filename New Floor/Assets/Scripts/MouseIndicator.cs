@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class MouseIndicator : MonoBehaviour
 {
     [SerializeField]
-    Sprite defaultMouse, grabMouse, clickMouse;
+    Sprite defaultMouse, grabMouse, clickMouse, lmb, rmb, handOpen, handClosed;
     [SerializeField]
     private float reach;
     [SerializeField]
     Image crosshair;
-
+    Animator crosshairAnimator;
     Camera viewCamera;
     private Transform _selection;
     //Camera that's being used for main control
@@ -20,6 +20,7 @@ public class MouseIndicator : MonoBehaviour
     private void Start()
     {
         viewCamera = gameObject.GetComponent<Camera>();
+        crosshairAnimator = crosshair.GetComponent<Animator>();
     }
     private void Update()
     {
@@ -44,8 +45,17 @@ public class MouseIndicator : MonoBehaviour
             else if (selection.CompareTag("Clickable"))
             {
                 crosshair.sprite = clickMouse;
+                //crosshairAnimator.Play("LMB_Click");
+                if (Input.GetMouseButton(0))
+                    crosshair.sprite = lmb;
+                if (Input.GetMouseButton(1))
+                    crosshair.sprite = rmb;
                 _selection = selection.transform;
             }
         }
+    }
+    private void OnMouseDown()
+    {
+        
     }
 }

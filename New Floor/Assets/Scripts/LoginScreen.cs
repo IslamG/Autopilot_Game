@@ -39,7 +39,7 @@ public class LoginScreen : MonoBehaviour
     }
     //Called by loginscreen loginbutton OnClick
     //Performs login action
-    public void login()
+    public void Login()
     {
         if (isUnlocked)
         {
