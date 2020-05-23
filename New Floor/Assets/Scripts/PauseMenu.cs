@@ -19,10 +19,21 @@ public class PauseMenu : MonoBehaviour
     private VideoPlayer vid;
 
     CursorLockMode currentMouse;
-    bool isCursorVisible;
+    bool isCursorVisible, created=false;
     float timeScale;
     bool fpcEnabled;
 
+    void Awake()
+    {
+        if (!created)
+        {
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     void Update()
     {
         //pause button pressed to pause and unpause
@@ -103,6 +114,10 @@ public class PauseMenu : MonoBehaviour
             }
         }
         
+    }
+    public void LoadOptions()
+    {
+
     }
     //Go to main
     public void LoadMenu()

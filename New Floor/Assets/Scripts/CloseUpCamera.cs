@@ -13,9 +13,11 @@ public class CloseUpCamera : MonoBehaviour
     private Camera closeUpCam;
     private Transform focusPoint;
     private Vector3 originalPos;
+    private MouseIndicator mouse;
     private void Start()
     {
         closeUpCam = this.gameObject.GetComponent<Camera>();
+        mouse = gameObject.GetComponent<MouseIndicator>();
     }
     private void Update()
     {
@@ -81,10 +83,12 @@ public class CloseUpCamera : MonoBehaviour
         }
         //Set the new close position
         closeUpCam.transform.position = new Vector3(xDiff, focusPoint.position.y+0.05f, zDiff);
+        mouse.Focus();
     }
     //return to position before focusing
     private void UnfocusCamera()
     {
         closeUpCam.transform.position = originalPos;
+        mouse.Unfocus();
     }
 }

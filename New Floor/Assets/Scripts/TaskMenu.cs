@@ -11,6 +11,9 @@ public class TaskMenu : MonoBehaviour
     private GameObject starBurst, taskPanel;
     [SerializeField]
     private TMP_Text taskText;
+    [SerializeField]
+    private TipsControl tipControl;
+
     private Rect menuRect, smallRect;
     private bool isDisplayed = false;
     private Vector2 menuPosition;
@@ -29,7 +32,7 @@ public class TaskMenu : MonoBehaviour
     void Update()
     {
         //If menu button pressed
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && !PauseMenu.isPaused)
         {
             isDisplayed = !isDisplayed;
             if (isDisplayed)
@@ -87,6 +90,9 @@ public class TaskMenu : MonoBehaviour
             taskText.text += task.TaskText;
             taskText.text += "\n";
         }
+        TipScript script = this.gameObject.GetComponent<TipScript>();
+        Debug.Log("In menu: " + script.TipText);
+        tipControl.GenerateTip(script);
     }
     //Remove task text from menu
     //Used mainly when active task is completed

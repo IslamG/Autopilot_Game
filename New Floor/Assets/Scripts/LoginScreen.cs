@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LoginScreen : MonoBehaviour
 {
@@ -43,9 +44,11 @@ public class LoginScreen : MonoBehaviour
     {
         if (isUnlocked)
         {
-            //tbd next minigame or scene switch
             taskMenu.RemoveTaskFromList(task);
             MakeVisible(false);
+            //Add pan out animation
+            //Load next scene
+            SceneManager.LoadScene("LoadingScreen");
         }
     }
    //Call to show/hide the login screen

@@ -14,6 +14,8 @@ public class TurnOnScreen : MonoBehaviour
     private RenderTexture content;
     [SerializeField]
     private TMP_Text helperText;
+    [SerializeField]
+    TipsControl tipControl;
 
     private VideoPlayer vidPlayer;
     private Camera mainCam;
@@ -54,6 +56,7 @@ public class TurnOnScreen : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
         Debug.Log(gameObject.name+" is on");
+        tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
         if (!introVideoPlayed)
         {
             //Play start up animation
@@ -75,7 +78,7 @@ public class TurnOnScreen : MonoBehaviour
 
         if (!helperDisplayed)
         {
-            helperText.text = "I think I wrote my password down somewhere";
+            helperText.text = "I think I wrote clues to my password somewhere";
             textTimer.Run();
             helperDisplayed = true;
         }

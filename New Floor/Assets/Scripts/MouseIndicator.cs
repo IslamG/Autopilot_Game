@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MouseIndicator : MonoBehaviour
 {
     [SerializeField]
-    Sprite defaultMouse, grabMouse, clickMouse, lmb, rmb, handOpen, handClosed;
+    Sprite defaultMouse, focusMouse, clickMouse, lmb, rmb, handOpen, handClosed;
     [SerializeField]
     private float reach;
     [SerializeField]
@@ -39,7 +39,9 @@ public class MouseIndicator : MonoBehaviour
             GameObject selection = hit.transform.gameObject;
             if (selection.CompareTag("Selectable"))
             {
-                crosshair.sprite = grabMouse;
+                crosshair.sprite = handOpen;
+                if (Input.GetMouseButton(0))
+                    crosshair.sprite = handClosed;
                 _selection = selection.transform;
             }
             else if (selection.CompareTag("Clickable"))
@@ -52,10 +54,30 @@ public class MouseIndicator : MonoBehaviour
                     crosshair.sprite = rmb;
                 _selection = selection.transform;
             }
+            else if (selection.CompareTag("Focusable"))
+            {
+                crosshair.sprite = focusMouse;
+                if (Input.GetMouseButton(0))
+                    Focus();
+                if (Input.GetMouseButton(1))
+                    Unfocus();
+                _selection = selection.transform;
+            }
         }
     }
-    private void OnMouseDown()
+    //tbd possibly add callable functions
+    public void Focus()
     {
-        
+        Rect rect = crosshair.sprite.rect;
+        Debug.Log("Focus1: " + rect);
+        rect.Set(rect.x, rect.y, rect.width *0.5f, rect.height*0.5f);
+        Debug.Log("Focus2: " + rect);
+    }
+    public void Unfocus()
+    {
+        Rect rect = crosshair.sprite.rect;
+        Debug.Log("Unfocus1: " + rect);
+        rect.Set(rect.x, rect.y, rect.width * 2, rect.height * 2);
+        Debug.Log("Unfocus2: " + rect);
     }
 }

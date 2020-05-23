@@ -9,6 +9,7 @@ TagManager:
   - CloseUpCam
   - Selectable
   - Clickable
+  - Focusable
   layers:
   - Default
   - TransparentFX

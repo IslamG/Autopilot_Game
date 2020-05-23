@@ -46,11 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipHolder: {fileID: 0}
-  sprites:
+  overlay: {fileID: 0}
+  tipSprites:
   - {fileID: 21300000, guid: 084f0949a2cb56241a4669f552dd64e7, type: 3}
   - {fileID: 21300000, guid: 3f920d5f6df0df54295967bdfb5a9fae, type: 3}
   - {fileID: 21300000, guid: 00a959db5d9bc4d49b0c8cf01c56769b, type: 3}
   - {fileID: 21300000, guid: 474f9086125d9294b834c9f1cb357355, type: 3}
+  textureSprites:
+  - {fileID: 21300000, guid: b1322ea42fef9654a804caa552cd2b45, type: 3}
+  - {fileID: 21300000, guid: 1012e84f660632643a97575832f71a2e, type: 3}
+  - {fileID: 21300000, guid: c1d265bd84221be40a38897432b7c007, type: 3}
+  - {fileID: 21300000, guid: 1da1fd2352120ec498733861746b4c73, type: 3}
+  tipText: {fileID: 0}
 --- !u!114 &9128803230024134365
 MonoBehaviour:
   m_ObjectHideFlags: 0

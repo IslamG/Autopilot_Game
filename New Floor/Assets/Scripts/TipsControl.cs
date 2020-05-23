@@ -8,9 +8,9 @@ using System.Linq;
 public class TipsControl : MonoBehaviour
 {
     [SerializeField]
-    private Image tipHolder;
+    private Image tipHolder, overlay;
     [SerializeField]
-    private Sprite[] sprites;
+    private Sprite[] tipSprites, textureSprites;
     [SerializeField]
     private TMP_Text tipText;
 
@@ -19,6 +19,7 @@ public class TipsControl : MonoBehaviour
     private Tip tip;
     private List<Tip> finishedTipList = new List<Tip>(); 
     private List<Tip> listQueue=new List<Tip>();
+    
 
     //Return and set enabled property
     public bool TipsEnabled { get => tipsEnabled; set => tipsEnabled = value; }
@@ -34,7 +35,7 @@ public class TipsControl : MonoBehaviour
     {
         if (tipTimer != null)
         {
-            if (tipTimer.Finished && !nothingDisplayed)
+            if (tipTimer.Finished && !nothingDisplayed && !PauseMenu.isPaused)
             {
                 tipHolder.gameObject.SetActive(false);
                 tip.WasDisplayed = true;
@@ -65,25 +66,29 @@ public class TipsControl : MonoBehaviour
         {
             tipHolder.gameObject.SetActive(true);
             tipText.text=tip.DisplayText;
-            int index = Random.Range(0, sprites.Length);
-            tipHolder.sprite = sprites[index];
+            int index = Random.Range(0, tipSprites.Length);
+            tipHolder.sprite = tipSprites[index];
+            index = Random.Range(0, textureSprites.Length);
+            overlay.sprite = textureSprites[index];
             tipTimer.Run();
             nothingDisplayed = false;
             this.tip = tip;
         }
         
     }
-    public void GenerateTip(string text)
+    public Tip GenerateTip(TipScript tipScript)
     {
         Tip tip = Tip.CreateInstance<Tip>();
-        tip.DisplayText = text;
-        tip.ID = 1;
+        tip.DisplayText = tipScript.TipText;
+        Debug.Log("tip: " + tipScript.TipText);
+        tip.ID = tipScript.TipID;
         if(nothingDisplayed)
             DisplayTip(tip);
         else
         {
             listQueue.Add(tip);
         }
+        return tip;
     }
 
 }

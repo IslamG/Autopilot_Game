@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AllTips: MonoBehaviour
 {
+    //TBD migrated to seperate tips
     [SerializeField]
     TipsControl tipsControl;
 
@@ -29,10 +30,4 @@ public class AllTips: MonoBehaviour
         pickUp = "Click and hold LMB to grab an interactable object";
         returnScreen = "Use BACKSPACE to switch back camera";
     }
-    //tbd find appropriate place to trigger tip generation
-    private void OnMouseDown()
-    {
-        tipsControl.GenerateTip(ReturnScreen);
-    }
-   
 }
