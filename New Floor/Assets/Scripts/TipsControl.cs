@@ -30,7 +30,6 @@ public class TipsControl : MonoBehaviour
         tipTimer=gameObject.AddComponent<Timer>();
         tipTimer.Duration = 5;
     }
-    //tbd manage several tips triggered near the same time
     private void Update()
     {
         if (tipTimer != null)

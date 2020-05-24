@@ -1382,6 +1382,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.9300003
       objectReference: {fileID: 0}
+    - target: {fileID: 4570047182172392350, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570047182172392350, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58553426f6f0383408b43d7a1d4897b3, type: 3}
 --- !u!4 &653266014 stripped
@@ -3587,7 +3597,9 @@ MonoBehaviour:
   rmb: {fileID: 21300000, guid: 658162964daa2de4ab3ac212fb37c0d9, type: 3}
   handOpen: {fileID: 0}
   handClosed: {fileID: 0}
-  reach: 3
+  lookAt: {fileID: 21300000, guid: 7db6eea6c6522874a982247a0b73899a, type: 3}
+  lookCloser: {fileID: 21300000, guid: f401e5794b9a25243b4822bc27e19f28, type: 3}
+  reach: 3.7
   crosshair: {fileID: 1357648427}
 --- !u!114 &1642218483
 MonoBehaviour:
@@ -3930,7 +3942,9 @@ MonoBehaviour:
   rmb: {fileID: 21300000, guid: 658162964daa2de4ab3ac212fb37c0d9, type: 3}
   handOpen: {fileID: 0}
   handClosed: {fileID: 0}
-  reach: 3
+  lookAt: {fileID: 21300000, guid: 7db6eea6c6522874a982247a0b73899a, type: 3}
+  lookCloser: {fileID: 21300000, guid: f401e5794b9a25243b4822bc27e19f28, type: 3}
+  reach: 3.7
   crosshair: {fileID: 1357648427}
 --- !u!1 &1932916831
 GameObject:
@@ -4334,6 +4348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StickyNote (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157882119201855875, guid: 6d77e3429c36af54aae58aa4ddf3fd36,
+        type: 3}
+      propertyPath: m_TagString
+      value: Viewable
       objectReference: {fileID: 0}
     - target: {fileID: 1423579038598694749, guid: 6d77e3429c36af54aae58aa4ddf3fd36,
         type: 3}
@@ -5912,6 +5931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mug (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735335312066233943, guid: 25eaa7d7e3160f847bf75a3ef76a5465,
+        type: 3}
+      propertyPath: m_TagString
+      value: Viewable
       objectReference: {fileID: 0}
     - target: {fileID: 903531501898677958, guid: 25eaa7d7e3160f847bf75a3ef76a5465,
         type: 3}

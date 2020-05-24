@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class MouseIndicator : MonoBehaviour
 {
     [SerializeField]
-    Sprite defaultMouse, focusMouse, clickMouse, lmb, rmb, handOpen, handClosed;
+    Sprite defaultMouse, focusMouse, clickMouse, lmb, rmb,
+        handOpen, handClosed, lookAt, lookCloser;
     [SerializeField]
     private float reach;
     [SerializeField]
@@ -15,8 +16,8 @@ public class MouseIndicator : MonoBehaviour
     Animator crosshairAnimator;
     Camera viewCamera;
     private Transform _selection;
-    //Camera that's being used for main control
-    //tbd manage camera switching
+    private bool isFocused = false, itemHeld=false;
+
     private void Start()
     {
         viewCamera = gameObject.GetComponent<Camera>();
@@ -25,23 +26,42 @@ public class MouseIndicator : MonoBehaviour
     private void Update()
     {
         //If not currently over any special object
-        if (_selection != null)
+        if (_selection != null && !itemHeld)
         {
-            crosshair.sprite = defaultMouse;
+            crosshair.sprite = focusMouse;
+            Unfocus();
         }
-
+        if (!itemHeld)
+        {
+            SetCursor();
+        }
+        else
+        {
+            if (!Input.GetMouseButton(0))
+            {
+                itemHeld = false;
+                SetCursor();
+            }
+        }  
+    }
+    private void SetCursor()
+    {
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, reach))
+        if (Physics.Raycast(ray, out hit, reach))
         {
             //tbd add state for when mouse held down (holding object)
             //If hovering over special object, use correct mouse icon
             GameObject selection = hit.transform.gameObject;
             if (selection.CompareTag("Selectable"))
             {
+
                 crosshair.sprite = handOpen;
                 if (Input.GetMouseButton(0))
+                {
                     crosshair.sprite = handClosed;
+                    itemHeld = true;
+                }
                 _selection = selection.transform;
             }
             else if (selection.CompareTag("Clickable"))
@@ -54,30 +74,37 @@ public class MouseIndicator : MonoBehaviour
                     crosshair.sprite = rmb;
                 _selection = selection.transform;
             }
-            else if (selection.CompareTag("Focusable"))
+            else if (selection.CompareTag("Viewable"))
             {
-                crosshair.sprite = focusMouse;
+                crosshair.sprite = lookAt;
                 if (Input.GetMouseButton(0))
+                    crosshair.sprite = lookCloser;
+                _selection = selection.transform;
+            }
+            else
+            {
+                if (Input.GetMouseButton(0) && !isFocused)
                     Focus();
-                if (Input.GetMouseButton(1))
-                    Unfocus();
                 _selection = selection.transform;
             }
         }
     }
-    //tbd possibly add callable functions
     public void Focus()
     {
-        Rect rect = crosshair.sprite.rect;
-        Debug.Log("Focus1: " + rect);
-        rect.Set(rect.x, rect.y, rect.width *0.5f, rect.height*0.5f);
-        Debug.Log("Focus2: " + rect);
+        if (!isFocused)
+        {
+            RectTransform rect = crosshair.rectTransform;
+            rect.sizeDelta=new Vector2(rect.rect.width*0.5f, rect.rect.height * 0.5f);
+            isFocused = true;
+        }
     }
     public void Unfocus()
     {
-        Rect rect = crosshair.sprite.rect;
-        Debug.Log("Unfocus1: " + rect);
-        rect.Set(rect.x, rect.y, rect.width * 2, rect.height * 2);
-        Debug.Log("Unfocus2: " + rect);
+        if (isFocused)
+        {
+            RectTransform rect = crosshair.rectTransform;
+            rect.sizeDelta = new Vector2(rect.rect.width * 2f, rect.rect.height * 2f);
+            isFocused = false;
+        }
     }
 }

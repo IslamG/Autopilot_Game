@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 7991124333335779159}
   - component: {fileID: 7991124333335779160}
   - component: {fileID: 5394416677252476862}
-  - component: {fileID: 8676700725343087778}
   m_Layer: 0
   m_Name: Sofa
   m_TagString: Untagged
@@ -150,15 +149,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 99, y: 199.99934, z: 125.5}
   m_Center: {x: -0.005958015, y: 51.7, z: 15.846515}
---- !u!114 &8676700725343087778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8607351404120750767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d56784b162e904eade1769b99fa167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

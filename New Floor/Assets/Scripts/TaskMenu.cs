@@ -91,8 +91,8 @@ public class TaskMenu : MonoBehaviour
             taskText.text += "\n";
         }
         TipScript script = this.gameObject.GetComponent<TipScript>();
-        Debug.Log("In menu: " + script.TipText);
-        tipControl.GenerateTip(script);
+        if(script!=null)
+            tipControl.GenerateTip(script);
     }
     //Remove task text from menu
     //Used mainly when active task is completed
