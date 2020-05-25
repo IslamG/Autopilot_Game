@@ -132,12 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1bb7e1cb88a05e449a98537a5751ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &152877106 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8574893997945368096, guid: 2270a311125be674189effd02039d8e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1327914102162930114}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &153084920 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 808524505336513391, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -417,12 +411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen: {fileID: 277195958}
   cam: {fileID: 1858178023}
---- !u!1 &402586312 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 294931471690749217, guid: 57a9c3429a824b64495cba85c1426c11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1327914102263286049}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &444083386 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7141819641138055920, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -901,6 +889,11 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 504018284}
+    - target: {fileID: 8567933695631842747, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1357648425}
     - target: {fileID: 3603247154003777225, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -1386,11 +1379,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 6565f4b400045b740895a5ce8caceac5,
+        type: 3}
     - target: {fileID: 4570047182172392350, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58553426f6f0383408b43d7a1d4897b3, type: 3}
@@ -1766,6 +1760,11 @@ MonoBehaviour:
   crossHair: {fileID: 1357648425}
   taskMenu: {fileID: 58859787}
   task: {fileID: 667473577}
+  sceneCameras:
+  - {fileID: 1642218480}
+  - {fileID: 1858178023}
+  vid: {fileID: 2024622738}
+  rend: {fileID: 8400000, guid: 5fd692b83ee4cca458d7ec52db32ff9c, type: 2}
 --- !u!210 &788926480
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -2441,12 +2440,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3014237143727001885, guid: 24d6d2b88e0a2504a89048f5f2ce8aeb,
     type: 3}
   m_PrefabInstance: {fileID: 1327914101785878908}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1166159171 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 334445218193293650, guid: 7d3ea547b96200d4ca2e601eeed3de11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1327914102313516927}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1258679514
 GameObject:
@@ -3495,8 +3488,8 @@ GameObject:
   - component: {fileID: 1642218481}
   - component: {fileID: 1642218480}
   - component: {fileID: 1642218479}
-  - component: {fileID: 1642218482}
   - component: {fileID: 1642218483}
+  - component: {fileID: 1642218482}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3595,8 +3588,8 @@ MonoBehaviour:
   clickMouse: {fileID: 21300000, guid: 6cb6d49256346c94aa5080565ae4ddf6, type: 3}
   lmb: {fileID: 21300000, guid: b708007eabeb95a4a9219191bc0758e3, type: 3}
   rmb: {fileID: 21300000, guid: 658162964daa2de4ab3ac212fb37c0d9, type: 3}
-  handOpen: {fileID: 0}
-  handClosed: {fileID: 0}
+  handOpen: {fileID: 21300000, guid: bd18767e16b8b7a4f985d7b5135d6691, type: 3}
+  handClosed: {fileID: 21300000, guid: d8b3c24a1f936654bbee4ee79315b8a6, type: 3}
   lookAt: {fileID: 21300000, guid: 7db6eea6c6522874a982247a0b73899a, type: 3}
   lookCloser: {fileID: 21300000, guid: f401e5794b9a25243b4822bc27e19f28, type: 3}
   reach: 3.7
@@ -3614,10 +3607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focusObjects:
-  - {fileID: 1782787037}
-  - {fileID: 152877106}
-  - {fileID: 402586312}
-  - {fileID: 1166159171}
+  - {fileID: 865805876}
   reach: 5
   space: 0.45
 --- !u!1 &1679854270
@@ -3812,15 +3802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b829eb79bb6bc4095ad3602f1b40a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipText: Use BACKSPACE to switch back camera
+  tipText: Use RMB to switch back camera
   tipID: 1
   tipControl: {fileID: 1014389543}
---- !u!1 &1782787037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1735335312066233943, guid: 25eaa7d7e3160f847bf75a3ef76a5465,
-    type: 3}
-  m_PrefabInstance: {fileID: 1327914103350693675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1858178021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3940,8 +3924,8 @@ MonoBehaviour:
   clickMouse: {fileID: 21300000, guid: 6cb6d49256346c94aa5080565ae4ddf6, type: 3}
   lmb: {fileID: 21300000, guid: b708007eabeb95a4a9219191bc0758e3, type: 3}
   rmb: {fileID: 21300000, guid: 658162964daa2de4ab3ac212fb37c0d9, type: 3}
-  handOpen: {fileID: 0}
-  handClosed: {fileID: 0}
+  handOpen: {fileID: 21300000, guid: bd18767e16b8b7a4f985d7b5135d6691, type: 3}
+  handClosed: {fileID: 21300000, guid: d8b3c24a1f936654bbee4ee79315b8a6, type: 3}
   lookAt: {fileID: 21300000, guid: 7db6eea6c6522874a982247a0b73899a, type: 3}
   lookCloser: {fileID: 21300000, guid: f401e5794b9a25243b4822bc27e19f28, type: 3}
   reach: 3.7
@@ -5935,7 +5919,7 @@ PrefabInstance:
     - target: {fileID: 1735335312066233943, guid: 25eaa7d7e3160f847bf75a3ef76a5465,
         type: 3}
       propertyPath: m_TagString
-      value: Viewable
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 903531501898677958, guid: 25eaa7d7e3160f847bf75a3ef76a5465,
         type: 3}

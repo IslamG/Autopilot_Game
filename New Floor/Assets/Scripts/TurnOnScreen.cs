@@ -33,7 +33,7 @@ public class TurnOnScreen : MonoBehaviour
     //Switch view from closeup camera to main 
     private void Update()
     {
-        if((Input.GetKeyDown(KeyCode.Backspace)) && closeUpCamera.isActiveAndEnabled)
+        if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled)
         {
             mainCam.gameObject.SetActive(true);
             closeUpCamera.gameObject.SetActive(false);

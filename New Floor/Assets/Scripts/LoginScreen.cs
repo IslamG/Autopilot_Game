@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class LoginScreen : MonoBehaviour
 {
@@ -14,15 +15,21 @@ public class LoginScreen : MonoBehaviour
     private TaskMenu taskMenu;
     [SerializeField]
     private Task task;
+    [SerializeField]
+    Camera[] sceneCameras;
+    [SerializeField]
+    private VideoPlayer vid;
+    [SerializeField]
+    private RenderTexture rend;
 
-    private const string password = "1234";
+    private const string password = "28212433110";
     private static string input = "";
     private bool isUnlocked = false; 
 
     //Switch from login screen UI to normal game view
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace) && gameObject.activeSelf)
+        if (Input.GetMouseButton(1) && gameObject.activeSelf)
         {
             MakeVisible(false);
         }
@@ -61,6 +68,21 @@ public class LoginScreen : MonoBehaviour
             Cursor.visible = false;
             crossHair.SetActive(true);
         }
+        else
+        {
+            foreach (Camera cam in sceneCameras)
+            {
+                cam.enabled = !ctrl;
+                cam.gameObject.SetActive(!ctrl);
+                Debug.Log(cam.name + " " + cam.enabled);
+            }
+        }
+        if (vid.isPlaying)
+        {
+            vid.Stop();
+            rend.DiscardContents();
+        }
         gameObject.SetActive(ctrl);
+        
     }
 }

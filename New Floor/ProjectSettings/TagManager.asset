@@ -20,10 +20,10 @@ TagManager:
   - UI
   - 
   - 
-  - ExtraScreens
-  - Ship
-  - Bullet
-  - Astroid
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -47,10 +47,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Elsewhere
-    uniqueID: 1742683243
-    locked: 0
-  - name: Behind
-    uniqueID: 3153573825
     locked: 0

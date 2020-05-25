@@ -74,11 +74,11 @@ public class MainMenu : MonoBehaviour
     {
         if (!saveFile)
         {
-            playText.text = "Start New";
+            playText.text = " Start New ";
         }
         else
         {
-            playText.text = "Continue";
+            playText.text = " Continue ";
         }
     }
     public void PlayGame()  

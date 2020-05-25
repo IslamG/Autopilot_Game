@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -10,7 +11,7 @@ public class PauseMenu : MonoBehaviour
 
     public static bool isPaused = false;
     [SerializeField]
-    private GameObject pauseMenuUI;
+    private GameObject pauseMenuUI, crosshair;
     [SerializeField]
     private FirstPersonController fpc;
     [SerializeField]
@@ -55,6 +56,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = timeScale;
 
+        crosshair.SetActive(true);
+
         isPaused = false;
         //Return states to how they were before pausing
         Cursor.lockState = currentMouse;
@@ -85,6 +88,7 @@ public class PauseMenu : MonoBehaviour
         currentMouse = Cursor.lockState;
         isCursorVisible = Cursor.visible;
         timeScale = Time.timeScale;
+        crosshair.SetActive(false);
 
         if (fpc != null)
             fpcEnabled = fpc.enabled;

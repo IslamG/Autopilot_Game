@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5199511341669850471}
   - component: {fileID: 5199511341669850470}
   - component: {fileID: 5199511341669850465}
+  - component: {fileID: 1730688088452714051}
   m_Layer: 0
   m_Name: Stalls
   m_TagString: Untagged
@@ -166,3 +167,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 37.76, z: 89.0462}
   m_Center: {x: -8.75, y: -0.5, z: -0.77838707}
+--- !u!65 &1730688088452714051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551169464098499422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 56.356598, y: 40.68652, z: 6.7}
+  m_Center: {x: -0.14760973, y: -0.33309844, z: 31.6}
