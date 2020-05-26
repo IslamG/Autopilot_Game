@@ -33,11 +33,13 @@ public class TurnOnScreen : MonoBehaviour
     //Switch view from closeup camera to main 
     private void Update()
     {
-        if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled)
+        //Back out of login screen on right click if up
+        if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled && !loginScreen.activeSelf)
         {
             mainCam.gameObject.SetActive(true);
             closeUpCamera.gameObject.SetActive(false);
         }
+        //Hide helper text after duration
         if (textTimer.Finished && helperDisplayed)
         {
             helperText.text = "";
@@ -52,11 +54,12 @@ public class TurnOnScreen : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        //if mouse is over a screen that can open 
+        //if mouse isn't over a screen that can open 
         if (EventSystem.current.IsPointerOverGameObject())
             return;
         Debug.Log(gameObject.name+" is on");
         tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
+        //Only play the boot up animation once
         if (!introVideoPlayed)
         {
             //Play start up animation
@@ -67,15 +70,20 @@ public class TurnOnScreen : MonoBehaviour
         {
             SwitchToLogin();
         }
-        //change view to close up of screen
-        closeUpCamera.gameObject.SetActive(true);
-        mainCam.gameObject.SetActive(false);       
+        //Click on screen not login interface
+        if (!loginScreen.activeSelf)
+        {
+            //change view to close up of screen
+            closeUpCamera.gameObject.SetActive(true);
+            mainCam.gameObject.SetActive(false);
+        }
+               
     }
     //When startup animation finished playing
     void EndReached(VideoPlayer videoPlayer)
     {
         SwitchToLogin();
-
+        //Display helper text only once
         if (!helperDisplayed)
         {
             helperText.text = "I think I wrote clues to my password somewhere";
@@ -97,6 +105,7 @@ public class TurnOnScreen : MonoBehaviour
         //clear screen and revert back to main camera
         //for viewing login screen
         content.DiscardContents();
+        //remove?
         mainCam.gameObject.SetActive(true);
     }
 }

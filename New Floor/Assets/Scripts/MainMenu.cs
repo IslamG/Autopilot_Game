@@ -15,13 +15,17 @@ public class MainMenu : MonoBehaviour
     bool saveFile = false;
     [SerializeField]
     private Image background;
+    [SerializeField]
+    private RectTransform rect_Panel, bTrans;
+    [SerializeField]
+    GameObject mainMenu;
     //[SerializeField]
     //ZoomTransition zt;
 
     Gradient gradient;
     GradientColorKey[] colorKey;
     GradientAlphaKey[] alphaKey;
-
+    bool isReady = false, created = false;
     private void SetColor()
     {
         gradient = new Gradient();
@@ -69,6 +73,17 @@ public class MainMenu : MonoBehaviour
     {
         SetColor(); 
     }
+    private void Awake()
+    {
+        if (!created)
+        {
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     //tbd replace with savefile check
     private void Start()
     {
@@ -83,7 +98,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame()  
     {
-        gameObject.SetActive(false);
+        mainMenu.SetActive(false);
         transition.SetBool("startNew", true);
         //zt.MoveToCenter();
         //scene transition is called from animation end event in animator

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3357251006098765659}
   - component: {fileID: 3357251006098765658}
   - component: {fileID: 3357251006098765656}
+  - component: {fileID: 5239850935473355542}
+  - component: {fileID: 987688787}
   m_Layer: 0
   m_Name: BatroomDoor
   m_TagString: Untagged
@@ -28,9 +30,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3357251006270304546}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.4551754, y: 1.6119878, z: -18.64042}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6410905, y: 1, z: 1.0632309}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7b4efe9abf9642145b24638b6dffffaf, type: 2}
-  - {fileID: 2100000, guid: ea06db9dd8bfc754dac11c56a3ac270d, type: 2}
+  - {fileID: 2100000, guid: 1c5fd63f86698b7439cd1550c283b867, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +124,7 @@ HingeJoint:
   m_Anchor: {x: 0.09, y: -0.06, z: -0.22}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.3651755, y: 1.5519879, z: -18.86042}
+  m_ConnectedAnchor: {x: 27.14093, y: 0.21835601, z: 41.032345}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -146,3 +148,28 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!65 &5239850935473355542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357251006270304546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22, y: 2.93328, z: 0.15}
+  m_Center: {x: -0.12, y: -0.07219875, z: 1.55}
+--- !u!114 &987688787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357251006270304546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f9bb767c2819a4b83ccbf2b4e95d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

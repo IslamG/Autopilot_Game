@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using System;
 
 public class LoginScreen : MonoBehaviour
 {
@@ -22,13 +23,15 @@ public class LoginScreen : MonoBehaviour
     [SerializeField]
     private RenderTexture rend;
 
-    private const string password = "28212433110";
+    //tbd simplify password
+    private const string password = "1234";//"28212433110";
     private static string input = "";
     private bool isUnlocked = false; 
 
     //Switch from login screen UI to normal game view
     private void Update()
     {
+        //right click to back out of screen
         if (Input.GetMouseButton(1) && gameObject.activeSelf)
         {
             MakeVisible(false);
@@ -54,10 +57,18 @@ public class LoginScreen : MonoBehaviour
             taskMenu.RemoveTaskFromList(task);
             MakeVisible(false);
             //Add pan out animation
-            //Load next scene
-            SceneManager.LoadScene("LoadingScreen");
+            foreach (Camera cam in sceneCameras)
+            {
+                if (cam == Camera.main)
+                {
+                    Debug.Log("Why am I here");
+                    cam.gameObject.GetComponent<Animator>().SetBool("isWaiting", false);
+                    break;
+                }
+            }
         }
     }
+
    //Call to show/hide the login screen
    public void MakeVisible(bool ctrl)
    {
@@ -67,22 +78,31 @@ public class LoginScreen : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             crossHair.SetActive(true);
+            //find and turn main camera on
+            foreach(Camera cam in sceneCameras)
+            {
+                if (cam == Camera.main)
+                {
+                    cam.gameObject.SetActive(true);
+                    break;
+                }
+            }
         }
         else
         {
+            //While login screen active disable extra cameras in scene
             foreach (Camera cam in sceneCameras)
             {
-                cam.enabled = !ctrl;
                 cam.gameObject.SetActive(!ctrl);
-                Debug.Log(cam.name + " " + cam.enabled);
             }
         }
+        //Clicking on screen while vid playing will bring up login
+        //stop video in that case
         if (vid.isPlaying)
         {
             vid.Stop();
             rend.DiscardContents();
         }
         gameObject.SetActive(ctrl);
-        
     }
 }

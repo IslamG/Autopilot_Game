@@ -92,7 +92,6 @@ public class PauseMenu : MonoBehaviour
 
         if (fpc != null)
             fpcEnabled = fpc.enabled;
-        Debug.Log("Pause mousestate: " + currentMouse);
 
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;

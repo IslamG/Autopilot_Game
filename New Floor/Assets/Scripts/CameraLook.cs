@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraLook : MonoBehaviour
 {
@@ -27,5 +28,12 @@ public class CameraLook : MonoBehaviour
 			rotation.y = Mathf.Clamp(rotation.y, minY, maxY);
 			cam.transform.localEulerAngles = (Vector2) rotation * speed;
 		}
+	}
+	public void LeaveLevel()
+	{
+		//Load next scene
+		gameObject.transform.rotation = Quaternion.identity;
+		this.enabled = false;
+		SceneManager.LoadScene("LoadingScreen");
 	}
 }

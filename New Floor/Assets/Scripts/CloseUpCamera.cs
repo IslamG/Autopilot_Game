@@ -48,41 +48,77 @@ public class CloseUpCamera : MonoBehaviour
     //tbd possibly switch out between a "close up camera" and main
     private void FocusCamera()
     {
-        float xDiff, zDiff, spaceX, spaceZ;
+        float xDiff=0, zDiff=0;
         //Find where the camera is facing the object from
-        xDiff = focusPoint.position.x - closeUpCam.transform.position.x;
-        zDiff = focusPoint.position.z - closeUpCam.transform.position.z;
-
-        //newPos.x = focusPoint.position.x+0.1f;
-        //newPos.y = focusPoint.position.y; 
-        //newPos.z= focusPoint.position.z +0.6f;
-        //closeUpCam.transform.position = newPos;
-        //spaceX = xDiff-space;
-        //spaceZ = zDiff-space;
-
+        Vector3 target = focusPoint.position, 
+            point = closeUpCam.transform.position;
+        float angle = GetAngle(point, target);
+        Debug.Log("Angle: " + angle);
+        Debug.Log("Quarter: "+GetQuarter(target, point));
         //Move the camera relevent to its position to the object's position
-        if (xDiff <= 0 && zDiff <= 0)
+        switch (GetQuarter(target, point))
         {
-            xDiff= focusPoint.position.x + space;
-            zDiff= focusPoint.position.z + space;
-        }
-        else if (xDiff <= 0 && zDiff >= 0)
-        {
-            xDiff = focusPoint.position.x + space;
-            zDiff = focusPoint.position.z - space;
-        }
-        else if (xDiff >= 0 && zDiff <= 0)
-        {
-            xDiff = focusPoint.position.x - space;
-            zDiff = focusPoint.position.z + space;
-        }
-        else if (xDiff >= 0 && zDiff >= 0)
-        {
-            xDiff = focusPoint.position.x - space;
-            zDiff = focusPoint.position.z - space;
+            case 1:
+                {//x=+, z=+
+                    if (angle > 45)
+                    {
+                        xDiff = target.x; 
+                        zDiff = target.z + space;
+                    }
+                    else
+                    {
+                        xDiff = target.x + space;  
+                        zDiff = target.z;
+                    }
+                    break;
+                }
+            case 2:
+                {//x=-, z=+
+                    if (angle > 115)
+                    {
+                        xDiff = target.x;  
+                        zDiff = target.z + space;
+                    }
+                    else
+                    {
+                        xDiff = target.x - space;  
+                        zDiff = target.z;
+                    }
+                    break;
+                }
+            case 3:
+                {
+                    //x= -, z=-
+                    if (angle > 225)
+                    {
+                        xDiff = target.x;  
+                        zDiff = target.z - space;
+                    }
+                    else
+                    {
+                        xDiff = target.x - space;  
+                        zDiff = target.z;
+                    }
+                    break;
+                }
+            case 4:
+                {//x=+, z=+
+                    if (angle > 315)
+                    {
+                        xDiff = target.x;
+                        zDiff = target.z - space;
+                    }
+                    else
+                    {
+                        xDiff = target.x + space;
+                        zDiff = target.z;
+                    }
+                    break;
+                }
         }
         //Set the new close position
-        closeUpCam.transform.position = new Vector3(xDiff, focusPoint.position.y+0.05f, zDiff);
+        closeUpCam.transform.position = new Vector3(xDiff, target.y+0.05f, zDiff);
+        //closeUpCam.transform.LookAt(target);
         mouse.Focus();
     }
     //return to position before focusing
@@ -90,5 +126,59 @@ public class CloseUpCamera : MonoBehaviour
     {
         closeUpCam.transform.position = originalPos;
         mouse.Unfocus();
+    }
+    private float GetAngle(Vector3 target, Vector3 point)
+    {
+        float w = target.x - point.x;
+        float h = target.z - point.z;
+
+        float atan = Mathf.Atan(h / w) / Mathf.PI * 180;
+        if (w < 0 || h < 0)
+            atan += 180;
+        if (w > 0 && h < 0)
+            atan -= 180;
+        if (atan < 0)
+            atan += 360;
+
+        return atan % 360;
+    }
+    private int GetQuarter(Vector3 target, Vector3 point)
+    {
+        float xDiff = target.x - point.x;
+        float zDiff = target.z - point.z;
+
+        //1st quarter
+        if (xDiff < 0 && zDiff < 0)
+        {
+            xDiff = focusPoint.position.x;  // + spaceX;
+            zDiff = focusPoint.position.z + space;
+            Debug.Log("In 1");
+            return 1;
+        }
+        //2nd quarter
+        else if (xDiff > 0 && zDiff < 0)
+        {
+            xDiff = focusPoint.position.x;// - spaceX;
+            zDiff = focusPoint.position.z + space;
+            Debug.Log("In 2");
+            return 2;
+        }
+        //3rd quarter
+        else if (xDiff > 0 && zDiff > 0)
+        {
+            xDiff = focusPoint.position.x;  // - spaceX;
+            zDiff = focusPoint.position.z - space;
+            Debug.Log("In 3");
+            return 3;
+        }
+        //4th quarter
+        else if (xDiff < 0 && zDiff > 0)
+        {
+            xDiff = focusPoint.position.x;// + spaceX;
+            zDiff = focusPoint.position.z - space;
+            Debug.Log("In 4");
+            return 4;
+        }
+        return 5;
     }
 }

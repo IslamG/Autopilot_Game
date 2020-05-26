@@ -30,6 +30,8 @@ public class GameInitializer : MonoBehaviour
         if (currenLvl.Equals("Opening"))
         {
             LevelTraversal.TargetLevel = "FloorTest";
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
