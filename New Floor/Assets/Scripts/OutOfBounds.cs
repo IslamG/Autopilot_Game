@@ -37,10 +37,13 @@ public class OutOfBounds : MonoBehaviour
         //currently moves character up and back
         if (other.gameObject.CompareTag("Player"))
         {
-            respawnPos.x = other.gameObject.transform.position.x * 1;
-            respawnPos.z = other.gameObject.transform.position.z * 1.075f;
-            respawnPos.y = 1;
-            other.gameObject.transform.position = respawnPos;
+            Vector3 root=gameObject.transform.position;
+            //respawnPos.x = other.gameObject.transform.position.x * 1;
+            //respawnPos.z = other.gameObject.transform.position.z * 1.075f;
+            //respawnPos.y = 1;
+            root.y -= other.transform.localScale.y;
+            other.gameObject.transform.position = root; //respawnPos;
+            SetText();
         }
         //If respawning object 
         else
@@ -50,14 +53,13 @@ public class OutOfBounds : MonoBehaviour
             playerPos = player.transform.localPosition;
             respawnPos = playerPos * 1.025f;
             other.gameObject.transform.position = respawnPos;
-            fallTimes += 1;
-            SetText();
         }
     }
     //Show text when object is thrown put of the building
     //And run timer to make the text disappear
     private void SetText()
     {
+        fallTimes += 1;
         switch (fallTimes)
         {
             case 1:

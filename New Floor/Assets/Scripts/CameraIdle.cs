@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -30,11 +31,11 @@ public class CameraIdle : MonoBehaviour
         //Mouse moved, reset timer
         if (Input.GetAxis("Mouse X") !=0 || Input.GetAxis("Mouse Y") != 0)
         {
-            timeOutTimer = 0.0f;
-            anim.SetBool("isActive", true);
-            mainCam.enabled = true;
-            idleCam.enabled = false;
-            hud.gameObject.SetActive(true);
+            DisableIdle();
+        }
+        else if (Input.anyKey)
+        {
+            DisableIdle();
         }
         //Mouse inactivity period has occured
         if (timeOutTimer > timeOut)
@@ -47,5 +48,13 @@ public class CameraIdle : MonoBehaviour
             hud.gameObject.SetActive(false);
 
         }
+    }
+    private void DisableIdle()
+    {
+        timeOutTimer = 0.0f;
+        anim.SetBool("isActive", true);
+        mainCam.enabled = true;
+        idleCam.enabled = false;
+        hud.gameObject.SetActive(true);
     }
 }
