@@ -8,6 +8,20 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameInitializer : MonoBehaviour 
 {
+    public static GameInitializer instance;
+    static bool created = false;
+    //Singleton
+    void Awake()
+    {
+        if (!created)
+        {
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     /// <summary>
     /// Awake is called before Start
     /// </summary>

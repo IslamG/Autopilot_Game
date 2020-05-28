@@ -22,6 +22,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Glass_material
+    second: {fileID: 2100000, guid: d06d86169472eeb4faa2e71f3189ebd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Handle_material
     second: {fileID: 2100000, guid: 7b4efe9abf9642145b24638b6dffffaf, type: 2}
   - first:
@@ -39,6 +44,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Image3
     second: {fileID: 2100000, guid: fd27f371eaf03fe47a915cdff02589f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Inner
+    second: {fileID: 2100000, guid: 16568062f7dac4b45bebbf1321a79ef8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -64,6 +74,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Plastic
     second: {fileID: 2100000, guid: f66df0c0093c71d4086b60f30a9ad41c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Portrait
+    second: {fileID: 2100000, guid: 92a6fbff19fb5c5449b2cb9c41e66fae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

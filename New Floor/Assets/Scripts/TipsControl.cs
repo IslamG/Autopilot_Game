@@ -7,6 +7,21 @@ using System.Linq;
 
 public class TipsControl : MonoBehaviour
 {
+    public static TipsControl instance;
+    static bool created = false;
+    //Singleton
+    void Awake()
+    {
+        if (!created)
+        {
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     [SerializeField]
     private Image tipHolder, overlay;
     [SerializeField]
@@ -14,7 +29,8 @@ public class TipsControl : MonoBehaviour
     [SerializeField]
     private TMP_Text tipText;
 
-    private bool tipsEnabled = true, nothingDisplayed = true;
+    private static bool tipsEnabled = true;
+    private bool nothingDisplayed = true;
     private Timer tipTimer;
     private Tip tip;
     private List<Tip> finishedTipList = new List<Tip>(); 
@@ -22,7 +38,7 @@ public class TipsControl : MonoBehaviour
     
 
     //Return and set enabled property
-    public bool TipsEnabled { get => tipsEnabled; set => tipsEnabled = value; }
+    public static bool TipsEnabled { get => tipsEnabled; set => tipsEnabled = value; }
 
     private void Start()
     {
@@ -81,12 +97,27 @@ public class TipsControl : MonoBehaviour
         tip.DisplayText = tipScript.TipText;
         Debug.Log("tip: " + tipScript.TipText);
         tip.ID = tipScript.TipID;
-        if(nothingDisplayed)
-            DisplayTip(tip);
+        //If tips are enabled display
+        if (TipsEnabled)
+        {
+            if(nothingDisplayed)
+                DisplayTip(tip);
+            else
+            {
+                listQueue.Add(tip);
+            }
+        }//Otherwise mark as seen (bypass and not be shown later)
         else
         {
-            listQueue.Add(tip);
+            if (!nothingDisplayed)
+            {
+                //Get tip being displayed and disable
+                //then mark as displayed
+            }
+            tip.WasDisplayed = true;
         }
+        
+        //Can be removed, does nothing so far
         return tip;
     }
 

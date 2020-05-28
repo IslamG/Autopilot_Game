@@ -40,6 +40,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: KeyboardButtons
+    second: {fileID: 2100000, guid: aa0c864144283674699c51e40d23da02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MetalicBlue
     second: {fileID: 2100000, guid: 5cab02d7c7ae0e34393fb3136c717225, type: 2}
   - first:

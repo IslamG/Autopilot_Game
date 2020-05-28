@@ -7,6 +7,20 @@ using TMPro;
 
 public class KeyBindings : MonoBehaviour
 {
+    public static KeyBindings instance;
+    static bool created = false;
+    //Singleton
+    void Awake()
+    {
+        if (!created)
+        {
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     [SerializeField]
     private string[] wordList;
     //[SerializeField]
@@ -53,6 +67,6 @@ public class KeyBindings : MonoBehaviour
     }
     public void EnableTips()
     {
-
+        TipsControl.TipsEnabled = !TipsControl.TipsEnabled;
     }
 }

@@ -8,7 +8,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PauseMenu : MonoBehaviour
 {
-
+    public static PauseMenu instance;
     public static bool isPaused = false;
     [SerializeField]
     private GameObject pauseMenuUI, crosshair;
@@ -20,7 +20,8 @@ public class PauseMenu : MonoBehaviour
     private VideoPlayer vid;
 
     CursorLockMode currentMouse;
-    bool isCursorVisible, created=false;
+    bool isCursorVisible; 
+    static bool created=false;
     float timeScale;
     bool fpcEnabled;
 
