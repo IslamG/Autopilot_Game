@@ -32,7 +32,7 @@ public class LoginScreen : MonoBehaviour
     private void Update()
     {
         //right click to back out of screen
-        if (Input.GetMouseButton(1) && gameObject.activeSelf)
+        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused)
         {
             MakeVisible(false);
         }

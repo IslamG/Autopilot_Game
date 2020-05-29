@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.Audio;
 
 public class TipsControl : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class TipsControl : MonoBehaviour
     private Sprite[] tipSprites, textureSprites;
     [SerializeField]
     private TMP_Text tipText;
+    [SerializeField]
+    private AudioSource showSource;
+    [SerializeField]
+    AudioMixer mainMixer;
 
     private static bool tipsEnabled = true;
     private bool nothingDisplayed = true;
@@ -45,6 +50,7 @@ public class TipsControl : MonoBehaviour
         EventManager.AddListener(DisplayTip);
         tipTimer=gameObject.AddComponent<Timer>();
         tipTimer.Duration = 5;
+        
     }
     private void Update()
     {
@@ -88,6 +94,7 @@ public class TipsControl : MonoBehaviour
             tipTimer.Run();
             nothingDisplayed = false;
             this.tip = tip;
+            showSource.Play();
         }
         
     }
@@ -96,7 +103,7 @@ public class TipsControl : MonoBehaviour
         Tip tip = Tip.CreateInstance<Tip>();
         tip.DisplayText = tipScript.TipText;
         Debug.Log("tip: " + tipScript.TipText);
-        tip.ID = tipScript.TipID;
+        tip.ID = tipScript.GetInstanceID();//TipID;
         //If tips are enabled display
         if (TipsEnabled)
         {
@@ -113,6 +120,7 @@ public class TipsControl : MonoBehaviour
             {
                 //Get tip being displayed and disable
                 //then mark as displayed
+                tipHolder.gameObject.SetActive(false);
             }
             tip.WasDisplayed = true;
         }

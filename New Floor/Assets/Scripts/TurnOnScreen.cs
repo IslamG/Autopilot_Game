@@ -34,7 +34,8 @@ public class TurnOnScreen : MonoBehaviour
     private void Update()
     {
         //Back out of login screen on right click if up
-        if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled && !loginScreen.activeSelf)
+        if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled 
+            && !loginScreen.activeSelf && !PauseMenu.isPaused)
         {
             mainCam.gameObject.SetActive(true);
             closeUpCamera.gameObject.SetActive(false);

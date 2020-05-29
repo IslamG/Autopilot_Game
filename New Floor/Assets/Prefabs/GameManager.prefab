@@ -58,6 +58,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c1d265bd84221be40a38897432b7c007, type: 3}
   - {fileID: 21300000, guid: 1da1fd2352120ec498733861746b4c73, type: 3}
   tipText: {fileID: 0}
+  showSource: {fileID: 0}
+  mainMixer: {fileID: 24100000, guid: 2a2ec54fe4be25a43ab29f4ae63adbc3, type: 2}
 --- !u!114 &9128803230024134365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,3 +85,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskText: 
+  taskGroup: 0

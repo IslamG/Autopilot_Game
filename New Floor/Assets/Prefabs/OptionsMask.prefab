@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1162856093}
   - component: {fileID: 1162856092}
   - component: {fileID: 1162856095}
+  - component: {fileID: 4588537381230170851}
   m_Layer: 5
   m_Name: Collapse
   m_TagString: Untagged
@@ -144,6 +145,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0.5, y: 2.86}
   m_UseGraphicAlpha: 0
+--- !u!114 &4588537381230170851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162856090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c0bb4ff1b7fd54b96935b9cdd58493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: feb235a4abdc9f64eb65052a1d92ce2d, type: 3}
 --- !u!1 &1131726215075853034
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +287,7 @@ GameObject:
   - component: {fileID: 1131726215416648723}
   - component: {fileID: 1131726215416648722}
   - component: {fileID: 1131726215416648721}
+  - component: {fileID: 7707904272553975146}
   m_Layer: 5
   m_Name: Controls
   m_TagString: Untagged
@@ -412,6 +427,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7707904272553975146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131726215416648751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c0bb4ff1b7fd54b96935b9cdd58493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: feb235a4abdc9f64eb65052a1d92ce2d, type: 3}
 --- !u!1 &1131726215946323234
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +850,7 @@ GameObject:
   - component: {fileID: 1131726216796164479}
   - component: {fileID: 1131726216796164478}
   - component: {fileID: 1131726216796164477}
+  - component: {fileID: 5972518273569203348}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -961,3 +990,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5972518273569203348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131726216796164475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c0bb4ff1b7fd54b96935b9cdd58493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: feb235a4abdc9f64eb65052a1d92ce2d, type: 3}

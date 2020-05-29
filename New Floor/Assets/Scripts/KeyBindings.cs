@@ -65,6 +65,7 @@ public class KeyBindings : MonoBehaviour
     {
 
     }
+    //Possibly replace with method call
     public void EnableTips()
     {
         TipsControl.TipsEnabled = !TipsControl.TipsEnabled;

@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
     void Update()

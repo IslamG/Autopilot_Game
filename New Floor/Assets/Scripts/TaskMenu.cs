@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,9 +23,12 @@ public class TaskMenu : MonoBehaviour
     private Rect menuRect, smallRect, paperRect;
     private bool isDisplayed = false;
     private Vector2 menuPosition;
+    private char activeGroup='s';
+    private float mouseScroll;
 
     private List<Task> activeTaskList = new List<Task>();
     private List<Task> completedTaskList = new List<Task>();
+    private Dictionary<char, Task> pairList = new Dictionary<char, Task>();
 
     //Singleton class
     private void Awake()
@@ -65,6 +69,19 @@ public class TaskMenu : MonoBehaviour
                 MinimizeMenu();
             }
         }
+        
+        if(isDisplayed && !PauseMenu.isPaused)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel")!=0)
+            {
+                mouseScroll += Input.GetAxis("Mouse ScrollWheel");
+                mouseScroll = Mathf.Clamp(mouseScroll, -1, 1);//prevents value from exceeding specified range
+                Debug.Log("mm "+Input.GetAxis("Mouse ScrollWheel"));
+                Debug.Log("m " + mouseScroll);
+                SwitchPages();
+            }
+            
+        }
     }
     //Open up menu in screen middle
     private void DisplayMenu()
@@ -86,7 +103,12 @@ public class TaskMenu : MonoBehaviour
         greenTape.SetActive(true);
         purpleTape.SetActive(true);
 
-        paperImg.GetComponentInChildren<Text>().fontSize = 32;
+        TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (TextMeshProUGUI _child in displayedTasks)
+        {
+            _child.fontSize = 32;
+            //_child.autoSizeTextContainer = true;
+        }
     }
     //Return menu to bottom of screen
     private void MinimizeMenu()
@@ -102,15 +124,11 @@ public class TaskMenu : MonoBehaviour
         greenTape.SetActive(false);
         purpleTape.SetActive(false);
 
-        //use the image rect which resizes automaticall
-        //to set rect for text
-        Text _text = paperImg.GetComponentInChildren<Text>();
-        Rect _rect = paperImg.GetComponent<RectTransform>().rect;
-        _text.fontSize = 9;
-        _text.GetComponent<RectTransform>().sizeDelta =
-            paperImg.GetComponent<RectTransform>().sizeDelta;
-            //new Vector2(
-            //_rect.width, _rect.height);
+        TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (TextMeshProUGUI _child in displayedTasks)
+        {
+            _child.fontSize = 8;
+        }
 
     }
     //Add active tasks to the list
@@ -120,27 +138,34 @@ public class TaskMenu : MonoBehaviour
         activeTaskList.Add(task);
         activeTaskList = activeTaskList.Distinct().ToList();
         AddTaskToMenu();
+        HighlightStrip();
     }
     //Show task text on menu
     //Called when a new task becomes active
     private void AddTaskToMenu()
-    {
-        taskText.text = "";
-        foreach(Task task in activeTaskList)
+    {//tbd fix dynamic adding to not have to reset each time
+        
+        TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (TextMeshProUGUI _child in displayedTasks)
         {
-            GameObject _obj = new GameObject("Text");
-            Text _text=_obj.AddComponent<Text>();
-            _text.text = task.TaskText;
-            _text.transform.position = taskText.transform.position;
-            _text.transform.localScale = taskText.transform.localScale;
-            _text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");//(TMP_FontAsset)taskText.font;
-            _text.fontSize = 8;//taskText.fontSize;
-            _text.color = Color.black;
-            paperRect = _text.GetComponent<RectTransform>().rect;
+            Destroy(_child.gameObject);
+        }
+        foreach (Task task in activeTaskList)
+        {
+            if (task.TaskGroup == activeGroup)
+            {
+                taskText.text = "";
+                GameObject _obj = new GameObject("Text");
+                TextMeshProUGUI _text=_obj.AddComponent<TextMeshProUGUI>();
+                _text.text = ("•   "+task.TaskText);
+                _text.fontSize = 8;
+                _text.color = Color.black;
+            
+                _obj.transform.SetParent(paperImg.transform);
+                HighlightStrip();
+            }
 
-            _obj.transform.SetParent(paperImg.transform);
-            //taskText.text += task.TaskText;
-            //taskText.text += "\n";
+               
         }
         TipScript script = this.gameObject.GetComponent<TipScript>();
         if(script!=null)
@@ -154,7 +179,164 @@ public class TaskMenu : MonoBehaviour
         if (activeTaskList.Count < 1)
         {
             starBurst.SetActive(false);
+            taskText.text = "No Active Tasks in This Catagory";
         }
         AddTaskToMenu();
+    }
+    private void HighlightStrip()
+    {
+        Debug.Log("Called group: " + activeGroup);
+        switch (activeGroup)
+        {
+            case 'j':
+                {
+                    Outline outline=blueTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(4, -4);
+                    outline.effectColor = new Color(255,255,0, 0.25f);
+                    
+                    /*Outline other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = greenTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = purpleTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }*/
+                    break;
+                }
+            case 'm':
+                {
+                    Outline outline = orangeTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(4, -4);
+                    outline.effectColor = new Color(255, 255, 0, 0.25f);
+
+                    /*Outline other = blueTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = greenTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = purpleTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }*/
+                    break;
+                }
+            case 'b':
+                {
+                    Outline outline = purpleTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(4, -4);
+                    outline.effectColor = new Color(255, 255, 0, 0.25f);
+
+                    /*Outline other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = greenTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = blueTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }*/
+                    break;
+                }
+            case 'p':
+                {
+                    Debug.Log("Green");
+                    Outline outline = greenTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(4, -4);
+                    outline.effectColor = new Color(255, 255, 0, 0.25f);
+                    /*
+                    Outline other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = blueTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = purpleTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }*/
+                    break;
+                }
+            /*default:
+                {
+                    Outline other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = greenTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = purpleTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other= blueTape.AddComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    break;
+                }*/
+        }
+    }
+    private void SwitchPages()
+    {
+        Debug.Log("Called: " + mouseScroll);
+        if(mouseScroll == (-0.1)|| mouseScroll == (0.5))
+        {
+            activeGroup = 'g';
+        }
+
+        else if (mouseScroll == (-0.2) || mouseScroll == (0.4))
+        {
+            activeGroup = 'j';
+        }
+
+        else if(mouseScroll == (-0.3) || mouseScroll == (0.3))
+        {
+            activeGroup = 'm';
+        }
+
+        else if (mouseScroll == (-0.4) || mouseScroll == (0.2))
+        {
+            activeGroup = 'b';
+
+        }
+        else if (mouseScroll == (-0.5) || mouseScroll == (0.1))
+        {
+            activeGroup = 'p';
+        }
+
+
+        Debug.Log("group " + activeGroup);
+        HighlightStrip();
     }
 }

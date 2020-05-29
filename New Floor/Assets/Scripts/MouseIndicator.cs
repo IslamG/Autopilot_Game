@@ -37,7 +37,7 @@ public class MouseIndicator : MonoBehaviour
         }
         else
         {
-            if (!Input.GetMouseButton(0))
+            if (!(Input.GetAxis("Use") > 0))
             {
                 itemHeld = false;
                 SetCursor();
