@@ -50,7 +50,8 @@ public class TipsControl : MonoBehaviour
         EventManager.AddListener(DisplayTip);
         tipTimer=gameObject.AddComponent<Timer>();
         tipTimer.Duration = 5;
-        
+        showSource.outputAudioMixerGroup = mainMixer.outputAudioMixerGroup;
+
     }
     private void Update()
     {

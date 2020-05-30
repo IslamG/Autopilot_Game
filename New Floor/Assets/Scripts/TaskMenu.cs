@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,14 +20,14 @@ public class TaskMenu : MonoBehaviour
     private Image paperImg;
 
     private Rect menuRect, smallRect, paperRect;
-    private bool isDisplayed = false;
+    private bool isDisplayed = false, addedTask=false;
     private Vector2 menuPosition;
     private char activeGroup='s';
     private float mouseScroll;
 
     private List<Task> activeTaskList = new List<Task>();
     private List<Task> completedTaskList = new List<Task>();
-    private Dictionary<char, Task> pairList = new Dictionary<char, Task>();
+    //private Dictionary<char, Task> pairList = new Dictionary<char, Task>();
 
     //Singleton class
     private void Awake()
@@ -72,15 +71,23 @@ public class TaskMenu : MonoBehaviour
         
         if(isDisplayed && !PauseMenu.isPaused)
         {
-            if (Input.GetAxis("Mouse ScrollWheel")!=0)
+            if (Input.GetAxis("Mouse ScrollWheel")<0)
             {
-                mouseScroll += Input.GetAxis("Mouse ScrollWheel");
-                mouseScroll = Mathf.Clamp(mouseScroll, -1, 1);//prevents value from exceeding specified range
+                mouseScroll -= 1; //Input.GetAxis("Mouse ScrollWheel");
+                mouseScroll = Mathf.Clamp(mouseScroll, -5, 5);//prevents value from exceeding specified range
                 Debug.Log("mm "+Input.GetAxis("Mouse ScrollWheel"));
                 Debug.Log("m " + mouseScroll);
                 SwitchPages();
             }
-            
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                mouseScroll += 1; //Input.GetAxis("Mouse ScrollWheel");
+                mouseScroll = Mathf.Clamp(mouseScroll, -5, 5);//prevents value from exceeding specified range
+                Debug.Log("mm " + Input.GetAxis("Mouse ScrollWheel"));
+                Debug.Log("m " + mouseScroll);
+                SwitchPages();
+            }
+
         }
     }
     //Open up menu in screen middle
@@ -97,7 +104,7 @@ public class TaskMenu : MonoBehaviour
             0, 0), Quaternion.identity);
         if (taskPanel.GetComponent<Text>() != null)
             taskPanel.GetComponent<Text>().gameObject.SetActive(true);
-        //tbd add check for person specific quests
+        
         blueTape.SetActive(true);
         orangeTape.SetActive(true);
         greenTape.SetActive(true);
@@ -107,7 +114,6 @@ public class TaskMenu : MonoBehaviour
         foreach (TextMeshProUGUI _child in displayedTasks)
         {
             _child.fontSize = 32;
-            //_child.autoSizeTextContainer = true;
         }
     }
     //Return menu to bottom of screen
@@ -138,7 +144,7 @@ public class TaskMenu : MonoBehaviour
         activeTaskList.Add(task);
         activeTaskList = activeTaskList.Distinct().ToList();
         AddTaskToMenu();
-        HighlightStrip();
+        //HighlightStrip();
     }
     //Show task text on menu
     //Called when a new task becomes active
@@ -163,9 +169,12 @@ public class TaskMenu : MonoBehaviour
             
                 _obj.transform.SetParent(paperImg.transform);
                 HighlightStrip();
-            }
-
-               
+                addedTask = true;
+            }  
+        }
+        if (!addedTask)
+        {
+            taskText.text = "No Active Tasks in This Catagory";
         }
         TipScript script = this.gameObject.GetComponent<TipScript>();
         if(script!=null)
@@ -190,16 +199,17 @@ public class TaskMenu : MonoBehaviour
         {
             case 'j':
                 {
-                    Outline outline=blueTape.AddComponent<Outline>();
-                    outline.effectDistance = new Vector2(4, -4);
-                    outline.effectColor = new Color(255,255,0, 0.25f);
-                    
-                    /*Outline other = orangeTape.GetComponent<Outline>();
+                    Outline other = greenTape.GetComponent<Outline>();
                     if (other != null)
                     {
                         Destroy(other);
                     }
-                    other = greenTape.GetComponent<Outline>();
+                    other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = blueTape.GetComponent<Outline>();
                     if (other != null)
                     {
                         Destroy(other);
@@ -208,21 +218,30 @@ public class TaskMenu : MonoBehaviour
                     if (other != null)
                     {
                         Destroy(other);
-                    }*/
+                    }
+
+                    Outline outline=blueTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(6, -6);
+                    outline.effectColor = new Color(255,255,0, 0.25f);
+
+                    paperImg.transform.parent.SetAsLastSibling();
+                    blueTape.transform.SetAsLastSibling();
+
                     break;
                 }
             case 'm':
                 {
-                    Outline outline = orangeTape.AddComponent<Outline>();
-                    outline.effectDistance = new Vector2(4, -4);
-                    outline.effectColor = new Color(255, 255, 0, 0.25f);
-
-                    /*Outline other = blueTape.GetComponent<Outline>();
+                    Outline other = greenTape.GetComponent<Outline>();
                     if (other != null)
                     {
                         Destroy(other);
                     }
-                    other = greenTape.GetComponent<Outline>();
+                    other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = blueTape.GetComponent<Outline>();
                     if (other != null)
                     {
                         Destroy(other);
@@ -231,40 +250,25 @@ public class TaskMenu : MonoBehaviour
                     if (other != null)
                     {
                         Destroy(other);
-                    }*/
+                    }
+
+                    Outline outline = orangeTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(6, -6);
+                    outline.effectColor = new Color(255, 255, 0, 0.25f);
+
+                    paperImg.transform.parent.SetAsLastSibling();
+                    orangeTape.transform.SetAsLastSibling();
+
                     break;
                 }
             case 'b':
                 {
-                    Outline outline = purpleTape.AddComponent<Outline>();
-                    outline.effectDistance = new Vector2(4, -4);
-                    outline.effectColor = new Color(255, 255, 0, 0.25f);
-
-                    /*Outline other = orangeTape.GetComponent<Outline>();
+                    Outline other = greenTape.GetComponent<Outline>();
                     if (other != null)
                     {
                         Destroy(other);
                     }
-                    other = greenTape.GetComponent<Outline>();
-                    if (other != null)
-                    {
-                        Destroy(other);
-                    }
-                    other = blueTape.GetComponent<Outline>();
-                    if (other != null)
-                    {
-                        Destroy(other);
-                    }*/
-                    break;
-                }
-            case 'p':
-                {
-                    Debug.Log("Green");
-                    Outline outline = greenTape.AddComponent<Outline>();
-                    outline.effectDistance = new Vector2(4, -4);
-                    outline.effectColor = new Color(255, 255, 0, 0.25f);
-                    /*
-                    Outline other = orangeTape.GetComponent<Outline>();
+                    other = orangeTape.GetComponent<Outline>();
                     if (other != null)
                     {
                         Destroy(other);
@@ -278,10 +282,51 @@ public class TaskMenu : MonoBehaviour
                     if (other != null)
                     {
                         Destroy(other);
-                    }*/
+                    }
+
+                    Outline outline = purpleTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(6, -6);
+                    outline.effectColor = new Color(255, 255, 0, 0.25f);
+
+                    paperImg.transform.parent.SetAsLastSibling();
+                    purpleTape.transform.SetAsLastSibling();
+
                     break;
                 }
-            /*default:
+            case 'p':
+                {
+
+                    Outline other = greenTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = orangeTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = blueTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+                    other = purpleTape.GetComponent<Outline>();
+                    if (other != null)
+                    {
+                        Destroy(other);
+                    }
+
+                    Outline outline = greenTape.AddComponent<Outline>();
+                    outline.effectDistance = new Vector2(6, -6);
+                    outline.effectColor = new Color(255, 255, 0, 0.25f);
+
+                    paperImg.transform.parent.SetAsLastSibling();
+                    greenTape.transform.SetAsLastSibling();
+
+                    break;
+                }
+            default:
                 {
                     Outline other = orangeTape.GetComponent<Outline>();
                     if (other != null)
@@ -303,36 +348,40 @@ public class TaskMenu : MonoBehaviour
                     {
                         Destroy(other);
                     }
+
+                    paperImg.transform.parent.SetAsLastSibling();
+
                     break;
-                }*/
+                }
         }
+        //TBD possibly replace Addtask call with highlight call
+        AddTaskToMenu();
     }
     private void SwitchPages()
     {
         Debug.Log("Called: " + mouseScroll);
-        if(mouseScroll == (-0.1)|| mouseScroll == (0.5))
+        if(mouseScroll == (-1)|| mouseScroll == (5))
         {
             activeGroup = 'g';
         }
-
-        else if (mouseScroll == (-0.2) || mouseScroll == (0.4))
+        else if (mouseScroll == (-2) || mouseScroll == (4))
         {
             activeGroup = 'j';
         }
 
-        else if(mouseScroll == (-0.3) || mouseScroll == (0.3))
+        else if(mouseScroll == (-3) || mouseScroll == (3))
         {
             activeGroup = 'm';
         }
 
-        else if (mouseScroll == (-0.4) || mouseScroll == (0.2))
-        {
-            activeGroup = 'b';
-
-        }
-        else if (mouseScroll == (-0.5) || mouseScroll == (0.1))
+        else if (mouseScroll == (-4) || mouseScroll == (2))
         {
             activeGroup = 'p';
+
+        }
+        else if (mouseScroll == (-5) || mouseScroll == (1))
+        {
+            activeGroup = 'b';
         }
 
 

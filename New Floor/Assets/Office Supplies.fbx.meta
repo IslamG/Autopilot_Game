@@ -8,12 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BathroomTiles
-    second: {fileID: 2100000, guid: 466e44392b525c947ba584b02c0bfb67, type: 2}
+    second: {fileID: 2100000, guid: b155257e5a6fd8646bd06a36653784f6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Beige
     second: {fileID: 2100000, guid: 360c0b0e04dca534f99841266c6c9265, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CalButtons
+    second: {fileID: 2100000, guid: 24a0d03f2643e0e46b0e78c8ca42cfb3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -69,6 +74,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Handle_material
     second: {fileID: 2100000, guid: 7b4efe9abf9642145b24638b6dffffaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Logo
+    second: {fileID: 2100000, guid: cd30ebd6b1e489042a9da43f2bc14603, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LogoFlat
+    second: {fileID: 2100000, guid: 70443bd7e55060243af50fcde28ccfbd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

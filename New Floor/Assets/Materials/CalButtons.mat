@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Buttons
+  m_Name: CalButtons
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,12 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: -1}
-        m_Offset: {x: 0.35, y: -0.56}
+        m_Scale: {x: 1.08, y: 1.82}
+        m_Offset: {x: -0.035, y: -0.09}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fdc578b2f9aba8042b6eec9241aa4351, type: 3}
-        m_Scale: {x: 1, y: -1}
-        m_Offset: {x: 0.35, y: -0.56}
+        m_Texture: {fileID: 2800000, guid: 033b340646fcd034ba8be7c83196fbdf, type: 3}
+        m_Scale: {x: 1.08, y: 1.82}
+        m_Offset: {x: -0.035, y: -0.09}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}

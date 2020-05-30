@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Buttons
+  m_Name: LogoFlat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _DETAIL_MULX2 _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -24,25 +24,25 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 60abb4a57ced80c4c9ff6f706486a3d0, type: 3}
+        m_Scale: {x: 0.8, y: 1}
+        m_Offset: {x: 0.05, y: 0}
     - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5bafa755537ce6c4698518dab244cb9c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: -1}
-        m_Offset: {x: 0.35, y: -0.56}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fdc578b2f9aba8042b6eec9241aa4351, type: 3}
-        m_Scale: {x: 1, y: -1}
-        m_Offset: {x: 0.35, y: -0.56}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,7 +61,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.653
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
