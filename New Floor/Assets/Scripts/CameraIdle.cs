@@ -26,8 +26,10 @@ public class CameraIdle : MonoBehaviour
     void Update()
     {
         //Increase time without input
-        timeOutTimer += Time.deltaTime;
-
+        if (!TaskMenu.IsDisplayed)
+        {
+            timeOutTimer += Time.deltaTime;
+        }
         //Mouse moved, reset timer
         if (Input.GetAxis("Mouse X") !=0 || Input.GetAxis("Mouse Y") != 0)
         {

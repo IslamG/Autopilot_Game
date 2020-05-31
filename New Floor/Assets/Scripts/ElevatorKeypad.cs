@@ -32,7 +32,7 @@ public class ElevatorKeypad : MonoBehaviour
     private void Update()
     {
         //If attempting to exit keypad closeup
-        if (Input.GetMouseButton(1) && !isPaused)
+        if (Input.GetMouseButton(1) && isPaused)
         {
             LeaveKeypad();
         }

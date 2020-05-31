@@ -21,6 +21,9 @@ public class ElevatorSequence : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = 5;
     }
+    private void Update()
+    {
+    }
     public void Sequence(Button btn)
     {
         //Get input and check if correct sequence
@@ -69,8 +72,8 @@ public class ElevatorSequence : MonoBehaviour
         //Close keypad
         elevator.GetComponentInChildren<ElevatorKeypad>().LeaveKeypad();
         //Turn elevator and player around
-        elevator.transform.localScale = new Vector3(transform.localScale.x*- 1.0f, transform.localScale.y, transform.localScale.z);
-        player.transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
+        //elevator.transform.localScale = new Vector3(transform.localScale.x*- 1.0f, transform.localScale.y, transform.localScale.z);
+        //player.transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
         timer.Run();
     }
 }
