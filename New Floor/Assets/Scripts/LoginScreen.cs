@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using System;
+using UnityEngine.UI;
 
 public class LoginScreen : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class LoginScreen : MonoBehaviour
     private VideoPlayer vid;
     [SerializeField]
     private RenderTexture rend;
+    [SerializeField]
+    private Image fadeBlack;
 
     //tbd simplify password
     private const string password = "1234";//"28212433110";
@@ -57,7 +60,7 @@ public class LoginScreen : MonoBehaviour
             taskMenu.RemoveTaskFromList(task);
             MakeVisible(false);
             //Add pan out animation
-            foreach (Camera cam in sceneCameras)
+            /*foreach (Camera cam in sceneCameras)
             {
                 if (cam == Camera.main)
                 {
@@ -65,7 +68,9 @@ public class LoginScreen : MonoBehaviour
                     cam.gameObject.GetComponent<Animator>().SetBool("isWaiting", false);
                     break;
                 }
-            }
+            }*/
+            fadeBlack.gameObject.SetActive(true);
+            fadeBlack.GetComponent<FadeBlack>().Fade();
         }
     }
 

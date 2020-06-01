@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using cakeslice;
 
 /// <summary>
 /// Initializes the game
@@ -10,6 +11,9 @@ public class GameInitializer : MonoBehaviour
 {
     public static GameInitializer instance;
     static bool created = false;
+
+    [SerializeField]
+    cakeslice.Outline outline;
     //Singleton
     void Awake()
     {
@@ -46,6 +50,8 @@ public class GameInitializer : MonoBehaviour
             LevelTraversal.TargetLevel = "FloorTest";
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            Debug.Log("d " + outline.GetComponent<cakeslice.Outline>().enabled);
+            //outline.enabled = true;
         }
     }
 }

@@ -17,6 +17,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: CleaningInfo
+    second: {fileID: 2100000, guid: 110b9d711b33d624285b9b3a5ef7bbf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CleaningLogo
+    second: {fileID: 2100000, guid: b29dc4d6776a9ef4d9879f0abaa73015, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Cloth
     second: {fileID: 2100000, guid: 7b1dfcfb38fc1ff49b70df1b3ffa2cf6, type: 2}
   - first:

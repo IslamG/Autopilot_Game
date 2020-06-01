@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
 using TMPro;
+using cakeslice;
 public class TurnOnScreen : MonoBehaviour
 {
     [SerializeField]
@@ -21,6 +22,8 @@ public class TurnOnScreen : MonoBehaviour
     private Camera mainCam;
     private static bool introVideoPlayed = false, helperDisplayed = false;
     private Timer textTimer;
+    [SerializeField]
+    private OutlineEffect outline;
 
     void Start()
     {
@@ -29,6 +32,8 @@ public class TurnOnScreen : MonoBehaviour
         Cursor.visible = true;
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
+        outline = mainCam.GetComponent<OutlineEffect>();
+        Debug.Log(outline.enabled);
     }
     //Switch view from closeup camera to main 
     private void Update()
@@ -95,6 +100,10 @@ public class TurnOnScreen : MonoBehaviour
     //Bring up login screen UI
     private void SwitchToLogin()
     {
+        //Destroy(outline);
+        //Debug.Log(outline);
+        outline.enabled = false;
+
         //Show login screen
         loginScreen.GetComponent<LoginScreen>().MakeVisible(true);
         screenCamera.gameObject.SetActive(true);
