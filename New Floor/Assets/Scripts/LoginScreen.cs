@@ -59,16 +59,7 @@ public class LoginScreen : MonoBehaviour
         {
             taskMenu.RemoveTaskFromList(task);
             MakeVisible(false);
-            //Add pan out animation
-            /*foreach (Camera cam in sceneCameras)
-            {
-                if (cam == Camera.main)
-                {
-                    Debug.Log("Why am I here");
-                    cam.gameObject.GetComponent<Animator>().SetBool("isWaiting", false);
-                    break;
-                }
-            }*/
+            //Trigger fade out of scene
             fadeBlack.gameObject.SetActive(true);
             fadeBlack.GetComponent<FadeBlack>().Fade();
         }
@@ -86,9 +77,14 @@ public class LoginScreen : MonoBehaviour
             //find and turn main camera on
             foreach(Camera cam in sceneCameras)
             {
+                if (cam.name.Equals("ScreenCamera"))
+                {
+                    cam.GetComponent<AudioListener>().enabled = false;
+                }
                 if (cam == Camera.main)
                 {
                     cam.gameObject.SetActive(true);
+                    cam.GetComponent<AudioListener>().enabled = true;
                     break;
                 }
             }
@@ -99,6 +95,7 @@ public class LoginScreen : MonoBehaviour
             foreach (Camera cam in sceneCameras)
             {
                 cam.gameObject.SetActive(!ctrl);
+                cam.GetComponent<AudioListener>().enabled = !ctrl;
             }
         }
         //Clicking on screen while vid playing will bring up login

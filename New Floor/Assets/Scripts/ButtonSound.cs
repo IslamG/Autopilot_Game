@@ -14,13 +14,14 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler
     AudioSource source;
     void Start()
     {
-        source = gameObject.AddComponent<AudioSource>();
+        source = gameObject.GetComponent<AudioSource>();
         source.clip = clickSound;
         source.outputAudioMixerGroup = mainMixer.outputAudioMixerGroup;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Entered " + gameObject.name);
+        //Debug.Log("Entered " + gameObject.name);
+        Debug.Log("mixer " );
         source.Play();
     }
 

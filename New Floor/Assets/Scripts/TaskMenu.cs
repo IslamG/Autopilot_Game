@@ -49,7 +49,7 @@ public class TaskMenu : MonoBehaviour
         //Get and store menu dimensions
         menuRect = GetComponent<RawImage>().rectTransform.rect;
         smallRect = menuRect;
-        menuPosition = GetComponent<RawImage>().rectTransform.transform.position;
+        menuPosition = GetComponent<RectTransform>().transform.position;
         EventManager.AddListener(AddActiveTaskToList);
     }
     void Update()
@@ -122,8 +122,8 @@ public class TaskMenu : MonoBehaviour
     private void MinimizeMenu()
     {
         GetComponent<RectTransform>().sizeDelta = new Vector2(smallRect.width, smallRect.height);
-        //GetComponent<RectTransform>().SetPositionAndRotation(
-        //    menuPosition, Quaternion.identity);
+        GetComponent<RectTransform>().SetPositionAndRotation(
+            menuPosition, Quaternion.identity);
         //GetComponent<RectTransform>()
         if (taskPanel.GetComponent<Text>() != null)
             taskPanel.GetComponent<Text>().gameObject.SetActive(false);

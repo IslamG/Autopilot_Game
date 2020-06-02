@@ -23,6 +23,10 @@ public class ElevatorSequence : MonoBehaviour
     }
     private void Update()
     {
+        if (timer.Finished)
+        {
+            Debug.Log("finished");
+        }
     }
     public void Sequence(Button btn)
     {
@@ -65,15 +69,14 @@ public class ElevatorSequence : MonoBehaviour
     //Upon exit from button window reset input
     public void Reset()
     {
+        Debug.Log("Reset");
         input = "";
     }
     private void FakeTransition()
     {
         //Close keypad
         elevator.GetComponentInChildren<ElevatorKeypad>().LeaveKeypad();
-        //Turn elevator and player around
-        //elevator.transform.localScale = new Vector3(transform.localScale.x*- 1.0f, transform.localScale.y, transform.localScale.z);
-        //player.transform.localScale = new Vector3(transform.localScale.x * -1.0f, transform.localScale.y, transform.localScale.z);
         timer.Run();
+        Debug.Log("is " + timer.Finished);
     }
 }

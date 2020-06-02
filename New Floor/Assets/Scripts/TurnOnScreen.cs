@@ -43,7 +43,9 @@ public class TurnOnScreen : MonoBehaviour
             && !loginScreen.activeSelf && !PauseMenu.isPaused)
         {
             mainCam.gameObject.SetActive(true);
+            mainCam.GetComponent<AudioListener>().enabled = true;
             closeUpCamera.gameObject.SetActive(false);
+            closeUpCamera.GetComponent<AudioListener>().enabled = false;
         }
         //Hide helper text after duration
         if (textTimer.Finished && helperDisplayed)
@@ -81,7 +83,9 @@ public class TurnOnScreen : MonoBehaviour
         {
             //change view to close up of screen
             closeUpCamera.gameObject.SetActive(true);
+            closeUpCamera.GetComponent<AudioListener>().enabled = true;
             mainCam.gameObject.SetActive(false);
+            mainCam.GetComponent<AudioListener>().enabled = false;
         }
                
     }
@@ -107,6 +111,7 @@ public class TurnOnScreen : MonoBehaviour
         //Show login screen
         loginScreen.GetComponent<LoginScreen>().MakeVisible(true);
         screenCamera.gameObject.SetActive(true);
+        screenCamera.GetComponent<AudioListener>().enabled = true;
 
         crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
@@ -117,5 +122,6 @@ public class TurnOnScreen : MonoBehaviour
         content.DiscardContents();
         //remove?
         mainCam.gameObject.SetActive(true);
+        mainCam.GetComponent<AudioListener>().enabled = true;
     }
 }
