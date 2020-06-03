@@ -83,8 +83,13 @@ public class Timer : MonoBehaviour {
 			started = true;
 			running = true;
             elapsedSeconds = 0;
+			Debug.Log("Start");
 		}
 	}
-	
-	#endregion
+	public void Reset()
+    {
+		elapsedSeconds = 0;
+    }
+
+    #endregion
 }

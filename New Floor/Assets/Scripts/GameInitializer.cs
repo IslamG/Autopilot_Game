@@ -23,7 +23,7 @@ public class GameInitializer : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
     /// <summary>
@@ -52,6 +52,11 @@ public class GameInitializer : MonoBehaviour
             Cursor.visible = false;
             Debug.Log("d " + outline.GetComponent<cakeslice.Outline>().enabled);
             //outline.enabled = true;
+        }
+        if (currenLvl.Equals("SubconscienceFloor"))
+        {
+            SaveGame.SaveData();
+            Debug.Log("Success");
         }
     }
 }

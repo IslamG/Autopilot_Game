@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -114,10 +115,13 @@ public class MainMenu : MonoBehaviour
     {
         //class return needs to be IEnumerator
         //yield return new WaitForSeconds(3.0f);
-        if (saveFile)
+        string path = Application.persistentDataPath + "/save_info.sve";
+        if (File.Exists(path))
         {
+            SaveData data = SaveGame.LoadData();
+
             //load floor level
-            LevelTraversal.TargetLevel = "FloorTest";
+            LevelTraversal.TargetLevel = data.LevelName;
         }
         else
         {

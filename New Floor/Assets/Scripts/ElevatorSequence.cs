@@ -6,77 +6,73 @@ using TMPro;
 
 public class ElevatorSequence : MonoBehaviour
 {
+    public static ElevatorSequence instance;
+    static bool created = false;
+    //Singleton
+    void Awake()
+    {
+        if (!created)
+        {
+            created = true;
+        }
+        else
+        {
+            //Destroy(this.gameObject);
+        }
+    }
+
     [SerializeField]
-    private Animator elevatorAnimator, lightAnimator;
-    [SerializeField]
-    private GameObject doorAnim, elevator, player;
+    private GameObject elevator;
 
     private const string sequence="11513249";
     private static string input = "";
     private static bool isUnlocked= false;
+
     private Timer timer;
+    private bool finishedWaiting = false, startedCounting=false;
+    private int elapsedTime = 0;
+    private Coroutine theWait;
+
     private void Start()
     {
-        //Create and set the duration of descent
         timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 5;
+        timer.Duration = 3;
     }
-    private void Update()
-    {
-        if (timer.Finished)
-        {
-            Debug.Log("finished");
-        }
-    }
+
+    public static bool IsUnlocked { get => isUnlocked;}
+
     public void Sequence(Button btn)
     {
         //Get input and check if correct sequence
+        
+        
         input += btn.GetComponentInChildren<TMP_Text>().text;
-        Debug.Log("clicked: "+input);
-        Check();
+        Debug.Log("clicked: " + input);
+
+        //if (theWait != null)
+        //{
+        StartCoroutine(Check());
+        //}
+        //StopCoroutine(theWait);
+       // theWait= StartCoroutine(Check());
+        
     }
-    private void Check()
+    private IEnumerator Check()
     {
+        yield return new WaitForSecondsRealtime(7f);
+        Debug.Log("Checked");
         //if user input the correct button sequence unlock route
         if (sequence.Equals(input))
         {
             isUnlocked = true;
         }
-        //if unlocked, take to new level
-        if (isUnlocked)
-        {
-            //Close elevator doors and play descent animation
-            //anim.SetBool("isClosed", true);
-            elevatorAnimator.Play("ElevatorClose");
-
-            // (!doorAnim.GetComponent<Animation>().IsPlaying("ElevatorClose"))
-            //{
-              elevatorAnimator.Play("ElevatorDescend");
-              lightAnimator.SetBool("isMoving", true);
-            //Fake a transition to new location
-            FakeTransition();
-            //}
-            //Allow descent animation loop until timer finished
-            if (timer.Finished)
-            {
-                Debug.Log("Timer finished");
-                //Stop animations and open elevator doors
-                lightAnimator.SetBool("isMoving", false);
-                elevatorAnimator.Play("ElevatorOpen");
-            }
-        }
+        elevator.GetComponent<Elevator>().SequenceAction();       
     }
     //Upon exit from button window reset input
     public void Reset()
     {
         Debug.Log("Reset");
         input = "";
-    }
-    private void FakeTransition()
-    {
-        //Close keypad
-        elevator.GetComponentInChildren<ElevatorKeypad>().LeaveKeypad();
-        timer.Run();
-        Debug.Log("is " + timer.Finished);
+        StopCoroutine(Check());
     }
 }
