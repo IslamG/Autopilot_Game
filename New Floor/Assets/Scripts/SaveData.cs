@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class SaveData : MonoBehaviour
+public class SaveData 
 {
-    public static SaveData instance;
 
     private float timeInGame;
     private float[] playerPosition;
@@ -16,23 +15,12 @@ public class SaveData : MonoBehaviour
     public float[] PlayerPosition { get => playerPosition;}
     public string LevelName { get => levelName;}
 
-    //Singleton class
-    /*void Awake()
-    {
-        if (instance==null)
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }*/
-    public void Save()
+    public SaveData()
     {
         timeInGame=TimerController.totalTime;
 
         Vector3 pos= GameObject.FindGameObjectWithTag("Player").transform.position;
+        playerPosition = new float[3];
         playerPosition[0] = pos.x;
         playerPosition[1] = pos.y;
         playerPosition[2] = pos.x;

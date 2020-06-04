@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TaskMenu : MonoBehaviour
@@ -21,8 +22,8 @@ public class TaskMenu : MonoBehaviour
 
     private Rect menuRect, smallRect, paperRect;
     private static bool isDisplayed = false; 
-    private bool addedTask=false;
-    private Vector2 menuPosition;
+    private bool addedTask=false, tipShown=false;
+    private Vector2 menuPosition, leftBottom;
     private char activeGroup='g';
     private float mouseScroll;
 
@@ -40,7 +41,7 @@ public class TaskMenu : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
     }
@@ -64,6 +65,13 @@ public class TaskMenu : MonoBehaviour
                 starBurst.SetActive(false);
                 //Show menu in full size
                 DisplayMenu();
+                if (!tipShown)
+                {
+                    TipScript script = this.gameObject.GetComponent<TipScript>();
+                    if (script != null)
+                        tipControl.GenerateTip(script);
+                    tipShown = true;
+                }
             }
             else
             {
@@ -77,16 +85,12 @@ public class TaskMenu : MonoBehaviour
             {
                 mouseScroll -= 1; 
                 mouseScroll = Mathf.Clamp(mouseScroll, -4, 4);//prevents value from exceeding specified range
-                Debug.Log("mm "+Input.GetAxis("Mouse ScrollWheel"));
-                Debug.Log("m " + mouseScroll);
                 SwitchPages();
             }
             else if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 mouseScroll += 1;
                 mouseScroll = Mathf.Clamp(mouseScroll, -5, 5);
-                Debug.Log("mm " + Input.GetAxis("Mouse ScrollWheel"));
-                Debug.Log("m " + mouseScroll);
                 SwitchPages();
             }
 
@@ -97,6 +101,7 @@ public class TaskMenu : MonoBehaviour
     {
         //Enlarging ratio, use to resize width accordingly
         float ratio = Screen.height / menuRect.height;
+        //leftBottom= 
         //change menu size
         menuRect.height = Screen.height;
         menuRect.width *= ratio;
@@ -152,12 +157,14 @@ public class TaskMenu : MonoBehaviour
     //Show task text on menu
     //Called when a new task becomes active
     private void AddTaskToMenu()
-    {//tbd fix dynamic adding to not have to reset each time
+    {
         
         TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI _child in displayedTasks)
         {
             Destroy(_child.gameObject);
+            paperImg.GetComponentsInChildren<TextMeshProUGUI>();
+            Debug.Log("This many " + displayedTasks.Length + " in " + activeGroup);
         }
         foreach (Task task in activeTaskList)
         {
@@ -187,10 +194,14 @@ public class TaskMenu : MonoBehaviour
         if (displayedTasks.Length < 1)
         {
             taskText.text = "No Active Tasks in this category";
+        } 
+        if (SceneManager.GetActiveScene().name.Equals("Opening"))
+        {
+            TipScript script = this.gameObject.GetComponent<TipScript>();
+            if(script!=null)
+                tipControl.GenerateTip(script);
         }
-        TipScript script = this.gameObject.GetComponent<TipScript>();
-        if(script!=null)
-            tipControl.GenerateTip(script);
+        
     }
     //Remove task text from menu
     //Used mainly when active task is completed
@@ -240,7 +251,7 @@ public class TaskMenu : MonoBehaviour
 
                     paperImg.transform.parent.SetAsLastSibling();
                     blueTape.transform.SetAsLastSibling();
-
+                    starBurst.transform.SetAsLastSibling();
                     break;
                 }
             //Maisy's taks active
@@ -248,7 +259,7 @@ public class TaskMenu : MonoBehaviour
                 {
                     paperImg.transform.parent.SetAsLastSibling();
                     orangeTape.transform.SetAsLastSibling();
-
+                    starBurst.transform.SetAsLastSibling();
                     break;
                 }
             //Boss Tyrant's tasks active
@@ -256,7 +267,7 @@ public class TaskMenu : MonoBehaviour
                 {
                     paperImg.transform.parent.SetAsLastSibling();
                     purpleTape.transform.SetAsLastSibling();
-
+                    starBurst.transform.SetAsLastSibling();
                     break;
                 }
             //Paul's tasks active
@@ -264,6 +275,7 @@ public class TaskMenu : MonoBehaviour
                 {
                     paperImg.transform.parent.SetAsLastSibling();
                     greenTape.transform.SetAsLastSibling();
+                    starBurst.transform.SetAsLastSibling();
 
                     break;
                 }
@@ -271,7 +283,7 @@ public class TaskMenu : MonoBehaviour
             default:
                 {
                     paperImg.transform.parent.SetAsLastSibling();
-
+                    starBurst.transform.SetAsLastSibling();
                     break;
                 }
         }

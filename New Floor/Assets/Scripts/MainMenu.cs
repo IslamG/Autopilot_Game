@@ -13,20 +13,21 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private TMP_Text playText;
     [SerializeField]
-    bool saveFile = false;
-    [SerializeField]
     private Image background;
     [SerializeField]
     private RectTransform rect_Panel, bTrans;
     [SerializeField]
     GameObject mainMenu;
+    [SerializeField]
+    private Button newButton;
     //[SerializeField]
     //ZoomTransition zt;
 
     Gradient gradient;
     GradientColorKey[] colorKey;
     GradientAlphaKey[] alphaKey;
-    bool isReady = false, created = false;
+    bool isReady = false, created = false, hasSave;
+
     private void SetColor()
     {
         gradient = new Gradient();
@@ -58,7 +59,7 @@ public class MainMenu : MonoBehaviour
         //tbd replace with current time get, calculate percent
         //then assign evaluate value to background tint;
         Debug.Log("The color at quarter: "+gradient.Evaluate(0.25f));
-        if (!saveFile)
+        if (!hasSave)
         {
             //No file= new day, earliest time
             background.color = gradient.Evaluate(0.0f);
@@ -72,7 +73,8 @@ public class MainMenu : MonoBehaviour
     }
     private void OnEnable()
     {
-        SetColor(); 
+        SetColor();
+        Debug.Log("Enable");
     }
     private void Awake()
     {
@@ -84,11 +86,20 @@ public class MainMenu : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        string path = Application.persistentDataPath + "/save_info.sve";
+        hasSave = File.Exists(path);
+        Debug.Log("Awake "+path);
+        if (hasSave)
+        {
+            newButton.gameObject.SetActive(true);
+        }
+        
     }
     //tbd replace with savefile check
     private void Start()
     {
-        if (!saveFile)
+        if (!hasSave)
         {
             playText.text = " Start New ";
         }
@@ -96,6 +107,7 @@ public class MainMenu : MonoBehaviour
         {
             playText.text = " Continue ";
         }
+        Debug.Log("Start");
     }
     public void PlayGame()  
     {
@@ -104,6 +116,12 @@ public class MainMenu : MonoBehaviour
         //zt.MoveToCenter();
         //scene transition is called from animation end event in animator
 
+    }
+    public void RestartGame()
+    {
+        File.Delete(Application.persistentDataPath + "/save_info.sve");
+        hasSave = false;
+        PlayGame();
     }
     //Quit game from main menu
     public void QuitGame()
@@ -115,8 +133,7 @@ public class MainMenu : MonoBehaviour
     {
         //class return needs to be IEnumerator
         //yield return new WaitForSeconds(3.0f);
-        string path = Application.persistentDataPath + "/save_info.sve";
-        if (File.Exists(path))
+        if (hasSave)
         {
             SaveData data = SaveGame.LoadData();
 

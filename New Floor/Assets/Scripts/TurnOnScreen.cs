@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Video;
 using TMPro;
 using cakeslice;
+using UnityEngine.SceneManagement;
+
 public class TurnOnScreen : MonoBehaviour
 {
     [SerializeField]
@@ -33,20 +35,24 @@ public class TurnOnScreen : MonoBehaviour
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
         outline = mainCam.GetComponent<OutlineEffect>();
-        Debug.Log(outline.enabled);
+        //Debug.Log(outline.enabled);
     }
     //Switch view from closeup camera to main 
     private void Update()
     {
         //Back out of login screen on right click if up
-        if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled 
-            && !loginScreen.activeSelf && !PauseMenu.isPaused)
+        if (closeUpCamera != null)
         {
-            mainCam.gameObject.SetActive(true);
-            mainCam.GetComponent<AudioListener>().enabled = true;
-            closeUpCamera.gameObject.SetActive(false);
-            closeUpCamera.GetComponent<AudioListener>().enabled = false;
+            if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled 
+                && !loginScreen.activeSelf && !PauseMenu.isPaused)
+            {
+                mainCam.gameObject.SetActive(true);
+                mainCam.GetComponent<AudioListener>().enabled = true;
+                closeUpCamera.gameObject.SetActive(false);
+                closeUpCamera.GetComponent<AudioListener>().enabled = false;
+            }
         }
+        
         //Hide helper text after duration
         if (textTimer.Finished && helperDisplayed)
         {
@@ -66,7 +72,8 @@ public class TurnOnScreen : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
         Debug.Log(gameObject.name+" is on");
-        tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
+        if (SceneManager.GetActiveScene().name.Equals("Opening"))
+            tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
         //Only play the boot up animation once
         if (!introVideoPlayed)
         {
@@ -82,10 +89,13 @@ public class TurnOnScreen : MonoBehaviour
         if (!loginScreen.activeSelf)
         {
             //change view to close up of screen
-            closeUpCamera.gameObject.SetActive(true);
-            closeUpCamera.GetComponent<AudioListener>().enabled = true;
-            mainCam.gameObject.SetActive(false);
-            mainCam.GetComponent<AudioListener>().enabled = false;
+            if (closeUpCamera != null)
+            {
+                closeUpCamera.gameObject.SetActive(true);
+                closeUpCamera.GetComponent<AudioListener>().enabled = true;
+                mainCam.gameObject.SetActive(false);
+                mainCam.GetComponent<AudioListener>().enabled = false;
+            }
         }
                
     }
@@ -106,12 +116,14 @@ public class TurnOnScreen : MonoBehaviour
     {
         //Destroy(outline);
         //Debug.Log(outline);
-        outline.enabled = false;
+        if(outline!=null)
+            outline.enabled = false;
 
         //Show login screen
         loginScreen.GetComponent<LoginScreen>().MakeVisible(true);
         screenCamera.gameObject.SetActive(true);
-        screenCamera.GetComponent<AudioListener>().enabled = true;
+        //screenCamera.GetComponent<AudioListener>().enabled = true;
+        //screenCamera.GetComponent<AudioListener>().enabled = true;
 
         crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;

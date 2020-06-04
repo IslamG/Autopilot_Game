@@ -57,11 +57,16 @@ public class LoginScreen : MonoBehaviour
     {
         if (isUnlocked)
         {
+            
             taskMenu.RemoveTaskFromList(task);
             MakeVisible(false);
             //Trigger fade out of scene
-            fadeBlack.gameObject.SetActive(true);
-            fadeBlack.GetComponent<FadeBlack>().Fade();
+            if (fadeBlack != null)
+            {
+                fadeBlack.gameObject.SetActive(true);
+                fadeBlack.GetComponent<FadeBlack>().Fade();
+            }
+            
         }
     }
 
@@ -77,14 +82,14 @@ public class LoginScreen : MonoBehaviour
             //find and turn main camera on
             foreach(Camera cam in sceneCameras)
             {
-                if (cam.name.Equals("ScreenCamera"))
-                {
-                    cam.GetComponent<AudioListener>().enabled = false;
-                }
+                //if (cam.name.Equals("ScreenCamera"))
+                //{
+                 //   cam.GetComponent<AudioListener>().enabled = false;
+                //}
                 if (cam == Camera.main)
                 {
                     cam.gameObject.SetActive(true);
-                    cam.GetComponent<AudioListener>().enabled = true;
+                   // cam.GetComponent<AudioListener>().enabled = true;
                     break;
                 }
             }
@@ -95,7 +100,7 @@ public class LoginScreen : MonoBehaviour
             foreach (Camera cam in sceneCameras)
             {
                 cam.gameObject.SetActive(!ctrl);
-                cam.GetComponent<AudioListener>().enabled = !ctrl;
+                //cam.GetComponent<AudioListener>().enabled = !ctrl;
             }
         }
         //Clicking on screen while vid playing will bring up login

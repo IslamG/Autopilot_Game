@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,6 +42,9 @@ public class Elevator : MonoBehaviour
             elevatorAnimator.Play("ElevatorOpen");
             if (ElevatorSequence.IsUnlocked)
             {
+                SaveGame.SaveData();
+                Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
+                Console.WriteLine("p el: " + player);
                 SceneManager.LoadScene("SubconscienceFloor");
                 //SceneManager.UnloadSceneAsync("FloorTest");
                 //Resources.UnloadUnusedAssets();

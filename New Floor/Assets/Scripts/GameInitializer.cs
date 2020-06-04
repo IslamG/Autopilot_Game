@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using cakeslice;
+using System;
 
 /// <summary>
 /// Initializes the game
@@ -55,8 +56,13 @@ public class GameInitializer : MonoBehaviour
         }
         if (currenLvl.Equals("SubconscienceFloor"))
         {
-            SaveGame.SaveData();
-            Debug.Log("Success");
+            SaveData data = SaveGame.LoadData();
+            Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
+            player.x=data.PlayerPosition[0];
+            player.y=data.PlayerPosition[1];
+            player.z=data.PlayerPosition[2];
+
+            Console.WriteLine("p el: " + player);
         }
     }
 }
