@@ -79,6 +79,7 @@ public class LoginScreen : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             crossHair.SetActive(true);
+            Debug.Log("Did");
             //find and turn main camera on
             foreach(Camera cam in sceneCameras)
             {
@@ -102,6 +103,9 @@ public class LoginScreen : MonoBehaviour
                 cam.gameObject.SetActive(!ctrl);
                 //cam.GetComponent<AudioListener>().enabled = !ctrl;
             }
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Debug.Log("Did2 "+Cursor.lockState);
         }
         //Clicking on screen while vid playing will bring up login
         //stop video in that case

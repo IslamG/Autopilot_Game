@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class TaskMenu : MonoBehaviour
 {
+    #region variables
     public static TaskMenu instance;
 
     [SerializeField]
@@ -30,8 +31,11 @@ public class TaskMenu : MonoBehaviour
     private List<Task> activeTaskList = new List<Task>();
     private List<Task> completedTaskList = new List<Task>();
     //private Dictionary<char, Task> pairList = new Dictionary<char, Task>();
-
+    #endregion
+    #region Properties
     public static bool IsDisplayed { get => isDisplayed; }
+    #endregion
+    #region Unity methods
     //Singleton class
     private void Awake()
     {
@@ -96,6 +100,8 @@ public class TaskMenu : MonoBehaviour
 
         }
     }
+    #endregion
+    #region custom methods
     //Open up menu in screen middle
     private void DisplayMenu()
     {
@@ -151,6 +157,7 @@ public class TaskMenu : MonoBehaviour
         starBurst.SetActive(true);
         activeTaskList.Add(task);
         activeTaskList = activeTaskList.Distinct().ToList();
+        task.IsRegistered = true;
         AddTaskToMenu();
         //HighlightStrip();
     }
@@ -318,4 +325,5 @@ public class TaskMenu : MonoBehaviour
         }
         HighlightStrip();
     }
+    #endregion
 }

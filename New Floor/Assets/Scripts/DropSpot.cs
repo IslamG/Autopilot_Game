@@ -17,6 +17,7 @@ public class DropSpot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject otherObj = other.gameObject;
+        Debug.Log("fired " + fired);
         if (!fired && otherObj==targetObject)
         {
             Debug.Log("depositied item");
@@ -24,8 +25,16 @@ public class DropSpot : MonoBehaviour
             //tbd add reaction to successful deposite
             //possibly change remove system
             Task task = targetObject.GetComponent<Task>();
+            task.IsCompleted = true;
             taskMenu.RemoveTaskFromList(task);
+            Debug.Log("fired2 " + fired);
+            OtherDisable(other.gameObject);
+            this.gameObject.SetActive(false);
         }
+    }
+    private void OtherDisable(GameObject otherObj)
+    {
+        otherObj.GetComponent<DropSpot>().enabled = false;
     }
     
 }

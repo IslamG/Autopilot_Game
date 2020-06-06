@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class CloseUpCamera : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class CloseUpCamera : MonoBehaviour
     //tbd possibly switch out between a "close up camera" and main
     private void FocusCamera()
     {
+        if (gameObject.name.Equals("FirstPersonCharacter"))
+        {
+            gameObject.GetComponentInParent<FirstPersonController>().CanMove= false;
+        }
         float xDiff=0, zDiff=0;
         //Find where the camera is facing the object from
         Vector3 target = focusPoint.position, 
@@ -124,6 +129,10 @@ public class CloseUpCamera : MonoBehaviour
     //return to position before focusing
     private void UnfocusCamera()
     {
+        if (gameObject.name.Equals("FirstPersonCharacter"))
+        {
+            gameObject.GetComponentInParent<FirstPersonController>().CanMove=true;
+        }
         closeUpCam.transform.position = originalPos;
         mouse.Unfocus();
     }

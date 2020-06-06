@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -8,6 +9,11 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu instace;
+
+    public delegate void DelegateFunc();
+    DelegateFunc del;
+    
     [SerializeField]
     private Animator transition;
     [SerializeField]
@@ -17,9 +23,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private RectTransform rect_Panel, bTrans;
     [SerializeField]
-    GameObject mainMenu;
+    GameObject mainMenu, restartPopUp, quitPopUp, popUpGen;
     [SerializeField]
     private Button newButton;
+    
     //[SerializeField]
     //ZoomTransition zt;
 
@@ -27,6 +34,8 @@ public class MainMenu : MonoBehaviour
     GradientColorKey[] colorKey;
     GradientAlphaKey[] alphaKey;
     bool isReady = false, created = false, hasSave;
+
+    //private ResetDelegate ResetDelegate { get => resetDelegate;}
 
     private void SetColor()
     {
@@ -107,7 +116,6 @@ public class MainMenu : MonoBehaviour
         {
             playText.text = " Continue ";
         }
-        Debug.Log("Start");
     }
     public void PlayGame()  
     {
@@ -117,14 +125,28 @@ public class MainMenu : MonoBehaviour
         //scene transition is called from animation end event in animator
 
     }
-    public void RestartGame()
+    public void RestartClicked()
+    {
+        restartPopUp.GetComponent<PopUp>().ShowPop();
+        del = RestartGame;
+        popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        popUpGen.gameObject.SetActive(true);
+    }
+    private void RestartGame()
     {
         File.Delete(Application.persistentDataPath + "/save_info.sve");
         hasSave = false;
         PlayGame();
     }
+    public void QuitClicked()
+    {
+        quitPopUp.GetComponent<PopUp>().ShowPop();
+        del = QuitGame;
+        popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        popUpGen.gameObject.SetActive(true);
+    }
     //Quit game from main menu
-    public void QuitGame()
+    private void QuitGame()
     {
         Application.Quit();
     }

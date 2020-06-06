@@ -37,6 +37,7 @@ public class CheckpointPivot : MonoBehaviour
                 helperText.text = "";
                 helperText.faceColor = Color.white;
                 showingHelper = false;
+                this.gameObject.SetActive(false);
             }
         }
     }
@@ -44,8 +45,12 @@ public class CheckpointPivot : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(!showed)
+            if (!showed)
+            {
                 StartHintDisplay();
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
+                
         }
     }
     private void StartHintDisplay()

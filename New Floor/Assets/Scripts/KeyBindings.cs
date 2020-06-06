@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -23,15 +22,6 @@ public class KeyBindings : MonoBehaviour
     }
     [SerializeField]
     private string[] wordList;
-    //[SerializeField]
-    //VerticalLayoutGroup place;
-    //Text text;
-    //[SerializeField]
-    //Text text;
-    //[SerializeField]
-    //InputField input;
-    //[SerializeField]
-    //ListKeyPair keyObj;
     [SerializeField]
     private TMP_Text[] labels;
     [SerializeField]

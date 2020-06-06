@@ -42,10 +42,11 @@ public class Elevator : MonoBehaviour
             elevatorAnimator.Play("ElevatorOpen");
             if (ElevatorSequence.IsUnlocked)
             {
-                SaveGame.SaveData();
+                
                 Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
                 Console.WriteLine("p el: " + player);
                 SceneManager.LoadScene("SubconscienceFloor");
+                SaveGame.SaveData();
                 //SceneManager.UnloadSceneAsync("FloorTest");
                 //Resources.UnloadUnusedAssets();
             }

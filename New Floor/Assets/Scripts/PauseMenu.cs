@@ -63,6 +63,7 @@ public class PauseMenu : MonoBehaviour
         //Return states to how they were before pausing
         Cursor.lockState = currentMouse;
         Cursor.visible = isCursorVisible;
+        Debug.Log("Cursor called");
 
         //Enable look control
         if (fpc!=null)
@@ -99,6 +100,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Debug.Log("Cursor called");
 
         //Disable look control
         if (fpc != null)
@@ -129,6 +131,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Debug.Log("Cursor called");
         SceneManager.LoadScene("MainScreen");
     }
     //Quit to desktop

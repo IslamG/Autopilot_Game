@@ -30,6 +30,7 @@ public class Task : MonoBehaviour
     }
     public void ActivateTask()
     {
-        taskActivated.Invoke(this);
+        if(!IsCompleted && !IsRegistered)
+            taskActivated.Invoke(this);
     }
 }

@@ -31,7 +31,7 @@ public class TurnOnScreen : MonoBehaviour
     {
         //initialize variables
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        Cursor.visible = false;
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
         outline = mainCam.GetComponent<OutlineEffect>();
@@ -124,11 +124,11 @@ public class TurnOnScreen : MonoBehaviour
         screenCamera.gameObject.SetActive(true);
         //screenCamera.GetComponent<AudioListener>().enabled = true;
         //screenCamera.GetComponent<AudioListener>().enabled = true;
-
-        crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
+        crosshair.SetActive(false);
+        
+        //Debug.Log("Cursor " + Cursor.lockState + " " + Cursor.visible);
         //clear screen and revert back to main camera
         //for viewing login screen
         content.DiscardContents();
