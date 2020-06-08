@@ -15,6 +15,9 @@ public class PopUpGen : MonoBehaviour
     private Button okBtn, cancelBtn;
 
     MainMenu.DelegateFunc mainFunc;
+    Package.DelegateFunc packFunc;
+
+    bool isTrue;
 
     public void GeneratePopUp(PopUp popUp)
     {
@@ -35,14 +38,34 @@ public class PopUpGen : MonoBehaviour
     {
         if (mainFunc != null)
             mainFunc.Invoke();
-        this.gameObject.SetActive(false);
+        if (packFunc != null)
+        {
+            Package.PackageOpened = true;
+            packFunc.Invoke();
+        }
+            
+        gameObject.SetActive(false);
+        isTrue = true;
+        
     }
     public void Cancel()
     {
-        this.gameObject.SetActive(false);
+        if (packFunc != null)
+        {
+            Package.PackageOpened = false;
+            packFunc.Invoke();
+        }
+        gameObject.SetActive(false);
+        isTrue= false;
+        
     }
     public void FunctionToDo(MainMenu.DelegateFunc function)
     {
         mainFunc = function;
+    }
+    public bool FunctionToDo(Package.DelegateFunc function)
+    {
+        packFunc = function;
+        return isTrue;
     }
 }

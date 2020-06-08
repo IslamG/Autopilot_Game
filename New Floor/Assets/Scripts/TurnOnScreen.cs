@@ -104,7 +104,7 @@ public class TurnOnScreen : MonoBehaviour
     {
         SwitchToLogin();
         //Display helper text only once
-        if (!helperDisplayed)
+        if (!helperDisplayed && helperText!=null)
         {
             helperText.text = "I think I wrote clues to my password somewhere";
             textTimer.Run();

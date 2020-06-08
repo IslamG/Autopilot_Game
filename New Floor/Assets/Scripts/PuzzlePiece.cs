@@ -58,11 +58,11 @@ public class PuzzlePiece : MonoBehaviour
         isActive = true;
         Task task=gameObject.GetComponent<Task>();
         task.ActivateTask();
-        DropSpot ds = gameObject.GetComponent<DropSpot>();
+        DropItem di = gameObject.GetComponent<DropItem>();
         //if dropppable object
-        if (ds != null && !task.IsCompleted)
+        if (di != null && !task.IsCompleted)
         {
-            ds.TargetSpot.SetActive(true);
+            di.TargetSpot.gameObject.SetActive(true);
         }
             
         //return true;

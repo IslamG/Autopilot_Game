@@ -12,6 +12,10 @@ public static class EventManager
     static List<Tip> haulmarkInvokers = new List<Tip>();
     static List<UnityAction<Tip>> haulmarkListeners = new List<UnityAction<Tip>>();
 
+    //tbd figurout found item invokers
+    static List<DropItem> foundInvokers = new List<DropItem>();
+    static List<UnityAction<DropItem>> foundListeners = new List<UnityAction<DropItem>>();
+
     public static void AddInvoker(Task taskInvoker)
     {
         //add new puzzle to list
@@ -50,4 +54,23 @@ public static class EventManager
         }
     }
 
+    //FoundItem overload
+    public static void AddInvoker(DropItem item)
+    {
+        //add new tip to list
+        //then add a listener to the tip
+        foundInvokers.Add(item);
+        foreach (UnityAction<DropItem> listener in foundListeners)
+        {
+            item.AddListener(listener);
+        }
+    }
+    public static void AddListener(UnityAction<DropItem> handler)
+    {
+       foundListeners.Add(handler);
+        foreach (DropItem item in foundInvokers)
+        {
+            item.AddListener(handler);
+        }
+    }
 }
