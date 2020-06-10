@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Object type class
+//tbd probably remove
 public class ObjectiveItem : MonoBehaviour
 {
     private Task myTask;
@@ -10,6 +11,7 @@ public class ObjectiveItem : MonoBehaviour
     {
         myTask = gameObject.GetComponent<Task>();
     }
+    //Switch based on group type
     private void OnMouseDown()
     {
         switch (myTask.TaskGroup)

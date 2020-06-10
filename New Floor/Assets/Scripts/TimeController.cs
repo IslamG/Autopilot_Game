@@ -23,14 +23,14 @@ public class TimerController : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
-        }
-        
+        } 
     }
+
     private void Start()
     {
         timerGoing = false;
     }
-
+    //Start tracking time
     public void BeginTimer()
     {
         timerGoing = true;
@@ -38,10 +38,13 @@ public class TimerController : MonoBehaviour
 
         StartCoroutine(UpdateTimer());
     }
+    //Stop timer
     public void EndTimer()
     {
         timerGoing = false;
     }
+    //Increment timer, keeping track of time
+    //tbd use this value to end game
     private IEnumerator UpdateTimer()
     {
         while (timerGoing)

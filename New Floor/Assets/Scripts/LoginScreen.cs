@@ -83,6 +83,8 @@ public class LoginScreen : MonoBehaviour
             //find and turn main camera on
             foreach(Camera cam in sceneCameras)
             {
+                //tbd move audio listener management to new manager
+
                 //if (cam.name.Equals("ScreenCamera"))
                 //{
                  //   cam.GetComponent<AudioListener>().enabled = false;

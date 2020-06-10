@@ -12,16 +12,16 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler
     AudioMixer mainMixer;
 
     AudioSource source;
+    //Assign values
     void Start()
     {
         source = gameObject.GetComponent<AudioSource>();
         source.clip = clickSound;
         source.outputAudioMixerGroup = mainMixer.outputAudioMixerGroup;
     }
+    //When mouse over item, play sound
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //Debug.Log("Entered " + gameObject.name);
-        Debug.Log("mixer " );
         source.Play();
     }
 

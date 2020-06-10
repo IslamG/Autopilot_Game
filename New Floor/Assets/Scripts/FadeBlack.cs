@@ -16,13 +16,15 @@ public class FadeBlack : MonoBehaviour
     }
     private void Update()
     {
+        //If fade triggered
         if (fade)
         {
+            //Fade color into black
             color.CrossFadeAlpha(50f, 10.0f, false);
-            //Debug.Log(color.color);
-            Debug.Log("colors: " + (color.canvasRenderer.GetAlpha()));
+            //Debug.Log("colors: " + (color.canvasRenderer.GetAlpha()));
             if (color.canvasRenderer.GetAlpha() >= 10.0f)
             {
+                //Once color reached, load next level
                 LeaveLevel();
             }
         }
@@ -36,7 +38,6 @@ public class FadeBlack : MonoBehaviour
     {
         //Load next scene
         this.enabled = false;
-        //gameObject.SetActive(false);
         SceneManager.LoadScene("LoadingScreen");
     }
 }

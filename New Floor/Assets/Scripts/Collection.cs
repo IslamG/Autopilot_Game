@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class Collection : MonoBehaviour
 {
+    //An Object reference to a collection
+
+    //the collection items
     [SerializeField]
     DropItem[] collectables;
     [SerializeField]
@@ -17,28 +21,31 @@ public class Collection : MonoBehaviour
     {
         EventManager.AddListener(FoundItem);
     }
-        private void FoundItem(DropItem item)
+    //Start wait before moving
+    private void FoundItem(DropItem item)
     {
-        itemsFound+=1;
+        StartCoroutine(Move(item));     
+    }
+    private IEnumerator Move (DropItem item)
+    {
+        yield return new WaitForSeconds(1f);
+        itemsFound += 1;
         Debug.Log("it " + itemsFound);
+        //Move found item to collection position, next to any previous items
         Transform itemObj = item.gameObject.transform;
-        //GameObject dropSpot = itemObj.GetComponent<DropItem>().TargetSpot.gameObject;
-        float itemZ = gameObject.transform.position.z + (0.2f * itemsFound) ;
-            //(itemObj.localScale.z * itemsFound);//+
+        float itemZ = gameObject.transform.position.z + (0.2f * itemsFound);
         float itemX = gameObject.transform.position.x;
         float itemY = gameObject.transform.position.y;
-        //itemObj.gameObject.GetComponent<BoxCollider>().enabled = false;
-        //itemObj.gameObject.GetComponent<SphereCollider>().enabled = false;
         itemObj.localPosition = new Vector3(itemX, itemY, itemZ);
         itemObj.localEulerAngles = new Vector3(0, 180, 0);
         itemObj.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
+        //When all items are found, task is complete
         if (itemsFound == collectables.Length)
         {
             Task task = item.GetComponent<Task>();
             task.IsCompleted = true;
             taskMenu.RemoveTaskFromList(task);
         }
-        
     }
 }

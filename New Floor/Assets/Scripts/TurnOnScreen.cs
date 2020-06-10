@@ -35,7 +35,6 @@ public class TurnOnScreen : MonoBehaviour
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
         outline = mainCam.GetComponent<OutlineEffect>();
-        //Debug.Log(outline.enabled);
     }
     //Switch view from closeup camera to main 
     private void Update()
@@ -114,8 +113,6 @@ public class TurnOnScreen : MonoBehaviour
     //Bring up login screen UI
     private void SwitchToLogin()
     {
-        //Destroy(outline);
-        //Debug.Log(outline);
         if(outline!=null)
             outline.enabled = false;
 
@@ -128,7 +125,6 @@ public class TurnOnScreen : MonoBehaviour
         Cursor.visible = true;
         crosshair.SetActive(false);
         
-        //Debug.Log("Cursor " + Cursor.lockState + " " + Cursor.visible);
         //clear screen and revert back to main camera
         //for viewing login screen
         content.DiscardContents();

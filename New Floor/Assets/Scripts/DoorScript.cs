@@ -10,9 +10,14 @@ public class DoorScript : MonoBehaviour
     Vector3 oldEulerAngles;
  
     void Start(){
+
         oldEulerAngles = transform.localEulerAngles;
+
+        //Different behavior for doors with snappers
         if(gameObject.transform.Find("snapper")!=null)
             snapper= gameObject.transform.Find("snapper").gameObject;
+
+        //If door is marked as locked don't allow it to move even on click
         if (isLocked)
         {
             GameObject door=gameObject.transform.parent.gameObject;
@@ -62,17 +67,18 @@ public class DoorScript : MonoBehaviour
             }
         } 
     }
+    //Stall doors unable to open all the way in
     private void OnTriggerEnter(Collider other)
     {
         string name = other.gameObject.name.ToLower();
-        Debug.Log(name);
+        //Debug.Log(name);
+        //Stop swinging stall doors
         if (name.Contains("stalls"))
         {
             Rigidbody rigidbody = GetComponent<Rigidbody>();
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = Vector3.zero;
             transform.localEulerAngles = oldEulerAngles;
-        }
-        
+        }  
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class SettingsPrefs : MonoBehaviour
 {
+    //Player prefs output, serialization
+    //each corresponds to value
+
     [SerializeField]
     private Slider volume;
     [SerializeField]

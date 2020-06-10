@@ -20,6 +20,7 @@ public class Elevator : MonoBehaviour
             //Destroy(this.gameObject);
         }
     }
+
     [SerializeField]
     private Animator elevatorAnimator, lightAnimator;
     [SerializeField]
@@ -29,9 +30,7 @@ public class Elevator : MonoBehaviour
     private void Start()
     {
         animationTimer = gameObject.AddComponent<Timer>();
-        //btnTimer = gameObject.AddComponent<Timer>();
         animationTimer.Duration = 5;
-        //btnTimer.Duration = 2;
     }
     private void Update()
     {
@@ -42,9 +41,9 @@ public class Elevator : MonoBehaviour
             elevatorAnimator.Play("ElevatorOpen");
             if (ElevatorSequence.IsUnlocked)
             {
-                
+                //If secrete password entered, save game
+                //and load in secret ending 
                 Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
-                Console.WriteLine("p el: " + player);
                 SceneManager.LoadScene("SubconscienceFloor");
                 SaveGame.SaveData();
                 //SceneManager.UnloadSceneAsync("FloorTest");

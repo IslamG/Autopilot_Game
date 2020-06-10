@@ -19,7 +19,7 @@ public class TurnOnFan : MonoBehaviour
         source = GetComponent<AudioSource>();
         source.outputAudioMixerGroup = mainMixer.outputAudioMixerGroup;
     }
-
+    //When object clicked switch animation on/off
     private void OnMouseDown()
     {
         isOn = !isOn;

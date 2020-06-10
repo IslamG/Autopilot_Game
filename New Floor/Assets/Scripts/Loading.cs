@@ -20,7 +20,9 @@ public class Loading : MonoBehaviour
     {
         Debug.Log("loading: " + LevelTraversal.TargetLevel);
         AsyncOperation gameLevel = SceneManager.LoadSceneAsync(LevelTraversal.TargetLevel);
+        
         //tbd possibly put in that graphics later
+        
         //while (gameLevel.progress < 1)
         //{
         //    _progressBar.fillAmount = gameLevel.progress;

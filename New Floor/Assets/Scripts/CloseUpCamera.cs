@@ -27,11 +27,13 @@ public class CloseUpCamera : MonoBehaviour
         if (Physics.Raycast(ray, out hit, reach))
         {
             //Check if we're mousing over an object we can focus
-            Debug.DrawRay(transform.position, transform.forward, Color.green);
+            //Debug.DrawRay(transform.position, transform.forward, Color.green);
             foreach(GameObject obj in focusObjects)
             {
+                //If we'er over an object we can focus and mouse is clicked
                 if (hit.transform.gameObject == obj && Input.GetMouseButton(0) && !isFocused)
                 {
+                    //Move camera to focus position
                     focusPoint = hit.transform;
                     originalPos= closeUpCam.transform.position;
                     FocusCamera();
@@ -49,6 +51,7 @@ public class CloseUpCamera : MonoBehaviour
     //tbd possibly switch out between a "close up camera" and main
     private void FocusCamera()
     {
+        //Disable movement control if is active
         if (gameObject.name.Equals("FirstPersonCharacter"))
         {
             gameObject.GetComponentInParent<FirstPersonController>().CanMove= false;
@@ -58,13 +61,15 @@ public class CloseUpCamera : MonoBehaviour
         Vector3 target = focusPoint.position, 
             point = closeUpCam.transform.position;
         float angle = GetAngle(point, target);
-        Debug.Log("Angle: " + angle);
-        Debug.Log("Quarter: "+GetQuarter(target, point));
+        //Debug.Log("Angle: " + angle);
+        //Debug.Log("Quarter: "+GetQuarter(target, point));
         //Move the camera relevent to its position to the object's position
         switch (GetQuarter(target, point))
         {
+            //focus object is in first quareter
             case 1:
                 {//x=+, z=+
+                    //Calculate angle to decide where to move camera to
                     if (angle > 45)
                     {
                         xDiff = target.x; 
@@ -77,8 +82,10 @@ public class CloseUpCamera : MonoBehaviour
                     }
                     break;
                 }
+            //focus object is in second quareter
             case 2:
                 {//x=-, z=+
+                    //Calculate angle to decide where to move camera to
                     if (angle > 115)
                     {
                         xDiff = target.x;  
@@ -91,9 +98,11 @@ public class CloseUpCamera : MonoBehaviour
                     }
                     break;
                 }
+            //focus object is in third quareter
             case 3:
                 {
                     //x= -, z=-
+                    //Calculate angle to decide where to move camera to
                     if (angle > 225)
                     {
                         xDiff = target.x;  
@@ -106,8 +115,10 @@ public class CloseUpCamera : MonoBehaviour
                     }
                     break;
                 }
+            //focus object is in fourth quareter
             case 4:
                 {//x=+, z=+
+                    //Calculate angle to decide where to move camera to
                     if (angle > 315)
                     {
                         xDiff = target.x;
@@ -129,6 +140,7 @@ public class CloseUpCamera : MonoBehaviour
     //return to position before focusing
     private void UnfocusCamera()
     {
+        //Reinable movement if available
         if (gameObject.name.Equals("FirstPersonCharacter"))
         {
             gameObject.GetComponentInParent<FirstPersonController>().CanMove=true;
@@ -136,6 +148,7 @@ public class CloseUpCamera : MonoBehaviour
         closeUpCam.transform.position = originalPos;
         mouse.Unfocus();
     }
+    //Calculate view angle between focus point and where camera is facing
     private float GetAngle(Vector3 target, Vector3 point)
     {
         float w = target.x - point.x;
@@ -151,6 +164,8 @@ public class CloseUpCamera : MonoBehaviour
 
         return atan % 360;
     }
+    //Calculae which quarter the camera is in
+    //relative to the focus object clicked
     private int GetQuarter(Vector3 target, Vector3 point)
     {
         float xDiff = target.x - point.x;

@@ -10,7 +10,6 @@ public class Task : MonoBehaviour
     [SerializeField]
     private char taskGroup;
 
-    //private bool isCompleted = false, notAdded=true;
     private TaskOnBecameActive taskActivated = new TaskOnBecameActive();
 
     //property for returning text, used for menu

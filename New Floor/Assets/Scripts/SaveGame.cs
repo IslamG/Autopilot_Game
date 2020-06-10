@@ -4,10 +4,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveGame 
 {
+    //Constructor responsible for saving data
     public static void SaveData()
     {
+        //Encrypt data so that output can't be modified outside
+        //of game scope
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/save_info.sve";
+        
+        //stream serialized data to disk
         FileStream stream = new FileStream(path, FileMode.Create);
 
         SaveData data = new SaveData();
@@ -16,11 +21,14 @@ public static class SaveGame
         stream.Close();
     }
 
+    //Load save file and put in SaveData object
     public static SaveData LoadData()
     {
         string path = Application.persistentDataPath + "/save_info.sve";
         if (File.Exists(path))
         {
+            //If there's a save, and deserialize file
+            //decrypt serialized data
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
@@ -31,6 +39,7 @@ public static class SaveGame
         } 
         else
         {
+            //Trying to load a file that doesn't exist
             Debug.LogError("Save file not found in " + path);
             return null;
         }

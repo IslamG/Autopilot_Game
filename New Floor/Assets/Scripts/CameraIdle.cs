@@ -35,6 +35,7 @@ public class CameraIdle : MonoBehaviour
         {
             DisableIdle();
         }
+        //If any input detected disable idle state
         else if (Input.anyKey)
         {
             DisableIdle();
@@ -42,15 +43,17 @@ public class CameraIdle : MonoBehaviour
         //Mouse inactivity period has occured
         if (timeOutTimer > timeOut)
         {
+            //Face camera forward and start idle animation
             if(!idleCam.enabled)
                 idleCam.transform.rotation = Quaternion.LookRotation(idleCam.transform.up);
             anim.SetBool("isActive", false);
             mainCam.enabled = false;
             idleCam.enabled = true;
+            //Hide HUD
             hud.gameObject.SetActive(false);
-
         }
     }
+    //Stop idle animation and show hidden HUD
     private void DisableIdle()
     {
         timeOutTimer = 0.0f;

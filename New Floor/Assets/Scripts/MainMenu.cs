@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
     private void OnEnable()
     {
         SetColor();
-        Debug.Log("Enable");
+        //Debug.Log("Enable");
     }
     private void Awake()
     {
@@ -95,17 +95,17 @@ public class MainMenu : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        //Check if there's a save file before starting main menu
         string path = Application.persistentDataPath + "/save_info.sve";
         hasSave = File.Exists(path);
-        Debug.Log("Awake "+path);
+        //Debug.Log("Awake "+path);
         if (hasSave)
         {
             newButton.gameObject.SetActive(true);
         }
         
     }
-    //tbd replace with savefile check
+    //change play game button text depending on if there's a save file
     private void Start()
     {
         if (!hasSave)
@@ -117,6 +117,7 @@ public class MainMenu : MonoBehaviour
             playText.text = " Continue ";
         }
     }
+    //hide menu and start transition animation
     public void PlayGame()  
     {
         mainMenu.SetActive(false);
@@ -125,6 +126,8 @@ public class MainMenu : MonoBehaviour
         //scene transition is called from animation end event in animator
 
     }
+    //When restart clicked turn on confirmation pop up
+    //and delegate restart action to pop up
     public void RestartClicked()
     {
         restartPopUp.GetComponent<PopUp>().ShowPop();
@@ -132,12 +135,16 @@ public class MainMenu : MonoBehaviour
         popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
         popUpGen.gameObject.SetActive(true);
     }
+    //Restarting game delete any save with old progress
+    //start a new game
     private void RestartGame()
     {
         File.Delete(Application.persistentDataPath + "/save_info.sve");
         hasSave = false;
         PlayGame();
     }
+    //When quit clicked turn on confirmation pop up
+    //and delegate quit action to pop up
     public void QuitClicked()
     {
         quitPopUp.GetComponent<PopUp>().ShowPop();
@@ -154,7 +161,6 @@ public class MainMenu : MonoBehaviour
     public void SwitchScene()
     {
         //class return needs to be IEnumerator
-        //yield return new WaitForSeconds(3.0f);
         if (hasSave)
         {
             SaveData data = SaveGame.LoadData();

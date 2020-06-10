@@ -16,22 +16,19 @@ public class CheckpointPivot : MonoBehaviour
 
     private void Start()
     {
-        //s1 = "This is Jeremy's desk, nice guy, too bad we never talk";
-        //s2 = "Too bad, I wish I knew more about him.";
-        //s3 = "He probably would've helped me.";
-         
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = 3;
     }
     private void Update()
     {
+        //Switch between text parts
         if (showingHelper)
-        {
+        {   //When part displayed for set amount of time
             if (timer.Finished && i<dialogueParts.Length)
             {
                 StartHintDisplay();   
                 i++;
-            }
+            }//When all parts done displaying
             else if (timer.Finished && i >= dialogueParts.Length)
             {
                 helperText.text = "";
@@ -43,18 +40,19 @@ public class CheckpointPivot : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //If player enters information post
         if (other.gameObject.CompareTag("Player"))
-        {
+        { //If text hasn't been shown before, show hint and hide post
             if (!showed)
             {
                 StartHintDisplay();
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            }
-                
+            }              
         }
     }
     private void StartHintDisplay()
-    {
+    { 
+        //Show text and start timer for switching parts
         if (helperText != null)
         {
             showed = true;
@@ -62,6 +60,7 @@ public class CheckpointPivot : MonoBehaviour
             helperText.text = dialogueParts[i];
             timer.Run();
             showingHelper = true;
+            //tbd different highlight for different tasks
             if (i == dialogueParts.Length-1)
             {
                 helperText.faceColor = Color.cyan;

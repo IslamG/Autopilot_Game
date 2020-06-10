@@ -22,6 +22,7 @@ public class OutOfBounds : MonoBehaviour
 
     private void Update()
     {
+        //When text shown timer finishes hide text
         if (textTimeout.Finished && textDisplayed)
         {
             helperText.text = "";
@@ -38,11 +39,8 @@ public class OutOfBounds : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Vector3 root=gameObject.transform.position;
-            //respawnPos.x = other.gameObject.transform.position.x * 1;
-            //respawnPos.z = other.gameObject.transform.position.z * 1.075f;
-            //respawnPos.y = 1;
             root.y -= other.transform.localScale.y;
-            other.gameObject.transform.position = root; //respawnPos;
+            other.gameObject.transform.position = root; 
             SetText();
         }
         //If respawning object 

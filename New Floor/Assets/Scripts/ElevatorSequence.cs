@@ -33,34 +33,28 @@ public class ElevatorSequence : MonoBehaviour
     private int elapsedTime = 0;
     private Coroutine theWait;
 
+    public static bool IsUnlocked { get => isUnlocked; }
+
     private void Start()
     {
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = 3;
     }
-
-    public static bool IsUnlocked { get => isUnlocked;}
-
     public void Sequence(Button btn)
     {
         //Get input and check if correct sequence
-        
-        
         input += btn.GetComponentInChildren<TMP_Text>().text;
         Debug.Log("clicked: " + input);
-
-        //if (theWait != null)
-        //{
-        StartCoroutine(Check());
-        //}
-        //StopCoroutine(theWait);
-       // theWait= StartCoroutine(Check());
-        
+        //Start count from button press
+        StartCoroutine(Check()); 
     }
+    //Compare if unlocked
     private IEnumerator Check()
     {
+        //Wait for 7 seconds
+        //Used for allowing more input before transitioning real or fake
         yield return new WaitForSecondsRealtime(7f);
-        Debug.Log("Checked");
+
         //if user input the correct button sequence unlock route
         if (sequence.Equals(input))
         {

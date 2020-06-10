@@ -31,10 +31,12 @@ public class MouseIndicator : MonoBehaviour
             crosshair.sprite = focusMouse;
             Unfocus();
         }
+        //Change icon normally if mosue isn't held down
         if (!itemHeld)
         {
             SetCursor();
         }
+        //If mouse held down change cursor to hold icon
         else
         {
             if (!(Input.GetAxis("Use") > 0))
@@ -50,12 +52,10 @@ public class MouseIndicator : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, reach))
         {
-            //tbd add state for when mouse held down (holding object)
             //If hovering over special object, use correct mouse icon
             GameObject selection = hit.transform.gameObject;
             if (selection.CompareTag("Selectable"))
             {
-
                 crosshair.sprite = handOpen;
                 if (Input.GetMouseButton(0))
                 {
@@ -89,6 +89,7 @@ public class MouseIndicator : MonoBehaviour
             }
         }
     }
+    //Mouse "zoom in" switch indicator size when mouse clicked
     public void Focus()
     {
         if (!isFocused)
@@ -98,6 +99,7 @@ public class MouseIndicator : MonoBehaviour
             isFocused = true;
         }
     }
+    //Mouse "zoom out" switch indicator size whem mouse released
     public void Unfocus()
     {
         if (isFocused)

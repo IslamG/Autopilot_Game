@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Make object face and follow target
+//functionalty suspended
+//tbd probably remove
 public class TargettingBehavior : MonoBehaviour
 {
     //possible remove

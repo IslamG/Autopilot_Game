@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using cakeslice;
 using System;
 
 /// <summary>
@@ -48,21 +47,22 @@ public class GameInitializer : MonoBehaviour
 
         if (currenLvl.Equals("Opening"))
         {
+            //Hide mouse when starting game level
             LevelTraversal.TargetLevel = "FloorTest";
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            Debug.Log("d " + outline.GetComponent<cakeslice.Outline>().enabled);
-            //outline.enabled = true;
+            //Debug.Log("d " + outline.GetComponent<cakeslice.Outline>().enabled);
         }
         if (currenLvl.Equals("SubconscienceFloor"))
         {
+            //Save when enter Subfloor
             SaveData data = SaveGame.LoadData();
             Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
             player.x=data.PlayerPosition[0];
             player.y=data.PlayerPosition[1];
             player.z=data.PlayerPosition[2];
 
-            Console.WriteLine("p el: " + player);
+            //Console.WriteLine("p el: " + player);
         }
     }
 }

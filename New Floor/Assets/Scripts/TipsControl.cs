@@ -51,12 +51,12 @@ public class TipsControl : MonoBehaviour
         tipTimer=gameObject.AddComponent<Timer>();
         tipTimer.Duration = 5;
         showSource.outputAudioMixerGroup = mainMixer.outputAudioMixerGroup;
-
     }
     private void Update()
     {
         if (tipTimer != null)
         {
+            //When tip is displayed after a time hide
             if (tipTimer.Finished && !nothingDisplayed && !PauseMenu.isPaused)
             {
                 tipHolder.gameObject.SetActive(false);
@@ -64,6 +64,7 @@ public class TipsControl : MonoBehaviour
                 finishedTipList.Add(tip);
                 nothingDisplayed = true;
                 listQueue.Remove(tip);
+                //If there are other tips waiting, display next
                 if (listQueue.Count>0)
                 {
                     DisplayTip(listQueue.First());
@@ -84,14 +85,18 @@ public class TipsControl : MonoBehaviour
                 break;
             }
         }
+        //Only display tips that haven't been displayed before
         if (!isUsed)
         {
             tipHolder.gameObject.SetActive(true);
             tipText.text=tip.DisplayText;
+            //Pick a random sticky note sprite
             int index = Random.Range(0, tipSprites.Length);
             tipHolder.sprite = tipSprites[index];
+            //Pick random overlay texture
             index = Random.Range(0, textureSprites.Length);
             overlay.sprite = textureSprites[index];
+            //Flag as occupied for any new notes, and start timer
             tipTimer.Run();
             nothingDisplayed = false;
             this.tip = tip;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Class to manually control zoom in on screen transition
+//tbd remove probably
 public class ZoomTransition : MonoBehaviour
 {
     private MainMenu menu;

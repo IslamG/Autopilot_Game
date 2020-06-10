@@ -55,9 +55,11 @@ public class PuzzlePiece : MonoBehaviour
     }
     private void Activate()
     {
+        //Activate task based on attached task 
         isActive = true;
         Task task=gameObject.GetComponent<Task>();
         task.ActivateTask();
+        //Activate drop spot for tasks with drop spots
         DropItem di = gameObject.GetComponent<DropItem>();
         //if dropppable object
         if (di != null && !task.IsCompleted)
@@ -83,19 +85,6 @@ public class PuzzlePiece : MonoBehaviour
             //Call puzzle game normally
             Puzzle();
             Solve();
-        }/*
-        else
-        {
-            //Unlock if pre requistes are solved
-            bool isUnlocked = Unlock();
-            if (isUnlocked)
-            {
-                CheckItem();
-            }
-            else
-            {
-                Debug.Log("Item is locked");
-            }
-        }*/
+        }
     }
 }

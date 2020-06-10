@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.Events;
-//Custom event for triggering when a new part is reached
-//for calling tips
+//Custom event for triggering when an item is found
+//for calling drop spot item action
 public class OnItemFound : UnityEvent<DropItem>
 {
 }

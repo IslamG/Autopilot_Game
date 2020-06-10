@@ -12,7 +12,6 @@ public static class EventManager
     static List<Tip> haulmarkInvokers = new List<Tip>();
     static List<UnityAction<Tip>> haulmarkListeners = new List<UnityAction<Tip>>();
 
-    //tbd figurout found item invokers
     static List<DropItem> foundInvokers = new List<DropItem>();
     static List<UnityAction<DropItem>> foundListeners = new List<UnityAction<DropItem>>();
 

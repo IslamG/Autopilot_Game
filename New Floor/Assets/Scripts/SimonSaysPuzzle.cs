@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Puzzle base for clicking on highlighted items
+//And traversing to next item
+//tbd probably remove
 public class SimonSaysPuzzle : Glow
 {
     //Possibly reconstruct as puzzle path

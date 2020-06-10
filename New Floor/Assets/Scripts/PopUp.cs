@@ -16,9 +16,9 @@ public class PopUp : MonoBehaviour
     public string MessageBody { get=>messageBody;}
     public bool IncludeCancel { get => includeCancel; }
 
+    //Call handler for generating a popUp with information in class
     public void ShowPop()
     {
-        Debug.Log("pop start");
         popUpGen.GeneratePopUp(this);
     }
 }

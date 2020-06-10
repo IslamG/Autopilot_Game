@@ -12,12 +12,10 @@ public class DropSpot : MonoBehaviour
 
     private bool fired = false;
     
-    
     //If correct object placed inside of drop spot
     private void OnTriggerEnter(Collider other)
     {
         GameObject otherObj = other.gameObject;
-        Debug.Log("fired " + fired);
         if (!fired && otherObj==targetObject)
         {
             Debug.Log("depositied item");
@@ -27,17 +25,20 @@ public class DropSpot : MonoBehaviour
             Task task = targetObject.GetComponent<Task>();
             task.IsCompleted = true;
             taskMenu.RemoveTaskFromList(task);
-            
-            Debug.Log("fired2 " + fired);
+            //Disable drop spot and item scripts
             OtherDisable(other.gameObject);
             this.gameObject.SetActive(false);
         }
     }
+    //Called when completed
     private void OtherDisable(GameObject otherObj)
     {
         DropItem drop = otherObj.GetComponent<DropItem>();
-        //StartCoroutine(new WaitForSeconds(1f));
-        drop.itemFound.Invoke(drop);
+        //If a collectable is found, trigger the collection event
+        if (drop.IsCollectable)
+        {
+            drop.itemFound.Invoke(drop);
+        }
         drop.enabled = false;
     }
     

@@ -9,9 +9,13 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu instance;
+    public delegate void DelegateFunc();
+    DelegateFunc del;
+
     public static bool isPaused = false;
     [SerializeField]
-    private GameObject pauseMenuUI, crosshair;
+    private GameObject pauseMenuUI, crosshair,
+       menuPopUp, quitPopUp, popUpGen;
     [SerializeField]
     private FirstPersonController fpc;
     [SerializeField]
@@ -100,7 +104,6 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("Cursor called");
 
         //Disable look control
         if (fpc != null)
@@ -121,21 +124,33 @@ public class PauseMenu : MonoBehaviour
         }
         
     }
-    public void LoadOptions()
+    public void MenuClicked()
     {
-
+       menuPopUp.GetComponent<PopUp>().ShowPop();
+        del = LoadMenu;
+        popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        popUpGen.gameObject.SetActive(true);
     }
     //Go to main
-    public void LoadMenu()
+    private void LoadMenu()
     {
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("Cursor called");
         SceneManager.LoadScene("MainScreen");
     }
+    
+    //When quit clicked turn on confirmation pop up
+    //and delegate quit action to pop up
+    public void QuitClicked()
+    {
+        quitPopUp.GetComponent<PopUp>().ShowPop();
+        del = QuitGame;
+        popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        popUpGen.gameObject.SetActive(true);
+    }
     //Quit to desktop
-    public void QuitGame()
+    private void QuitGame()
     {
         Application.Quit();
     }

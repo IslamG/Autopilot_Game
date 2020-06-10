@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//Class for managing sitting down and display and animation
+//functionality suspended
+//tbd probably remove
 public class Sit : MonoBehaviour
 {
     [SerializeField]

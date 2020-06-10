@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Glow : MonoBehaviour
 {
+    //tbd probably remove
     public Material glowMat;
     private bool onOff = false;
     private Material[] origMaterials;
