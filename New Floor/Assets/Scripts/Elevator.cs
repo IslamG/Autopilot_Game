@@ -49,6 +49,11 @@ public class Elevator : MonoBehaviour
                 //SceneManager.UnloadSceneAsync("FloorTest");
                 //Resources.UnloadUnusedAssets();
             }
+            if (SceneManager.GetActiveScene().name.Equals("SubconscienceFloor"))
+            {
+                SceneManager.LoadScene("FloorTest");
+                SaveGame.SaveData();
+            }
         }
     }
     public void SequenceAction()
@@ -63,7 +68,8 @@ public class Elevator : MonoBehaviour
     private void FakeTransition()
     {
         //Close keypad
-        GetComponentInChildren<ElevatorKeypad>().LeaveKeypad();
+        if(!SceneManager.GetActiveScene().name.Equals("SubconscienceFloor"))
+            GetComponentInChildren<ElevatorKeypad>().LeaveKeypad();
         animationTimer.Run();
     }
 }
