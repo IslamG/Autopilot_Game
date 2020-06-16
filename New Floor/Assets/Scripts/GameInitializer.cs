@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 /// <summary>
 /// Initializes the game
@@ -14,6 +15,9 @@ public class GameInitializer : MonoBehaviour
 
     [SerializeField]
     cakeslice.Outline outline;
+    [SerializeField]
+    Animator elevatorAnim;
+
     //Singleton
     void Awake()
     {
@@ -56,13 +60,18 @@ public class GameInitializer : MonoBehaviour
         if (currenLvl.Equals("SubconscienceFloor"))
         {
             //Save when enter Subfloor
-            SaveData data = SaveGame.LoadData();
-            Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
-            player.x=data.PlayerPosition[0];
-            player.y=data.PlayerPosition[1];
-            player.z=data.PlayerPosition[2];
+            string path = Application.persistentDataPath + "/save_info.sve";
+            if (File.Exists(path))
+            {
+                SaveData data = SaveGame.LoadData();
+                Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
+                player.x = data.PlayerPosition[0];
+                player.y = data.PlayerPosition[1];
+                player.z = data.PlayerPosition[2];
+            }
+            
 
-            //Console.WriteLine("p el: " + player);
+            elevatorAnim.Play("ElevatorOpen");
         }
     }
 }

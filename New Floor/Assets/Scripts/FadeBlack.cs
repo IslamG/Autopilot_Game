@@ -20,9 +20,9 @@ public class FadeBlack : MonoBehaviour
         if (fade)
         {
             //Fade color into black
-            color.CrossFadeAlpha(50f, 10.0f, false);
-            //Debug.Log("colors: " + (color.canvasRenderer.GetAlpha()));
-            if (color.canvasRenderer.GetAlpha() >= 10.0f)
+            color.CrossFadeAlpha(255f, 5.0f, false);
+            Debug.Log("colors: " + (color.canvasRenderer.GetAlpha()));
+            if (color.canvasRenderer.GetAlpha() >= 100.0f)
             {
                 //Once color reached, load next level
                 LeaveLevel();
@@ -33,6 +33,7 @@ public class FadeBlack : MonoBehaviour
     public void Fade()
     {
         fade = true;
+        Debug.Log("Fade");
     }
     private void LeaveLevel()
     {

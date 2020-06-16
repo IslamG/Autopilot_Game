@@ -5,6 +5,8 @@ public class DoorScript : MonoBehaviour
 {
     [SerializeField]
     private bool isLocked;
+    [SerializeField]
+    private AudioSource source;
 
     private GameObject snapper;
     Vector3 oldEulerAngles;
@@ -52,6 +54,8 @@ public class DoorScript : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             snapper.transform.Translate(0, 0, 0.02f);
+            source.Play();
+            Debug.Log("Did");
         }
         else
         {
@@ -63,7 +67,9 @@ public class DoorScript : MonoBehaviour
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.angularVelocity = Vector3.zero;
                 transform.localEulerAngles = oldEulerAngles;
-
+                
+                source.Play();
+                Debug.Log("Did2");
             }
         } 
     }

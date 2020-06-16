@@ -6,43 +6,69 @@ using UnityEngine.UI;
 using TMPro;
 public class SettingMenu : MonoBehaviour
 {
+    public static SettingMenu instance; 
+
     private const string VOLUME = "Volume";
     private const string RESOLUTION = "Resolution";
     private const string GRAPHICS = "Graphics";
     private const string FULL_SCREEN = "Full_Screen";
 
-    public AudioMixer audioMixer;
-    public Dropdown resolutionDropdown;
+    [SerializeField]
+     AudioMixer audioMixer;
+    [SerializeField]
+     Dropdown resolutionDropdown;
+    [SerializeField]
+    private Slider volume;
+    [SerializeField]
+    Toggle fullScreen;
+    [SerializeField]
+    Dropdown resolution;
+    [SerializeField]
+    TMP_Dropdown quality;
+    [SerializeField]
+    Toggle checkBox;
 
     Resolution[] resolutions;
+    int resolutionIndex, qualityIndex;
+    bool isFullScreen;
     
+    public bool Initialized { get; set; }
+
+    public void Init()
+    {
+        if (!Initialized)
+        {
+            //Get current screen resolutions available
+            resolutions = Screen.resolutions;
+            resolutionDropdown.ClearOptions();
+            List<string> options = new List<string>();
+            int currentResolutionIndex = 0;
+            //Add to drop down option
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                string option = resolutions[i].width + " x " + resolutions[i].height;
+                options.Add(option);
+                if (resolutions[i].width == Screen.currentResolution.width &&
+                    resolutions[i].height == Screen.currentResolution.height)
+                {
+                    currentResolutionIndex = i;
+                }
+            }
+            resolutionDropdown.AddOptions(options);
+            resolutionDropdown.value = currentResolutionIndex;
+            resolutionDropdown.RefreshShownValue();
+        }
+        
+
+    }
+    //tbd change graphics of menu;
     private void Start()
     {
-        //Get current screen resolutions available
-        resolutions= Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
-        int currentResolutionIndex = 0;
-        //Add to drop down option
-        for (int i=0; i<resolutions.Length; i++)
-        {
-            string option = resolutions[i].width +" x "+ resolutions[i].height;
-            options.Add(option);
-            if(resolutions[i].width==Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
 
         //tbd load from player prefs if available
-        /*
         if (PlayerPrefs.HasKey(VOLUME))
         {
-            volume = PlayerPrefs.GetFloat(VOLUME);
+            volume.value = PlayerPrefs.GetFloat(VOLUME);
         }
         if (PlayerPrefs.HasKey(GRAPHICS))
         {
@@ -50,7 +76,7 @@ public class SettingMenu : MonoBehaviour
         }
         if (PlayerPrefs.HasKey(RESOLUTION))
         {
-            qualityIndex = PlayerPrefs.GetInt(RESOLUTION);
+            resolutionIndex = PlayerPrefs.GetInt(RESOLUTION);
         }
         if (PlayerPrefs.HasKey(FULL_SCREEN))
         {
@@ -62,26 +88,29 @@ public class SettingMenu : MonoBehaviour
             {
                 isFullScreen = true;
             }
-        }
-        */
+        }       
     }
 
     //Resolution drop down changed
-    public void SetResolution (int resolutionIndex)
+    public  void SetResolution (int resolutionIndex)
     {
         //Get the value at selected index
         //and set screen resolutino to it
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+        //resolutionDropdown.value = resolutions[resolutionIndex];
+        resolutionDropdown.RefreshShownValue();
         //Set player prefs with changed information and save
         PlayerPrefs.SetInt(RESOLUTION, resolutionIndex);
-        PlayerPrefs.Save();
+        PlayerPrefs.Save();     
     }
 
     //Volume slider changed
-    public void SetVolume (float volume)
+    public  void SetVolume (float volume)
     {
         //Change main mixer to respond to volume change
+       // Debug.Log("m " + staticMixer.name);
         audioMixer.SetFloat("volume", volume);
         //Save changes to player prefs
         PlayerPrefs.SetFloat(VOLUME, volume);
@@ -89,7 +118,7 @@ public class SettingMenu : MonoBehaviour
     }
 
     //Quality dropdown changed
-    public void SetQuality (int qualityIndex)
+    public  void SetQuality (int qualityIndex)
     {
         //Change quality based on index value
         QualitySettings.SetQualityLevel(qualityIndex);
@@ -99,7 +128,7 @@ public class SettingMenu : MonoBehaviour
     }
 
     //Fullscren checkbox value changed
-    public void SetFullScreen (bool isFullScreen)
+    public  void SetFullScreen (bool isFullScreen)
     {
         //Set fullscreen value based on checkbox
         Screen.fullScreen = isFullScreen;
@@ -108,11 +137,13 @@ public class SettingMenu : MonoBehaviour
         {
             //true =1
             PlayerPrefs.SetInt(FULL_SCREEN, 1);
+            checkBox.isOn = true;
         }
         else
         {
             //false=0
             PlayerPrefs.SetInt(FULL_SCREEN, 0);
+            checkBox.isOn = false;
         }
         PlayerPrefs.Save();
     }

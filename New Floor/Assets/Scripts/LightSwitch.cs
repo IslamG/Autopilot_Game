@@ -8,6 +8,11 @@ public class LightSwitch : MonoBehaviour
     [SerializeField]
     private Light[] lights;
 
+    private AudioSource source;
+    private void Start()
+    {
+        source = gameObject.GetComponent<AudioSource>();
+    }
     public void OnMouseDown()
     {
         //On button clicked reverse state
@@ -31,5 +36,6 @@ public class LightSwitch : MonoBehaviour
             }
             transform.Rotate(0, 0, -10f, Space.Self);
         }
+        source.Play();
     }
 }

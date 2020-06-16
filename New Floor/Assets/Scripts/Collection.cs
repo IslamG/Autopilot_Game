@@ -36,8 +36,8 @@ public class Collection : MonoBehaviour
         float itemZ = gameObject.transform.position.z + (0.2f * itemsFound);
         float itemX = gameObject.transform.position.x;
         float itemY = gameObject.transform.position.y;
-        itemObj.localPosition = new Vector3(itemX, itemY, itemZ);
-        itemObj.localEulerAngles = new Vector3(0, 180, 0);
+        itemObj.position = new Vector3(itemX, itemY, itemZ);
+        itemObj.localEulerAngles = new Vector3(0, -90, 0);
         itemObj.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
         //When all items are found, task is complete

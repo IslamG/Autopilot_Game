@@ -833,6 +833,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 2a2ec54fe4be25a43ab29f4ae63adbc3, type: 2}
   resolutionDropdown: {fileID: 7282682357520932421}
+  volume: {fileID: 7282682357499501326}
+  fullScreen: {fileID: 7282682356206019315}
+  resolution: {fileID: 7282682357520932421}
+  quality: {fileID: 7282682356410281562}
 --- !u!1 &7282682356489954486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,8 +1850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c0bb4ff1b7fd54b96935b9cdd58493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 8300000, guid: feb235a4abdc9f64eb65052a1d92ce2d, type: 3}
-  mainMixer: {fileID: 24100000, guid: 2a2ec54fe4be25a43ab29f4ae63adbc3, type: 2}
 --- !u!82 &8763781684342020334
 AudioSource:
   m_ObjectHideFlags: 0

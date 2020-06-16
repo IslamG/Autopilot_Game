@@ -6,6 +6,7 @@ using UnityEngine.Video;
 using TMPro;
 using cakeslice;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class TurnOnScreen : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class TurnOnScreen : MonoBehaviour
     private TMP_Text helperText;
     [SerializeField]
     TipsControl tipControl;
+    [SerializeField]
+    FirstPersonController fpc;
 
     private VideoPlayer vidPlayer;
     private Camera mainCam;
@@ -130,6 +133,10 @@ public class TurnOnScreen : MonoBehaviour
         content.DiscardContents();
         //remove?
         mainCam.gameObject.SetActive(true);
-        mainCam.GetComponent<AudioListener>().enabled = true;
+        //mainCam.GetComponent<AudioListener>().enabled = true;
+        if (fpc != null)
+        {
+            fpc.enabled = false;
+        }
     }
 }

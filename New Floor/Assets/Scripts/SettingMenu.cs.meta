@@ -3,8 +3,14 @@ guid: 0a3693840ea3c594588b9b67f4dfb147
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
+  defaultReferences:
+  - audioMixer: {instanceID: 0}
+  - resolutionDropdown: {instanceID: 0}
+  - volume: {instanceID: 0}
+  - fullScreen: {instanceID: 0}
+  - resolution: {instanceID: 0}
+  - quality: {instanceID: 0}
+  executionOrder: 80
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

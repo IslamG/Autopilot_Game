@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using System;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
+
 
 public class LoginScreen : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class LoginScreen : MonoBehaviour
     private RenderTexture rend;
     [SerializeField]
     private Image fadeBlack;
+    [SerializeField]
+    FirstPersonController fpc;
 
     //tbd simplify password
     private const string password = "1234";//"28212433110";
@@ -59,6 +62,10 @@ public class LoginScreen : MonoBehaviour
         {
             
             taskMenu.RemoveTaskFromList(task);
+            if (fpc != null)
+            {
+                fpc.enabled = true;
+            }
             MakeVisible(false);
             //Trigger fade out of scene
             if (fadeBlack != null)
