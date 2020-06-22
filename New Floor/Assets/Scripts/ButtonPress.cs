@@ -14,12 +14,14 @@ public class ButtonPress : MonoBehaviour
         machineOn = !machineOn;
         if (machineOn)
         {
-            transform.Translate(0, -0.001f, 0, Space.Self);
+            transform.Translate(0, 0, -0.01f, Space.Self);
+            Debug.Log("Button In");
             //tbd add animation for machine running
         }
         else
         {
-            transform.Translate(0, +0.001f, 0, Space.Self);
+            transform.Translate(0, 0, +0.01f, Space.Self);
+            Debug.Log("Button Out");
             //tbd stop machine running animation
         }
     }

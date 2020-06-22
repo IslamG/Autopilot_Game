@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7305679125134072409}
   - component: {fileID: 3194726206688591414}
   - component: {fileID: 992149977874299221}
-  - component: {fileID: 8270131375980778063}
+  - component: {fileID: 4216359495726551947}
   m_Layer: 0
   m_Name: Pictures.001
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482800762755711166}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.00047823918, y: 0.014565933, z: -0.00015939712}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 142860241616289427}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &3194726206688591414
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482800762755711166}
-  m_Mesh: {fileID: 4116522560653955041, guid: cf13bdbdc7db5e9419f8345ecced5263, type: 3}
+  m_Mesh: {fileID: 4116522560653955041, guid: 91002bb52dd7d624ea38e9d118067a54, type: 3}
 --- !u!23 &992149977874299221
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8270131375980778063
+--- !u!65 &4216359495726551947
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020135412, y: 0.020013975, z: 0.00044470484}
-  m_Center: {x: -0.00004513841, y: -0.00000465941, z: 0.00007745878}
+  m_Size: {x: 2.0135417, y: 0.04447086, z: 2.0013986}
+  m_Center: {x: -0.0045140972, y: 0.007745881, z: 0.00046580902}
 --- !u!1 &1733984857946258048
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 9166687352358933771}
   - component: {fileID: 3231641700770635335}
   - component: {fileID: 5390572074865205082}
-  - component: {fileID: 5453408589512362490}
+  - component: {fileID: 8969932284056642028}
   m_Layer: 0
   m_Name: Pictures.003
   m_TagString: Untagged
@@ -121,13 +121,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733984857946258048}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0050004153, y: -0.019824345, z: -0.00016312949}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.00303, y: -0.02034, z: -0.00016}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 142860241616289427}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &3231641700770635335
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733984857946258048}
-  m_Mesh: {fileID: 4401246364573942488, guid: cf13bdbdc7db5e9419f8345ecced5263, type: 3}
+  m_Mesh: {fileID: 4401246364573942488, guid: 04b9bcade496d6246b3356a36106ae07, type: 3}
 --- !u!23 &5390572074865205082
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5453408589512362490
+--- !u!65 &8969932284056642028
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,8 +188,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012987272, y: 0.02000982, z: 0.0004447112}
-  m_Center: {x: -0.00002911035, y: -0.0000032428684, z: 0.00008118191}
+  m_Size: {x: 1.2987274, y: 0.04447143, z: 2.0009832}
+  m_Center: {x: -0.0029111495, y: 0.0081181945, z: 0.00032776475}
 --- !u!1 &6197082973953762667
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 106295064453111418}
   - component: {fileID: 1965304397564057079}
   - component: {fileID: 9191239885942117125}
-  - component: {fileID: 2721939099089166100}
+  - component: {fileID: 3659817494299433295}
   m_Layer: 0
   m_Name: Pictures.002
   m_TagString: Untagged
@@ -216,13 +216,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6197082973953762667}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009971082, y: -0.0045884536, z: -0.0001631445}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.01035, y: -0.004, z: -0.00016}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 142860241616289427}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &1965304397564057079
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6197082973953762667}
-  m_Mesh: {fileID: -1688891078754257651, guid: cf13bdbdc7db5e9419f8345ecced5263, type: 3}
+  m_Mesh: {fileID: -1688891078754257651, guid: da4a1b326cf6d9d418dd70b4f6e0cb57, type: 3}
 --- !u!23 &9191239885942117125
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2721939099089166100
+--- !u!65 &3659817494299433295
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,8 +283,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012987273, y: 0.011178723, z: 0.00044471092}
-  m_Center: {x: -0.000029115006, y: -0.000007778409, z: 0.000081211714}
+  m_Size: {x: 1.2987275, y: 0.044471327, z: 1.1178728}
+  m_Center: {x: -0.0029117456, y: 0.0081181945, z: 0.00077780976}
 --- !u!1 &8300118543366350635
 GameObject:
   m_ObjectHideFlags: 0

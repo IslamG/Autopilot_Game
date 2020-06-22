@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3472599835297069597}
   - component: {fileID: 1289595669447647849}
   - component: {fileID: 8436904436222097340}
-  - component: {fileID: 8362991210394748223}
+  - component: {fileID: 1279750334019619790}
   m_Layer: 0
   m_Name: SugarPacket
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2190272816547868433}
-  m_LocalRotation: {x: 0, y: 0.6997693, z: 0, w: 0.7143689}
+  m_LocalRotation: {x: 0.50513506, y: 0.49481162, z: -0.49481162, w: 0.50513506}
   m_LocalPosition: {x: 3.254, y: 1.8495, z: -11.1375}
-  m_LocalScale: {x: 0.050154533, y: 0.062106375, z: 0.0579965}
+  m_LocalScale: {x: 0.0005015453, y: 0.0006210637, z: 0.000579965}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 88.817, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 88.817, z: 0}
 --- !u!33 &1289595669447647849
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2190272816547868433}
-  m_Mesh: {fileID: 6110795928809211111, guid: 8c1c0dfbfc6167044933570180b61df1, type: 3}
+  m_Mesh: {fileID: 6110795928809211111, guid: 869f881db4785f04ea0b5a3649154aa6, type: 3}
 --- !u!23 &8436904436222097340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,6 +59,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d7382f0bac665149a70e1edc21090c8, type: 2}
+  - {fileID: 2100000, guid: 893cc2bab9b8ca647b5c205dc938f454, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8362991210394748223
+--- !u!65 &1279750334019619790
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +91,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6074345, y: 0.23830648, z: 1.9411473}
-  m_Center: {x: -0.00075051177, y: -0.000025577843, z: -0.0018703043}
+  m_Size: {x: 160.74344, y: 194.11472, z: 23.830647}
+  m_Center: {x: -0.08726119, y: -0.18703078, z: 0.002175808}

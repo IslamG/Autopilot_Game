@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6233292757854786155}
   - component: {fileID: 1171664814613099174}
   - component: {fileID: 2332964959010749142}
-  - component: {fileID: 2240946416017096944}
+  - component: {fileID: 4273072500344783000}
   m_Layer: 0
   m_Name: Pin
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9072081129177497982}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.27947, y: 2.5146, z: -1.0959}
-  m_LocalScale: {x: 0.015852215, y: 0.015852215, z: 0.015852215}
+  m_LocalScale: {x: 0.0001585221, y: 0.0001585221, z: 0.0001585221}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1171664814613099174
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9072081129177497982}
-  m_Mesh: {fileID: 905373941493974904, guid: 8c1c0dfbfc6167044933570180b61df1, type: 3}
+  m_Mesh: {fileID: 905373941493974904, guid: 8baa8f3a99e89b34da67ccd168a50a1a, type: 3}
 --- !u!23 &2332964959010749142
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2240946416017096944
+--- !u!65 &4273072500344783000
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,5 +91,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.0049043, y: 5.9333677, z: 3.0049045}
-  m_Center: {x: 0.00000011920929, y: -0.88839424, z: 0.00000071525574}
+  m_Size: {x: 300.49042, y: 300.49048, z: 593.33673}
+  m_Center: {x: 0.0000076293945, y: 0.00006866455, z: 88.83944}

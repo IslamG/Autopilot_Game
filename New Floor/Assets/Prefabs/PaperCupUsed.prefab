@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2157152635020891894}
   - component: {fileID: 8573253265721321042}
   - component: {fileID: 8217922193039419851}
-  - component: {fileID: 4036684827723274142}
+  - component: {fileID: 2575033980862906301}
   m_Layer: 0
   m_Name: PaperCupUsed
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240562552469665994}
-  m_LocalRotation: {x: 0, y: 0.6997693, z: 0, w: 0.7143689}
+  m_LocalRotation: {x: 0.50513506, y: 0.49481162, z: -0.49481162, w: 0.50513506}
   m_LocalPosition: {x: 3.1766, y: 1.9288, z: -10.9993}
-  m_LocalScale: {x: 0.061814643, y: 0.056315444, z: 0.05862609}
+  m_LocalScale: {x: 0.0006181464, y: 0.0005631544, z: 0.0005862609}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 88.817, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 88.817, z: 0}
 --- !u!33 &8573253265721321042
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240562552469665994}
-  m_Mesh: {fileID: -4999473683962587723, guid: 8c1c0dfbfc6167044933570180b61df1, type: 3}
+  m_Mesh: {fileID: -4999473683962587723, guid: f1aca08e6b0251740b152481853b9ab8, type: 3}
 --- !u!23 &8217922193039419851
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4036684827723274142
+--- !u!65 &2575033980862906301
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +90,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.950966, y: 4.5659122, z: 2.9398062}
-  m_Center: {x: -0.18692599, y: -0.038001418, z: -0.083047144}
+  m_Size: {x: 295.0966, y: 293.98062, z: 456.59125}
+  m_Center: {x: -18.686491, y: -8.2986145, z: 3.7997665}

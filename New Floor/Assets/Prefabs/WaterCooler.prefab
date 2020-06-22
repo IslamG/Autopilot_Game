@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8243980895967933442}
   - component: {fileID: 4109769778693815353}
   - component: {fileID: 7917538422134380934}
-  - component: {fileID: 6381722062556889844}
-  - component: {fileID: 6381722062556889846}
+  - component: {fileID: 1677922892677856879}
+  - component: {fileID: 4765679032711314796}
   m_Layer: 0
   m_Name: WaterCooler
   m_TagString: Untagged
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8932932339599856492}
-  m_LocalRotation: {x: -0.000000057003284, y: 0.71437025, z: -0.000000058192857, w: -0.6997679}
+  m_LocalRotation: {x: 0.49481162, y: -0.50513506, z: 0.50513506, w: 0.49481162}
   m_LocalPosition: {x: 5.2599, y: 1.9131, z: -10.9267}
-  m_LocalScale: {x: -0.34439692, y: -0.8408131, z: -0.32663202}
+  m_LocalScale: {x: -0.003443969, y: -0.00326632, z: -0.008408131}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -91.18301, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -91.18301, z: 0}
 --- !u!33 &4109769778693815353
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8932932339599856492}
-  m_Mesh: {fileID: 7757149436502535050, guid: 8c1c0dfbfc6167044933570180b61df1, type: 3}
+  m_Mesh: {fileID: 7757149436502535050, guid: 81d26ff4380632e468e2eb44807187ca, type: 3}
 --- !u!23 &7917538422134380934
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60,6 +60,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: ea06db9dd8bfc754dac11c56a3ac270d, type: 2}
+  - {fileID: 2100000, guid: 4c0d111ebfcb28b4ea632b3dc78e3398, type: 2}
+  - {fileID: 2100000, guid: cd5c839d01c9ad444800bd846a7de830, type: 2}
   - {fileID: 2100000, guid: dfb9cdc949ed2da439cdbefd29d9a3d9, type: 2}
   - {fileID: 2100000, guid: 974bd82461561574abd17053739912aa, type: 2}
   - {fileID: 2100000, guid: bfc528ec53d7b474d9d4bd8472104463, type: 2}
@@ -83,7 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &6381722062556889844
+--- !u!136 &1677922892677856879
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,11 +95,11 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.69
-  m_Height: 0.97
-  m_Direction: 1
-  m_Center: {x: 0.4886787, y: -0.7, z: 0.0000017881392}
---- !u!65 &6381722062556889846
+  m_Radius: 80.40855
+  m_Height: 109.82692
+  m_Direction: 2
+  m_Center: {x: 71.72903, y: -8.178165, z: 65.87076}
+--- !u!65 &4765679032711314796
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,5 +110,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.1122694, y: 1.88, z: 1.9999999}
-  m_Center: {x: 0.4886787, y: 0.79, z: 0.0000017881392}
+  m_Size: {x: 201.2663, y: 199.99992, z: 201.51714}
+  m_Center: {x: 53.84813, y: 0.0001733544, z: -85.99607}

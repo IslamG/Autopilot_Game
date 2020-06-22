@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5642371774163628562}
   - component: {fileID: 3297857821357051195}
   - component: {fileID: 2257674886497878898}
-  - component: {fileID: 4164085042055011507}
+  - component: {fileID: 5956940783096174460}
   m_Layer: 0
   m_Name: Potlights
   m_TagString: Untagged
@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6982930899696965311}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.21301508, y: 5.38, z: 0.045110706}
-  m_LocalScale: {x: 611.1553, y: 267.35443, z: 200.51591}
+  m_LocalScale: {x: 6.111553, y: 2.005159, z: 2.673544}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6982930899696965311}
-  m_Mesh: {fileID: -7804612408212883243, guid: cf13bdbdc7db5e9419f8345ecced5263, type: 3}
+  m_Mesh: {fileID: -7804612408212883243, guid: e540b956bcf99374fab81e4187540415, type: 3}
 --- !u!23 &2257674886497878898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4164085042055011507
+--- !u!65 &5956940783096174460
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +90,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0003819751, y: 0.00087317056, z: 0.00062403444}
-  m_Center: {x: -0.000000753549, y: -4.3655732e-11, z: 0.00013136685}
+  m_Size: {x: 0.038197517, y: 0.062403455, z: 0.08731708}
+  m_Center: {x: -0.00007498264, y: 0.0131365, z: 0.0000000037252903}

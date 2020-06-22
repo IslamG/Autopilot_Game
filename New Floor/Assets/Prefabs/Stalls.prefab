@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 7635063104357375767}
   - component: {fileID: 7865797348302920006}
   - component: {fileID: 5199511341669850462}
-  - component: {fileID: 5199511341669850469}
-  - component: {fileID: 5199511341669850468}
-  - component: {fileID: 5199511341669850471}
-  - component: {fileID: 5199511341669850470}
-  - component: {fileID: 5199511341669850465}
-  - component: {fileID: 1730688088452714051}
+  - component: {fileID: 1986697906}
+  - component: {fileID: 1986697907}
+  - component: {fileID: 1986697908}
+  - component: {fileID: 1986697909}
+  - component: {fileID: 1986697910}
   m_Layer: 0
   m_Name: Stalls
   m_TagString: Untagged
@@ -32,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8551169464098499422}
-  m_LocalRotation: {x: 6.435383e-14, y: 1, z: -0.00000008146034, w: 0.00000079075363}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 0.21, y: 1.6, z: 4.562}
-  m_LocalScale: {x: 0.112778544, y: 0.09159446, z: 0.022905188}
+  m_LocalScale: {x: 0.0011130848, y: 0.00031634924, z: 0.0008920456}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!33 &7635063104357375767
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8551169464098499422}
-  m_Mesh: {fileID: -9030869912279109020, guid: 37642d2455b10604498dfd482f7a0498, type: 3}
+  m_Mesh: {fileID: -9030869912279109020, guid: fb0448095ba0c3e49802d4fcf78d74e7, type: 3}
 --- !u!23 &7865797348302920006
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5199511341669850469
+--- !u!65 &1986697906
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,9 +112,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 37.76, z: 89.0462}
-  m_Center: {x: 9, y: -0.5, z: -0.77838707}
---- !u!65 &5199511341669850468
+  m_Size: {x: 113.95323, y: 8904.625, z: 4068.652}
+  m_Center: {x: -2775.6182, y: -77.838776, z: 33.30981}
+--- !u!65 &1986697907
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,9 +125,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 56.356598, y: 1.99, z: 2.6}
-  m_Center: {x: -0.1476021, y: 18.9, z: 42.96}
---- !u!65 &5199511341669850471
+  m_Size: {x: 119.49577, y: 8904.625, z: 4068.652}
+  m_Center: {x: -875.0077, y: -77.838776, z: 33.30981}
+--- !u!65 &1986697908
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,9 +138,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 37.76, z: 89.0462}
-  m_Center: {x: 27.7, y: -0.5, z: -0.77838707}
---- !u!65 &5199511341669850470
+  m_Size: {x: 142.0138, y: 15586.716, z: 4068.652}
+  m_Center: {x: 924.9394, y: 3263.2097, z: 33.30981}
+--- !u!65 &1986697909
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,9 +151,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 37.76, z: 89.0462}
-  m_Center: {x: -27.8, y: -0.5, z: -0.77838707}
---- !u!65 &5199511341669850465
+  m_Size: {x: 129.79347, y: 8904.625, z: 4068.652}
+  m_Center: {x: 2773.7407, y: -77.838776, z: 33.30981}
+--- !u!65 &1986697910
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,18 +164,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 37.76, z: 89.0462}
-  m_Center: {x: -8.75, y: -0.5, z: -0.77838707}
---- !u!65 &1730688088452714051
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551169464098499422}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 56.356598, y: 40.68652, z: 6.7}
-  m_Center: {x: -0.14760973, y: -0.33309844, z: 31.6}
+  m_Size: {x: 5635.662, y: 343.90836, z: 223.25668}
+  m_Center: {x: -14.760902, y: 4202.522, z: -1889.389}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3964179513661434873}
   - component: {fileID: 1243481849896977331}
   - component: {fileID: 1837558681401600779}
-  - component: {fileID: 2018362507903397383}
+  - component: {fileID: 2472566373316686499}
   m_Layer: 0
   m_Name: PenHolder
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8280579542091548736}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.7286, y: 1.7876, z: -0.97496}
-  m_LocalScale: {x: 0.15378089, y: 0.15378089, z: 0.15378089}
+  m_LocalScale: {x: 0.001537809, y: 0.001537809, z: 0.001537809}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &1243481849896977331
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8280579542091548736}
-  m_Mesh: {fileID: -3697739968159064702, guid: 8c1c0dfbfc6167044933570180b61df1, type: 3}
+  m_Mesh: {fileID: -3697739968159064702, guid: 93ea5ccc8d263bb4a82f9fa206da2352, type: 3}
 --- !u!23 &1837558681401600779
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2018362507903397383
+--- !u!65 &2472566373316686499
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +90,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.7731323, y: 2.140599, z: 2.0046537}
-  m_Center: {x: -0.29042026, y: 0.23919027, z: 0.12094795}
+  m_Size: {x: 477.31326, y: 200.46544, z: 214.05995}
+  m_Center: {x: -29.038986, y: 12.093276, z: -23.919039}

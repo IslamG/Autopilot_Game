@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5464418870977108300}
   - component: {fileID: 8380612991975721263}
   - component: {fileID: 1875669463003251665}
-  - component: {fileID: 3667887063505915302}
+  - component: {fileID: 5718424108045225531}
   m_Layer: 0
   m_Name: CupWithSaucer
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7911619472862138618}
-  m_LocalRotation: {x: 0, y: 0.6997693, z: 0, w: 0.7143689}
+  m_LocalRotation: {x: 0.50513506, y: 0.49481162, z: -0.49481162, w: 0.50513506}
   m_LocalPosition: {x: 3.7388, y: 2.0005, z: -11.0937}
-  m_LocalScale: {x: 0.06544885, y: 0.06647158, z: 0.062072836}
+  m_LocalScale: {x: 0.0006544885, y: 0.0006647158, z: 0.0006207284}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 88.817, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 88.817, z: 0}
 --- !u!33 &8380612991975721263
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7911619472862138618}
-  m_Mesh: {fileID: 2730122447775258967, guid: 8c1c0dfbfc6167044933570180b61df1, type: 3}
+  m_Mesh: {fileID: 2730122447775258967, guid: d4aa46c935cd24b4582b114f70f43f73, type: 3}
 --- !u!23 &1875669463003251665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3667887063505915302
+--- !u!65 &5718424108045225531
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +90,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.326858, y: 2.2031586, z: 4.718768}
-  m_Center: {x: -0.022868156, y: 0.22893462, z: -0.1107198}
+  m_Size: {x: 432.6857, y: 471.8767, z: 220.31583}
+  m_Center: {x: -2.286804, y: -11.071982, z: -22.893463}

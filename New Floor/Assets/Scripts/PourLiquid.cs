@@ -15,6 +15,7 @@ public class PourLiquid : MonoBehaviour
     {
         //Switch active state
         liquid.SetActive(!liquid.activeSelf);
+        Debug.Log("Liquid Trigger");
     }
 
 }
