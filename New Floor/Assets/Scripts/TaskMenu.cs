@@ -100,6 +100,7 @@ public class TaskMenu : MonoBehaviour
 
         }
     }
+    
     #endregion
     #region custom methods
     //Open up menu in screen middle

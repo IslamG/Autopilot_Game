@@ -25,7 +25,7 @@ public class LightSwitch : MonoBehaviour
                 bulb.enabled = true;
             }
             //Flip switch
-            transform.Rotate(0, 0, +10f, Space.Self);
+            transform.Rotate(0, +10f, 0, Space.Self);
         }
         //Turn off bulb
         else
@@ -34,7 +34,7 @@ public class LightSwitch : MonoBehaviour
             {
                 bulb.enabled = false;
             }
-            transform.Rotate(0, 0, -10f, Space.Self);
+            transform.Rotate(0, -10f, 0, Space.Self);
         }
         source.Play();
     }

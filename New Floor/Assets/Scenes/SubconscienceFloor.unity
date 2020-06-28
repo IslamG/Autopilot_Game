@@ -2118,8 +2118,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 389467397}
   outlineCamera: {fileID: 835408386}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1919267546}
-  extraRenderTexture: {fileID: 1559121300}
+  renderTexture: {fileID: 1015657735}
+  extraRenderTexture: {fileID: 2041996723}
 --- !u!114 &389467399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,12 +2712,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7639951185597137207, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.012512207
+      objectReference: {fileID: 0}
     - target: {fileID: 731057192068159507, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e25dbdd28ed16204680ebfd61062eef8,
         type: 3}
+    - target: {fileID: 7346010382280180211, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
+      propertyPath: tipControl
+      value: 
+      objectReference: {fileID: 1283997595}
+    - target: {fileID: 7346010382280180211, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
+      propertyPath: paperImg
+      value: 
+      objectReference: {fileID: 156924275}
     - target: {fileID: 8567933695631842747, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
       propertyPath: pauseMenuUI
@@ -2868,16 +2883,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.2000427
       objectReference: {fileID: 0}
-    - target: {fileID: 7346010382280180211, guid: 58553426f6f0383408b43d7a1d4897b3,
+    - target: {fileID: 5802219958948494942, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
-      propertyPath: tipControl
-      value: 
-      objectReference: {fileID: 1283997595}
-    - target: {fileID: 7346010382280180211, guid: 58553426f6f0383408b43d7a1d4897b3,
-        type: 3}
-      propertyPath: paperImg
-      value: 
-      objectReference: {fileID: 156924275}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.22998047
+      objectReference: {fileID: 0}
     - target: {fileID: 3724185413665773261, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -2892,11 +2902,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.6999817
-      objectReference: {fileID: 0}
-    - target: {fileID: 5802219958948494942, guid: 58553426f6f0383408b43d7a1d4897b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.22998047
       objectReference: {fileID: 0}
     - target: {fileID: 5527051503674444806, guid: 58553426f6f0383408b43d7a1d4897b3,
         type: 3}
@@ -3196,6 +3201,36 @@ MonoBehaviour:
   eraseRenderer: 1
   originalLayer: 0
   originalMaterials: []
+--- !u!1 &757408202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 252994664212422859, guid: b048bcec74a051142a3bffb585aa12ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 928837373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!167 &757408207
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757408202}
+  m_Enabled: 1
+  m_MinDistance: 17.15167
+  m_MaxDistance: 20.9
+  m_ReverbPreset: 9
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_Reflections: -602
+  m_ReflectionsDelay: 0.015
+  m_Reverb: -302
+  m_ReverbDelay: 0.022
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &776239600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,6 +3244,7 @@ GameObject:
   - component: {fileID: 776239603}
   - component: {fileID: 776239602}
   - component: {fileID: 776239601}
+  - component: {fileID: 776239606}
   m_Layer: 0
   m_Name: LongHallFloor
   m_TagString: Untagged
@@ -3305,6 +3341,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!167 &776239606
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776239600}
+  m_Enabled: 1
+  m_MinDistance: 17.15167
+  m_MaxDistance: 20.9
+  m_ReverbPreset: 9
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_Reflections: -602
+  m_ReflectionsDelay: 0.015
+  m_Reverb: -302
+  m_ReverbDelay: 0.022
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!223 &776548120 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 8567933695631842749, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -3422,7 +3482,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1919267546}
+  m_TargetTexture: {fileID: 1015657735}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -3675,6 +3735,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!84 &1015657735
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 746
+  m_Height: 247
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 1
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1020617798
 GameObject:
   m_ObjectHideFlags: 0
@@ -5445,41 +5540,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547935075}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!84 &1559121300
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 671
-  m_Height: 447
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1572225175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5527178101549531903, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -5920,6 +5980,30 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 49008458}
   m_PrefabAsset: {fileID: 0}
+--- !u!167 &1621349568
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621349553}
+  m_Enabled: 1
+  m_MinDistance: 17.15167
+  m_MaxDistance: 20.9
+  m_ReverbPreset: 9
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_Reflections: -602
+  m_ReflectionsDelay: 0.015
+  m_Reverb: -302
+  m_ReverbDelay: 0.022
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &1651888158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,16 +6239,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9128803230024134364, guid: a7e3da88bf1fe064084610d5dbe75e99,
-        type: 3}
-      propertyPath: taskText
-      value: ???
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128803230024134364, guid: a7e3da88bf1fe064084610d5dbe75e99,
-        type: 3}
-      propertyPath: taskGroup
-      value: 103
-      objectReference: {fileID: 0}
     - target: {fileID: 9128803230024134355, guid: a7e3da88bf1fe064084610d5dbe75e99,
         type: 3}
       propertyPath: tipHolder
@@ -6185,6 +6259,16 @@ PrefabInstance:
       propertyPath: showSource
       value: 
       objectReference: {fileID: 882984328}
+    - target: {fileID: 9128803230024134364, guid: a7e3da88bf1fe064084610d5dbe75e99,
+        type: 3}
+      propertyPath: taskText
+      value: ???
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128803230024134364, guid: a7e3da88bf1fe064084610d5dbe75e99,
+        type: 3}
+      propertyPath: taskGroup
+      value: 103
+      objectReference: {fileID: 0}
     - target: {fileID: 9128803230024134354, guid: a7e3da88bf1fe064084610d5dbe75e99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6272,6 +6356,7 @@ GameObject:
   - component: {fileID: 1762634782}
   - component: {fileID: 1762634781}
   - component: {fileID: 1762634780}
+  - component: {fileID: 1762634785}
   m_Layer: 0
   m_Name: Floor4
   m_TagString: Untagged
@@ -6368,6 +6453,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!167 &1762634785
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762634779}
+  m_Enabled: 1
+  m_MinDistance: 17.15167
+  m_MaxDistance: 20.9
+  m_ReverbPreset: 9
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_Reflections: -602
+  m_ReflectionsDelay: 0.015
+  m_Reverb: -302
+  m_ReverbDelay: 0.022
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &1839832865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7535088589419368549, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -6639,41 +6748,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: -4.684}
---- !u!84 &1919267546
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 671
-  m_Height: 447
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!114 &1938949886 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5860007336035817190, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -6701,6 +6775,11 @@ PrefabInstance:
     - target: {fileID: 3769250739343851567, guid: ac7926290add3364ca4714f7aa98df19,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769250739336288719, guid: ac7926290add3364ca4714f7aa98df19,
+        type: 3}
+      propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3769250739344350223, guid: ac7926290add3364ca4714f7aa98df19,
@@ -6783,15 +6862,15 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1644650413, guid: ac7926290add3364ca4714f7aa98df19, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1839832867}
     - target: {fileID: 5394783696623428459, guid: ac7926290add3364ca4714f7aa98df19,
         type: 3}
       propertyPath: hud
       value: 
       objectReference: {fileID: 776548120}
-    - target: {fileID: 1644650413, guid: ac7926290add3364ca4714f7aa98df19, type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 1839832867}
     - target: {fileID: 1644650414, guid: ac7926290add3364ca4714f7aa98df19, type: 3}
       propertyPath: focusObjects.Array.size
       value: 0
@@ -7029,6 +7108,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002556205}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &2041996723
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 746
+  m_Height: 247
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 1
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!114 &2074999626 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6503411127142439635, guid: 58553426f6f0383408b43d7a1d4897b3,
@@ -7271,6 +7385,7 @@ GameObject:
   - component: {fileID: 93224307923617613}
   - component: {fileID: 5019301695718883225}
   - component: {fileID: 226419429937471786}
+  - component: {fileID: 226419429937471787}
   m_Layer: 0
   m_Name: DomeSphere
   m_TagString: Untagged
@@ -7292,6 +7407,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 3246790025662424948, guid: ad0f9b831bf652a4ebd52e952c084081, type: 3}
+--- !u!167 &226419429937471787
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226419429937471785}
+  m_Enabled: 1
+  m_MinDistance: 17.15167
+  m_MaxDistance: 20.9
+  m_ReverbPreset: 8
+  m_Room: -1000
+  m_RoomHF: -500
+  m_DecayTime: 3.92
+  m_DecayHFRatio: 0.7
+  m_Reflections: -1230
+  m_ReflectionsDelay: 0.02
+  m_Reverb: -2
+  m_ReverbDelay: 0.029
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!4 &2756524598118325416
 Transform:
   m_ObjectHideFlags: 0

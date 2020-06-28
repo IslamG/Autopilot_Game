@@ -39,7 +39,7 @@ public class CharAnimCtrl : Sit
         }
         //Crouch key pressed
         //tbd replace with crouch button axis
-        else if (Input.GetKey("left ctrl"))
+        /*else if (Input.GetKey("left ctrl"))
         {
             //Switch states, if standing crouch and vice versa
             if (!isCrouched)
@@ -57,9 +57,9 @@ public class CharAnimCtrl : Sit
                 //cam.transform.localPosition = camPos;
                 isCrouched = false;
             }
-        }
+        }*/
         //tbd replace with sit button
-        else if (Input.GetKey("j"))
+        /*else if (Input.GetKey("j"))
         {
             //Check if character is in an area they can sit (chairs)
             if (base.CanSit())
@@ -85,17 +85,17 @@ public class CharAnimCtrl : Sit
                 fpc.CanMove = true;
                 fpc.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
-        }
+        }*/
         else
         {
             //Default to idle stance 
             //If needed so that a sitting or crouched character is left in that state
-            if (!isSitting && !isCrouched)
-            {
+        //    if (!isSitting && !isCrouched)
+        //    {
                 //State 0: Idle animation
                 anim.SetInteger("motionState", 0);
                 cam.transform.localPosition = camPos;
-            }
+         //   }
         }
     }
 }

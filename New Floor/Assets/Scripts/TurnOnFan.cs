@@ -27,13 +27,13 @@ public class TurnOnFan : MonoBehaviour
         {
             fanimator.SetBool("fanOn", true);
             //Uncomment when clip is added
-            //source.Play();
+            source.Play();
         }
         else
         {
             fanimator.SetBool("fanOn", false);
             //Uncomment when clip is added
-            //source.Stop();
+            source.Stop();
         }
     }
 }

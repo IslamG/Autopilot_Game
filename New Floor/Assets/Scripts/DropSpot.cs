@@ -29,6 +29,28 @@ public class DropSpot : MonoBehaviour
             OtherDisable(other.gameObject);
             this.gameObject.SetActive(false);
         }
+        else
+        {
+            CapsuleCollider[] col = gameObject.GetComponents<CapsuleCollider>();
+            foreach(CapsuleCollider bump in col)
+            {
+                if (!bump.isTrigger)
+                {
+                    bump.enabled = false;
+                }
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        CapsuleCollider[] col = gameObject.GetComponents<CapsuleCollider>();
+        foreach (CapsuleCollider bump in col)
+        {
+            if (!bump.isTrigger)
+            {
+                bump.enabled = true;
+            }
+        }
     }
     //Called when completed
     private void OtherDisable(GameObject otherObj)
