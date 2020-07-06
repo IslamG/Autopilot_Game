@@ -86,6 +86,10 @@ public class LoginScreen : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             crossHair.SetActive(true);
+            if (fpc != null)
+            {
+                fpc.enabled = true;
+            }
             Debug.Log("Did");
             //find and turn main camera on
             foreach(Camera cam in sceneCameras)

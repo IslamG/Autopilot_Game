@@ -12,9 +12,9 @@ public class PopUp : MonoBehaviour
     [SerializeField]
     private PopUpGen popUpGen;
 
-    public string MessageHeader { get=>messageHeader;}
-    public string MessageBody { get=>messageBody;}
-    public bool IncludeCancel { get => includeCancel; }
+    public string MessageHeader { get; set; }
+    public string MessageBody { get; set; }
+    public bool IncludeCancel { get; set; }
 
     //Call handler for generating a popUp with information in class
     public void ShowPop()

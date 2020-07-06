@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PuzzlePiece : MonoBehaviour
 {
     [SerializeField]
     private List<PuzzlePiece> PreReq;//, List<Puzzle> puzzleList;
+    [SerializeField]
+    private FirstPersonController fpc;
+    [SerializeField]
+    PopUpGen popUpGen;
     private bool isActive = false, isSolved = false;
 
     public bool IsActive { get => isActive;}
@@ -59,7 +64,24 @@ public class PuzzlePiece : MonoBehaviour
         isActive = true;
         Task task=gameObject.GetComponent<Task>();
         task.ActivateTask();
+
+        //tbd show text outlining the task on activation 
+
+        /*PopUp pop = gameObject.GetComponent<PopUp>();
+        pop.MessageHeader = task.TaskText;
+        pop.ShowPop();
+
+        fpc.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        */ 
+
+        //tbd generic puzzle delegate method for pop up
+
+        //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        //popUpGen.gameObject.SetActive(true);
         //Activate drop spot for tasks with drop spots
+
         DropItem di = gameObject.GetComponent<DropItem>();
         //if dropppable object
         if (di != null && !task.IsCompleted)

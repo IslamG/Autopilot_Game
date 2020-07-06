@@ -13,7 +13,7 @@ public class TaskMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject starBurst, taskPanel, 
-        blueTape, orangeTape, greenTape, purpleTape;
+        blueTape, orangeTape, greenTape, purpleTape, generalTab;
     [SerializeField]
     private TMP_Text taskText;
     [SerializeField]
@@ -35,7 +35,7 @@ public class TaskMenu : MonoBehaviour
     #region Properties
     public static bool IsDisplayed { get => isDisplayed; }
     #endregion
-    #region Unity methods
+    #region Monobehavior methods
     //Singleton class
     private void Awake()
     {
@@ -291,6 +291,7 @@ public class TaskMenu : MonoBehaviour
             default:
                 {
                     paperImg.transform.parent.SetAsLastSibling();
+                    generalTab.transform.SetAsLastSibling();
                     starBurst.transform.SetAsLastSibling();
                     break;
                 }
