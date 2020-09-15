@@ -12,6 +12,10 @@ TagManager:
   - Focusable
   - Viewable
   - NPC
+  - Immobile
+  - JeremyPuzzle
+  - MaisyPuzzle
+  - BossPuzzle
   layers:
   - Default
   - TransparentFX

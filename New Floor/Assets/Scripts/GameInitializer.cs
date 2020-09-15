@@ -73,5 +73,9 @@ public class GameInitializer : MonoBehaviour
 
             elevatorAnim.Play("ElevatorOpen");
         }
+        if (currenLvl.Equals("AirVents"))
+        {
+            LevelTraversal.TargetLevel = "FloorTest";
+        }
     }
 }

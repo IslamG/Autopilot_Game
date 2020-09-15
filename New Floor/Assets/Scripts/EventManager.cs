@@ -15,6 +15,11 @@ public static class EventManager
     static List<DropItem> foundInvokers = new List<DropItem>();
     static List<UnityAction<DropItem>> foundListeners = new List<UnityAction<DropItem>>();
 
+    static List<PuzzlePiece> puzzleInvokers = new List<PuzzlePiece>();
+    //static List<AdventurePath> pathInvokers = new List<AdventurePath>();
+    //static List<UnityAction<AdventurePath>> pathListeners = new List<UnityAction<AdventurePath>>();
+    static List<UnityAction<AdventurePath>> puzzleListeners = new List<UnityAction<AdventurePath>>();
+
     public static void AddInvoker(Task taskInvoker)
     {
         //add new puzzle to list
@@ -70,6 +75,40 @@ public static class EventManager
         foreach (DropItem item in foundInvokers)
         {
             item.AddListener(handler);
+        }
+    }
+
+    //PathActivated overload
+    public static void AddInvoker(PuzzlePiece puzzleInvoker)
+    {
+        //add new puzzle to list
+        //then add a listener to the puzzle
+        puzzleInvokers.Add(puzzleInvoker);
+        foreach (UnityAction<AdventurePath> listener in puzzleListeners)
+        {
+            puzzleInvoker.AddListener(listener);
+        }
+    }
+    /*public static void AddInvoker(AdventurePath path)
+    {
+        //add new puzzle to list
+        //then add a listener to the puzzle
+        pathInvokers.Add(path);
+        foreach (UnityAction<AdventurePath> listener in pathListeners)
+        {
+            pathInvoker.AddListener(listener);
+        }
+    }*/
+    public static void AddListener(UnityAction<AdventurePath> handler)
+    {
+        puzzleListeners.Add(handler);
+        /*foreach (AdventurePath piece in puzzleInvokers)
+        {
+            piece.AddListener(handler);
+        }*/
+        foreach (PuzzlePiece piece in puzzleInvokers)
+        {
+            piece.AddListener(handler);
         }
     }
 }

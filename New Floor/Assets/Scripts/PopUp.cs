@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PopUp : MonoBehaviour
 {
@@ -12,9 +11,9 @@ public class PopUp : MonoBehaviour
     [SerializeField]
     private PopUpGen popUpGen;
 
-    public string MessageHeader { get; set; }
-    public string MessageBody { get; set; }
-    public bool IncludeCancel { get; set; }
+    public string MessageHeader { get => messageHeader; set => messageHeader = value; } 
+    public string MessageBody { get => messageBody; set => messageBody = value; }
+    public bool IncludeCancel { get => includeCancel; set => includeCancel = value; }
 
     //Call handler for generating a popUp with information in class
     public void ShowPop()

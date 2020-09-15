@@ -23,7 +23,9 @@ public class Package : MonoBehaviour
         if (!shown)
         {
             //Show pop up, disable movement, and show cursor
-            gameObject.GetComponent<PopUp>().ShowPop();
+            PopUp pop = gameObject.GetComponent<PopUp>();
+            Debug.Log("pp "+pop.MessageHeader);
+            pop.ShowPop();
             del = AskToOpen;
             fpc.enabled = false;
             Cursor.lockState = CursorLockMode.None;

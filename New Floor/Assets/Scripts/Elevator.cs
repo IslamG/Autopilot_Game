@@ -60,7 +60,7 @@ public class Elevator : MonoBehaviour
     {
         //Close elevator doors and play descent animation
         elevatorAnimator.Play("ElevatorClose");
-        elevatorAnimator.Play("ElevatorDescend");
+        elevatorAnimator.Play("ElevatorRattle");
         lightAnimator.SetBool("isMoving", true);
         //Fake a transition to new location
         FakeTransition();

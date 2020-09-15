@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 8041824190943457150}
   m_Layer: 0
   m_Name: CubicalDrawer
-  m_TagString: Untagged
+  m_TagString: Immobile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

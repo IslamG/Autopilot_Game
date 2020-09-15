@@ -28,6 +28,8 @@ public class LoginScreen : MonoBehaviour
     private Image fadeBlack;
     [SerializeField]
     FirstPersonController fpc;
+    [SerializeField]
+    private GameObject desktop;
 
     //tbd simplify password
     private const string password = "1234";//"28212433110";
@@ -72,6 +74,15 @@ public class LoginScreen : MonoBehaviour
             {
                 fadeBlack.gameObject.SetActive(true);
                 fadeBlack.GetComponent<FadeBlack>().Fade();
+            }
+            else
+            {
+                if (desktop != null)
+                {
+                    desktop.SetActive(true);
+                    desktop.GetComponent<DesktopScreen>().ShowDesktop();
+                    Debug.Log("Dunzo");
+                }
             }
             
         }

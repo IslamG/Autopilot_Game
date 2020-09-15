@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 987688787}
   m_Layer: 0
   m_Name: BatroomDoor
-  m_TagString: Untagged
+  m_TagString: Immobile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ HingeJoint:
   m_Anchor: {x: 0.09, y: -0.06, z: -0.22}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 27.14093, y: 0.21835601, z: 41.032345}
+  m_ConnectedAnchor: {x: -2.3974771, y: 1.5519879, z: -18.874332}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -173,3 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f9bb767c2819a4b83ccbf2b4e95d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
+  source: {fileID: 0}

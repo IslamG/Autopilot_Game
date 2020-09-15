@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Allows non-kinmatic rigid body objects to be picked up and dropped.
+/// </summary>
 public class HoldObject : MonoBehaviour
 {
     [SerializeField]
@@ -43,7 +46,8 @@ public class HoldObject : MonoBehaviour
                     //Only non-kinmatic rigid body items can be picked up
                     GameObject selection = hit.transform.gameObject;
                     if (selection.GetComponent<Rigidbody>() != null &&
-                        !selection.GetComponent<Rigidbody>().isKinematic)
+                        !selection.GetComponent<Rigidbody>().isKinematic &&
+                        !selection.CompareTag("Immobile"))
                     {
                         //tbd add spring, possible rotation
                         selectedObj = selection;

@@ -36,7 +36,7 @@ namespace UnityStandardAssets.Utility
                 return;
             }
             // We need to hit a rigidbody that is not kinematic
-            if (!hit.rigidbody || hit.rigidbody.isKinematic)
+            if (!hit.rigidbody || hit.rigidbody.isKinematic || !hit.transform.gameObject.tag.Equals("Immobile"))
             {
                 return;
             }

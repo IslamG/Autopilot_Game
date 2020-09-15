@@ -26,11 +26,20 @@ public class DropSpot : MonoBehaviour
             task.IsCompleted = true;
             taskMenu.RemoveTaskFromList(task);
             //Disable drop spot and item scripts
+            
             OtherDisable(other.gameObject);
+            DropSpot[] allSpots = other.gameObject.GetComponent<DropItem>().TargetSpot;
+            foreach(DropSpot spot in allSpots)
+            {
+                if (spot.gameObject != gameObject)
+                {
+                    spot.gameObject.SetActive(false);
+                }
+            }
             this.gameObject.SetActive(false);
         }
         else
-        {
+        {//???
             CapsuleCollider[] col = gameObject.GetComponents<CapsuleCollider>();
             foreach(CapsuleCollider bump in col)
             {
@@ -41,6 +50,7 @@ public class DropSpot : MonoBehaviour
             }
         }
     }
+    //???
     private void OnTriggerExit(Collider other)
     {
         CapsuleCollider[] col = gameObject.GetComponents<CapsuleCollider>();

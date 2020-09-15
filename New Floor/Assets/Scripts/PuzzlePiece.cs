@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class PuzzlePiece : MonoBehaviour
@@ -11,10 +12,22 @@ public class PuzzlePiece : MonoBehaviour
     private FirstPersonController fpc;
     [SerializeField]
     PopUpGen popUpGen;
+    [SerializeField]
+    private bool isPathStarter;
+    [SerializeField]
+    private GameObject arrow;
+
     private bool isActive = false, isSolved = false;
 
     public bool IsActive { get => isActive;}
     public bool IsSolved { get => isSolved;}
+    public OnPathActivated pathActivated = new OnPathActivated();
+    //public OnPathActivated puzzleActivated = new OnPathActivated();
+
+    private void Start()
+    {
+        EventManager.AddInvoker(this);
+    }
 
     //Unlock/make active item to access puzzle game
     private void CheckRequisites()
@@ -46,7 +59,27 @@ public class PuzzlePiece : MonoBehaviour
     //Puzzle Piece can only be solved if is active
     //Replace with puzzle game code or call
     private void Solve ()
-    {       
+    {
+        char pathId = gameObject.GetComponent<Task>().TaskGroup;
+        AdventurePath path=null;
+        /*switch (pathId)
+        {
+            /*case 'm':
+                {
+                    MaisyPath.Instantiate(this.gameObject);
+                    path = MaisyPath.instance;
+                    
+                    
+                    break;
+                }
+            case 'j':
+                {
+                    path=JeremyPath.instance;
+                    break;
+                }
+        }*/
+        pathActivated.Invoke(JeremyPath.instance);
+
     }
     private void Puzzle()
     {
@@ -64,7 +97,10 @@ public class PuzzlePiece : MonoBehaviour
         isActive = true;
         Task task=gameObject.GetComponent<Task>();
         task.ActivateTask();
-
+        if (isPathStarter)
+        {
+            arrow.SetActive(false);
+        }
         //tbd show text outlining the task on activation 
 
         /*PopUp pop = gameObject.GetComponent<PopUp>();
@@ -80,13 +116,18 @@ public class PuzzlePiece : MonoBehaviour
 
         //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
         //popUpGen.gameObject.SetActive(true);
-        //Activate drop spot for tasks with drop spots
 
+
+        //Activate drop spot for tasks with drop spots
         DropItem di = gameObject.GetComponent<DropItem>();
         //if dropppable object
-        if (di != null && !task.IsCompleted)
-        {
-            di.TargetSpot.gameObject.SetActive(true);
+        if (di != null && !task.IsCompleted) 
+        { 
+            foreach(DropSpot spot in di.TargetSpot)
+            {
+                //di.TargetSpot
+                spot.gameObject.SetActive(true);
+            }          
         }
             
         //return true;
@@ -108,5 +149,14 @@ public class PuzzlePiece : MonoBehaviour
             Puzzle();
             Solve();
         }
+    }
+    //Possibly remove?
+    /*public void AddListener(UnityAction<AdventurePath> handler)
+    {
+        pathActivated.AddListener(handler);
+    }*/
+    public void AddListener(UnityAction<AdventurePath> handler)
+    {
+        pathActivated.AddListener(handler);
     }
 }

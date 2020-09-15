@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8643696840483386290}
   - component: {fileID: 3782568317465631629}
   m_Layer: 0
-  m_Name: GameCam
+  m_Name: ClockGameCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 309
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

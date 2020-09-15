@@ -24,6 +24,7 @@ public class PopUpGen : MonoBehaviour
     //message, header, and buttons
     public void GeneratePopUp(PopUp popUp)
     {
+        Debug.Log("p " + popUp.MessageHeader) ;
         //Assign text values from popUp object
         if(popUp.MessageHeader!=null)
             messageHeader.text = popUp.MessageHeader;
