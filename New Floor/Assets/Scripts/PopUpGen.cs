@@ -65,7 +65,7 @@ public class PopUpGen : MonoBehaviour
             Package.PackageOpened = false;
             packFunc.Invoke();
         }
-
+        
         //hide pop up
         gameObject.SetActive(false);
         isTrue= false;
@@ -88,7 +88,7 @@ public class PopUpGen : MonoBehaviour
     //Overload for package
     public bool FunctionToDo(Package.DelegateFunc function)
     {
-        packFunc = function;
+       packFunc = function;
         return isTrue;
     }
 }

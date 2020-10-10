@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class OutOfBounds : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text helperText;
+    [SerializeField]
+    private AudioClip[] appearSound;
+    [SerializeField]
+    AudioMixer mixer;
+
     private GameObject player;
     private Vector3 playerPos, respawnPos;
     private static int fallTimes = 0;
@@ -29,18 +35,27 @@ public class OutOfBounds : MonoBehaviour
             textDisplayed = false;
         }
     }
-
+    //When an object falls through boundry collider
+    private void OnTriggerEnter(Collider other)
+    {
+        //Respawn(other);
+    }
     //When an object falls through boundry collider
     private void OnTriggerExit(Collider other)
+    {
+        Respawn(other);
+    }
+    //Position back in boundries
+    private void Respawn(Collider other)
     {
         //If respawning player
         //tbd respawn roughly back where the character started
         //currently moves character up and back
         if (other.gameObject.CompareTag("Player"))
         {
-            Vector3 root=gameObject.transform.position;
+            Vector3 root = gameObject.transform.position;
             root.y -= other.transform.localScale.y;
-            other.gameObject.transform.position = root; 
+            other.gameObject.transform.position = root;
             SetText();
         }
         //If respawning object 
@@ -52,6 +67,15 @@ public class OutOfBounds : MonoBehaviour
             respawnPos = playerPos * 1.025f;
             other.gameObject.transform.position = respawnPos;
         }
+        AudioSource source = other.GetComponent<AudioSource>();
+        if (source == null)
+        {
+            source=other.gameObject.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = mixer.FindMatchingGroups("Enviroment")[0];
+            int rand= Random.Range(0, appearSound.Length);
+            source.clip = appearSound[rand];
+        }
+        source.Play();
     }
     //Show text when object is thrown put of the building
     //And run timer to make the text disappear

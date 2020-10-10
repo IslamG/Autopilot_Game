@@ -90,6 +90,7 @@ public class HoldObject : MonoBehaviour
             {
                 isHeld = false;
                 selectedObj = null;
+                Debug.Log("Done freeing objects");
             }
                 
         }

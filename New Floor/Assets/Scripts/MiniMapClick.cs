@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class MiniMapClick : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField]
     //Top Down Camera
-    public Camera miniMapCam;
+     Camera miniMapCam;
 
     public void OnPointerClick(PointerEventData eventData)
     {

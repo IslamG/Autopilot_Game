@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClickToScreen : MonoBehaviour
 {
     [SerializeField]
-    GameObject screen;
+    GameObject screen, puzzleFloor;
     [SerializeField]
     Camera outputCam;
     [SerializeField]
@@ -41,10 +41,10 @@ public class ClickToScreen : MonoBehaviour
         {
             if (hit.collider.gameObject.name == "ScreenDisplay")
             {
-                //Debug.Log("did hit "+ hit.collider.gameObject+ " at "
-                //    +hit.point);
+                Debug.Log("did hit "+ hit.collider.gameObject+ " at "
+                    +hit.point);
                 outputCam.ViewportPointToRay(hit.point);
-                //Debug.Log("is "+RectTransformUtility.RectangleContainsScreenPoint((RectTransform)screenTransform,hit.point));
+                Debug.Log("is "+RectTransformUtility.RectangleContainsScreenPoint((RectTransform)screenTransform,hit.point));
                 //Texture tex = GetComponent<RawImage>().texture;
                 Vector2 localCursor = hit.point;
                 Rect r = GetComponent<RectTransform>().rect;
@@ -58,7 +58,7 @@ public class ClickToScreen : MonoBehaviour
                 float recalcY = coordY / tex.height;
 
                 localCursor = new Vector2(recalcX, recalcY);
-               // Debug.Log("local " + localCursor);
+                Debug.Log("local " + localCursor);
                 CastMiniMapRayToWorld(localCursor);
             }
         }

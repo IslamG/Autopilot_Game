@@ -37,9 +37,9 @@ public class ViewableCellphone : MonoBehaviour
     //Parent to spot so it moves with the character
     private void OnMouseDown()
     {
-        cellCam.gameObject.SetActive(true);
+        //cellCam.gameObject.SetActive(true);
         gameObject.transform.position = cellSpot.transform.position;
-        gameObject.transform.eulerAngles = new Vector3(-2, 0, -68);
+        gameObject.transform.eulerAngles = cellSpot.transform.eulerAngles; //new Vector3(-2, 0, -68);
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.transform.parent = cellSpot.transform;
@@ -48,7 +48,7 @@ public class ViewableCellphone : MonoBehaviour
     void Update()
     {
         //Take picture using Q
-        if (isHeld && Input.GetKeyDown("q"))
+        if (isHeld && Input.GetKeyDown("e"))
         {
             StartCoroutine(TakePic());
         }
@@ -90,12 +90,13 @@ public class ViewableCellphone : MonoBehaviour
      */
     private IEnumerator TakePic() 
     {
-        cellCam.gameObject.SetActive(false);
+        cellCam.enabled = false;
         gameObject.GetComponentInChildren<AudioSource>().Play();
-        ScreenshotHandler.TakeScreenshot_Static(120, 300);
+        ScreenshotHandler.TakeScreenshot_Static(300, 300);
         yield return new WaitForSecondsRealtime(1f);
-        cellCam.gameObject.SetActive(true);
-
+        cellCam.enabled = true;
+        cellCam.targetTexture = cellView;
+        
         //If the photograph taken was of a collectable object
         //load into image texture
         if (isFocused)

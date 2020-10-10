@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class EmailNotification : MonoBehaviour
+public class EmailNotification : Puzzle
 {
     [SerializeField]
     GameObject emailWindow;
@@ -24,6 +23,18 @@ public class EmailNotification : MonoBehaviour
         emailWindow.SetActive(true);
         readEmail = true;
         HideNotification();
+        //gameObject.GetComponent<PuzzlePiece>().enabled = true;
     }
-
+    private void Awake()
+    {
+        Activate();
+    }
+    protected override void Activate()
+    {
+        //Activate task based on attached task 
+        isActive = true;
+        Task task = gameObject.GetComponent<Task>();
+        //Invokes task listeners
+        task.ActivateTask();
+    }
 }

@@ -4,72 +4,54 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
 using TMPro;
-using cakeslice;
 using UnityEngine.SceneManagement;
-using UnityStandardAssets.Characters.FirstPerson;
-
 public class TurnOnScreen : MonoBehaviour
 {
+    
+    
     [SerializeField]
-    private GameObject loginScreen, crosshair;
+     RenderTexture content;
     [SerializeField]
-    private Camera closeUpCamera, screenCamera;
+     TMP_Text helperText;
     [SerializeField]
-    private RenderTexture content;
-    [SerializeField]
-    private TMP_Text helperText;
-    [SerializeField]
-    TipsControl tipControl;
-    [SerializeField]
-    FirstPersonController fpc;
+     TipsControl tipControl;
 
-    private VideoPlayer vidPlayer;
-    private Camera mainCam;
-    private static bool introVideoPlayed = false, helperDisplayed = false;
-    private Timer textTimer;
-    [SerializeField]
-    private OutlineEffect outline;
+     VideoPlayer vidPlayer;
+     Camera mainCam;
+     static bool introVideoPlayed = false, helperDisplayed = false;
+     Timer textTimer;
+     InteractableScreen openUI;
 
     void Start()
     {
         //initialize variables
+        //base.Start();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
-        outline = mainCam.GetComponent<OutlineEffect>();
+        openUI= gameObject.GetComponent<InteractableScreen>();
     }
     //Switch view from closeup camera to main 
-    private void Update()
+    void Update()
     {
-        //Back out of login screen on right click if up
-        if (closeUpCamera != null)
-        {
-            if(Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled 
-                && !loginScreen.activeSelf && !PauseMenu.isPaused)
-            {
-                mainCam.gameObject.SetActive(true);
-                mainCam.GetComponent<AudioListener>().enabled = true;
-                closeUpCamera.gameObject.SetActive(false);
-                closeUpCamera.GetComponent<AudioListener>().enabled = false;
-            }
-        }
-        
+        //base.Update();
         //Hide helper text after duration
         if (textTimer.Finished && helperDisplayed)
         {
             helperText.text = "";
         }
     }
-    private void Awake()
+    void Awake()
     {
         vidPlayer = GetComponentInChildren<VideoPlayer>();
         vidPlayer.targetTexture.Release();
         textTimer = gameObject.AddComponent<Timer>();
         textTimer.Duration = 5;
     }
-    public void OnMouseDown()
+    void OnMouseDown()
     {
+        //base.OnMouseDown();
         //if mouse isn't over a screen that can open 
         if (EventSystem.current.IsPointerOverGameObject())
             return;
@@ -85,26 +67,20 @@ public class TurnOnScreen : MonoBehaviour
         }
         else
         {
-            SwitchToLogin();
+            openUI.SwitchToLogin();
+            //clear screen and revert back to main camera
+            //for viewing login screen
+            content.DiscardContents();
+            //remove?
+            mainCam.gameObject.SetActive(true);
+            //mainCam.GetComponent<AudioListener>().enabled = true;
         }
-        //Click on screen not login interface
-        if (!loginScreen.activeSelf)
-        {
-            //change view to close up of screen
-            if (closeUpCamera != null)
-            {
-                closeUpCamera.gameObject.SetActive(true);
-                closeUpCamera.GetComponent<AudioListener>().enabled = true;
-                mainCam.gameObject.SetActive(false);
-                mainCam.GetComponent<AudioListener>().enabled = false;
-            }
-        }
-               
     }
     //When startup animation finished playing
     void EndReached(VideoPlayer videoPlayer)
     {
-        SwitchToLogin();
+        openUI.SwitchToLogin();
+
         //Display helper text only once
         if (!helperDisplayed && helperText!=null)
         {
@@ -113,30 +89,16 @@ public class TurnOnScreen : MonoBehaviour
             helperDisplayed = true;
         }
     }
+    /*
     //Bring up login screen UI
     private void SwitchToLogin()
     {
-        if(outline!=null)
-            outline.enabled = false;
-
-        //Show login screen
-        loginScreen.GetComponent<LoginScreen>().MakeVisible(true);
-        screenCamera.gameObject.SetActive(true);
-        //screenCamera.GetComponent<AudioListener>().enabled = true;
-        //screenCamera.GetComponent<AudioListener>().enabled = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshair.SetActive(false);
-        
+        gameObject.GetComponent<InteractableScreen>().SwitchToLogin();
         //clear screen and revert back to main camera
         //for viewing login screen
         content.DiscardContents();
         //remove?
         mainCam.gameObject.SetActive(true);
         //mainCam.GetComponent<AudioListener>().enabled = true;
-        if (fpc != null)
-        {
-            fpc.enabled = false;
-        }
-    }
+    }*/
 }

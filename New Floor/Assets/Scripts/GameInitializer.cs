@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 using System.IO;
 
 /// <summary>
@@ -76,6 +75,10 @@ public class GameInitializer : MonoBehaviour
         if (currenLvl.Equals("AirVents"))
         {
             LevelTraversal.TargetLevel = "FloorTest";
+        }
+        if (currenLvl.Equals("FloorTest"))
+        {
+            LevelTraversal.TargetLevel = "AirVents";
         }
     }
 }

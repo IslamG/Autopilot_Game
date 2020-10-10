@@ -5,11 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class VentPuzzle : MonoBehaviour
 {
-    private void OnTriggerEnter()
+    private void OnMouseDown()
     {
-        Debug.Log("Left");
+        if (gameObject.name.Equals("Exit"))
+        {
+            Exit();
+        }
+        else
+        {
+            LoadOut();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("triggered vent by: "+other.gameObject.name);
+        if (gameObject.name.Equals("Exit"))
+        {
+            Exit();
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                LoadOut();
+            }
+        } 
+    }
+    private void LoadOut()
+    {
         SceneManager.LoadScene("LoadingScreen");
     }
-
-    
+    private void Exit()
+    {
+        //LevelTraversal.TargetLevel = "FloorTest";
+    }
 }

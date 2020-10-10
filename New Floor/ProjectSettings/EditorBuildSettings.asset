@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SubconscienceFloor.unity
     guid: 3fe768a7daa2c0843964ea45c3862901
+  - enabled: 1
+    path: Assets/Scenes/AirVents.unity
+    guid: 3d9031043e1be894e9f080d857da6689
   m_configObjects: {}

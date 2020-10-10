@@ -34,38 +34,34 @@ public class CheckpointPivot : MonoBehaviour
                 helperText.text = "";
                 helperText.faceColor = Color.white;
                 showingHelper = false;
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnMouseDown()
     {
-        //If player enters information post
-        if (other.gameObject.CompareTag("Player"))
-        { //If text hasn't been shown before, show hint and hide post
-            if (!showed)
-            {
-                StartHintDisplay();
-                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            }              
-        }
+        StartHintDisplay();
     }
     private void StartHintDisplay()
-    { 
-        //Show text and start timer for switching parts
-        if (helperText != null)
+    {
+        //If text hasn't been shown before, show hint and hide post
+        if (!showed)
         {
-            showed = true;
-            Debug.Log("."+dialogueParts[i].ToString());
-            helperText.text = dialogueParts[i];
-            timer.Run();
-            showingHelper = true;
-            //tbd different highlight for different tasks
-            if (i == dialogueParts.Length-1)
+            //Show text and start timer for switching parts
+            if (helperText != null)
             {
-                helperText.faceColor = Color.cyan;
-                //helperText.outlineWidth = 0.25f;
+                showed = true;
+                Debug.Log("."+dialogueParts[i].ToString());
+                helperText.text = dialogueParts[i];
+                timer.Run();
+                showingHelper = true;
+                //tbd different highlight for different tasks
+                if (i == dialogueParts.Length-1)
+                {
+                    helperText.faceColor = Color.cyan;
+                    //helperText.outlineWidth = 0.25f;
+                }
             }
-        }    
+        }
     }
 }

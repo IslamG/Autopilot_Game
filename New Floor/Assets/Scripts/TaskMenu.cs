@@ -20,6 +20,8 @@ public class TaskMenu : MonoBehaviour
     private TipsControl tipControl;
     [SerializeField]
     private Image paperImg;
+    [SerializeField]
+    private GameObject saveIcon;
 
     private Rect menuRect, smallRect, paperRect;
     private static bool isDisplayed = false; 
@@ -27,6 +29,7 @@ public class TaskMenu : MonoBehaviour
     private Vector2 menuPosition, leftBottom;
     private char activeGroup='g';
     private float mouseScroll;
+    private Timer saveTimer;
 
     private List<Task> activeTaskList = new List<Task>();
     private List<Task> completedTaskList = new List<Task>();
@@ -56,9 +59,16 @@ public class TaskMenu : MonoBehaviour
         smallRect = menuRect;
         menuPosition = GetComponent<RectTransform>().transform.position;
         EventManager.AddListener(AddActiveTaskToList);
+        saveTimer = gameObject.AddComponent<Timer>();
+        saveTimer.Duration = 1;
     }
     void Update()
     {
+        if (saveTimer.Finished)
+        {
+            saveIcon.SetActive(false);
+            Debug.Log("Hiding Save");
+        }
         //If menu button pressed
         if (Input.GetKeyDown(KeyCode.M) && !PauseMenu.isPaused)
         {
@@ -216,6 +226,8 @@ public class TaskMenu : MonoBehaviour
     public void RemoveTaskFromList(Task task)
     {
         activeTaskList.Remove(task);
+        SaveGame.SaveData();
+        saveIcon.SetActive(true);
         if (activeTaskList.Count < 1)
         {
             starBurst.SetActive(false);

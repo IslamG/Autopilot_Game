@@ -40,8 +40,8 @@ public class DropSpot : MonoBehaviour
         }
         else
         {//???
-            CapsuleCollider[] col = gameObject.GetComponents<CapsuleCollider>();
-            foreach(CapsuleCollider bump in col)
+            Collider[] col = gameObject.GetComponents<Collider>();
+            foreach(Collider bump in col)
             {
                 if (!bump.isTrigger)
                 {

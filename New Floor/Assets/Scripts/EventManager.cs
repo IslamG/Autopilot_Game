@@ -15,7 +15,7 @@ public static class EventManager
     static List<DropItem> foundInvokers = new List<DropItem>();
     static List<UnityAction<DropItem>> foundListeners = new List<UnityAction<DropItem>>();
 
-    static List<PuzzlePiece> puzzleInvokers = new List<PuzzlePiece>();
+    static List<PathStarter> puzzleInvokers = new List<PathStarter>();
     //static List<AdventurePath> pathInvokers = new List<AdventurePath>();
     //static List<UnityAction<AdventurePath>> pathListeners = new List<UnityAction<AdventurePath>>();
     static List<UnityAction<AdventurePath>> puzzleListeners = new List<UnityAction<AdventurePath>>();
@@ -79,7 +79,7 @@ public static class EventManager
     }
 
     //PathActivated overload
-    public static void AddInvoker(PuzzlePiece puzzleInvoker)
+    public static void AddInvoker(PathStarter puzzleInvoker)
     {
         //add new puzzle to list
         //then add a listener to the puzzle
@@ -106,7 +106,7 @@ public static class EventManager
         {
             piece.AddListener(handler);
         }*/
-        foreach (PuzzlePiece piece in puzzleInvokers)
+        foreach (PathStarter piece in puzzleInvokers)
         {
             piece.AddListener(handler);
         }
