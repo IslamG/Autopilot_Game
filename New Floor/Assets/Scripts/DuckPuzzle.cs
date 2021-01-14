@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class DuckPuzzle : Puzzle
 {
     [SerializeField]
-    Camera duckCamera, controlCamera;
+    Camera duckCamera, controlCamera, screenCamera;
     [SerializeField]
-    GameObject duckPlane, screenPlane;
+    GameObject duckPlane, screenPlane, datashowHolder;
+    [SerializeField]
+    FirstPersonController fps;
 
     Vector2 duckCamSize, controlCamSize;
 
@@ -19,12 +23,14 @@ public class DuckPuzzle : Puzzle
         controlCamSize = new Vector2(screenPlane.transform.localScale.x,
             screenPlane.transform.localScale.y);
     }
-    private void Update()
+    private new void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            DoTheThing();
-        }
+        //DoTheThing();
+        //base.OnMouseDown();
+        fps.enabled = false;
+        Cursor.lockState=CursorLockMode.None;
+        Cursor.visible=true;
+        datashowHolder.SetActive(true);
     }
     private void DoTheThing()
     {

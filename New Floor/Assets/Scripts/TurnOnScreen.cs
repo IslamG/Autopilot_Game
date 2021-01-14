@@ -67,7 +67,7 @@ public class TurnOnScreen : MonoBehaviour
         }
         else
         {
-            openUI.SwitchToLogin();
+            openUI.SwitchToScreen();
             //clear screen and revert back to main camera
             //for viewing login screen
             content.DiscardContents();
@@ -79,7 +79,7 @@ public class TurnOnScreen : MonoBehaviour
     //When startup animation finished playing
     void EndReached(VideoPlayer videoPlayer)
     {
-        openUI.SwitchToLogin();
+        openUI.SwitchToScreen();
 
         //Display helper text only once
         if (!helperDisplayed && helperText!=null)

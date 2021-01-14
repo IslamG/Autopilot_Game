@@ -37,7 +37,7 @@ public class DesktopScreen : InteractableScreen
     public void ShowDesktop()
     {
         MakeVisible(true);
-        if (!isActive)
+        if (!IsActive)
         {
             Activate();
         }

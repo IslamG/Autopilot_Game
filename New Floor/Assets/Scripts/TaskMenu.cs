@@ -226,8 +226,8 @@ public class TaskMenu : MonoBehaviour
     public void RemoveTaskFromList(Task task)
     {
         activeTaskList.Remove(task);
-        SaveGame.SaveData();
-        saveIcon.SetActive(true);
+        //SaveGame.SaveData();
+        //saveIcon.SetActive(true);
         if (activeTaskList.Count < 1)
         {
             starBurst.SetActive(false);

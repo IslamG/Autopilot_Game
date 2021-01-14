@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Puzzle">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EACAAAAAAAAAAADAFAAAABAAAAABAAAAIAAAABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Puzzle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesktopScreen">
+    <Position X="7" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAABAAAAAAAAAAAAAAAAAABCAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\DesktopScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractableScreen">
+    <Position X="6" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQQAQAAAQAgAiAAAACAAAAAAAAAAAQAAAAAABABAAAA=</HashCode>
+      <FileName>Assets\Scripts\InteractableScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JeremyPuzzle">
+    <Position X="4.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEAABAAAAAAAAAAAAAAAAAABAQBAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\JeremyPuzzle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginScreen">
+    <Position X="3.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAgEAAAAAAAAAAAAAAAAAAABAAQAAQAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\LoginScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpeningLogin">
+    <Position X="2.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAABAAAAAAAEAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\OpeningLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpeningMoniter">
+    <Position X="11.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAGAhAABAAAAAAAAAAAAAAAAAIEAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\OpeningMoniter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DuckPuzzle">
+    <Position X="12.25" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABAAQAAACgAAABAEIAAAAAAAAAAAEAAIBAAgAAQAAg=</HashCode>
+      <FileName>Assets\Scripts\DuckPuzzle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmailNotification">
+    <Position X="2" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAABAAQAAAAAAAAAAAAQAAAAQAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\EmailNotification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarthasDecision">
+    <Position X="3.25" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAEAAAAAAAACAAAAAQAEIAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\MarthasDecision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathStarter">
+    <Position X="7" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAAAAAAAAAAAAAAAAAAAAAAAIABA=</HashCode>
+      <FileName>Assets\Scripts\PathStarter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollectablePuzzle">
+    <Position X="11.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CollectablePuzzle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Package">
+    <Position X="9" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="Package.DelegateFunc" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Package.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAABAAAAAgAAAAAAAAAAAIBAQAAAAAQA=</HashCode>
+      <FileName>Assets\Scripts\Package.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

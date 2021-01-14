@@ -52,11 +52,11 @@ public class OpeningMoniter : InteractableScreen
 
     }
     //Bring up login screen UI
-    protected new private void SwitchToLogin()
+    protected new private void SwitchToScreen()
     {
         outline.enabled = false;
         screenCamera.gameObject.SetActive(true);
-        base.SwitchToLogin();
+        base.SwitchToScreen();
     }
     
 

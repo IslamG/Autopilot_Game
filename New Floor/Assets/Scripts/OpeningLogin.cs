@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class OpeningLogin : LoginScreen
 {
+    protected new void Start()
+    {
+        base.Start();
+        ScreenToShow = loginScreen;
+    }
     [SerializeField]
     private Image fadeBlack;
     public override void Login()

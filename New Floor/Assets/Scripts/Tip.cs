@@ -13,6 +13,7 @@ public class Tip : ScriptableObject
     public string DisplayText { get; set; }
     public bool WasDisplayed { get; set; }
     public int ID { get; set; }
+    //public Animation AnimationImg { get; set; }
 
     //Add as invoker of OnHaulmarkReached
     private void Start()

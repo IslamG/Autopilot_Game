@@ -16,10 +16,10 @@ public class JeremyPuzzle : LoginScreen
         ScreenToShow = loginScreen;
     }
     //Bring up login screen UI
-    protected new void SwitchToLogin()
+    protected new void SwitchToScreen()
     {
         fpc.enabled = false;
-        base.SwitchToLogin();
+        base.SwitchToScreen();
         
     }
 

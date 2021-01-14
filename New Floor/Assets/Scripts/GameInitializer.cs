@@ -55,6 +55,10 @@ public class GameInitializer : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             //Debug.Log("d " + outline.GetComponent<cakeslice.Outline>().enabled);
+            TipScript tip= Camera.main.GetComponents<TipScript>()[0];
+            gameObject.GetComponent<TipsControl>().GenerateTip(tip);
+            TipScript tip2 = Camera.main.GetComponents<TipScript>()[1];
+            gameObject.GetComponent<TipsControl>().GenerateTip(tip2);
         }
         if (currenLvl.Equals("SubconscienceFloor"))
         {
@@ -79,6 +83,10 @@ public class GameInitializer : MonoBehaviour
         if (currenLvl.Equals("FloorTest"))
         {
             LevelTraversal.TargetLevel = "AirVents";
+            TipScript tip = Camera.main.GetComponents<TipScript>()[0];
+            gameObject.GetComponent<TipsControl>().GenerateTip(tip);
+            TipScript tip2 = Camera.main.GetComponents<TipScript>()[1];
+            gameObject.GetComponent<TipsControl>().GenerateTip(tip2);
         }
     }
 }

@@ -92,7 +92,7 @@ public abstract class InteractableScreen : PathStarter
         }
         ScreenToShow.SetActive(ctrl);
     }
-    public void SwitchToLogin()
+    public void SwitchToScreen()
     {
         //Show login screen
         //loginScreen.GetComponent<LoginScreen>().MakeVisible(true);

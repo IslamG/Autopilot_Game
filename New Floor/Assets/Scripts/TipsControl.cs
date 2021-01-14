@@ -33,6 +33,8 @@ public class TipsControl : MonoBehaviour
     private AudioSource showSource;
     [SerializeField]
     AudioMixer mainMixer;
+    [SerializeField]
+    RawImage animationHolder;
 
     private static bool tipsEnabled = true;
     private bool nothingDisplayed = true;
@@ -43,7 +45,7 @@ public class TipsControl : MonoBehaviour
     
 
     //Return and set enabled property
-    public static bool TipsEnabled { get => tipsEnabled; set => tipsEnabled = value; }
+    public static bool TipsEnabled { get { return tipsEnabled; } set { tipsEnabled = value; } }
 
     private void Start()
     {
