@@ -152,8 +152,24 @@ AudioMixerController:
   m_EnableSuspend: 0
   m_UpdateMode: 1
   m_ExposedParameters:
-  - guid: 9bd88858fd5ccb246ab1743bdf5864a9
+  - guid: 23421c08961f86e48b5b117ddfcdb728
+    name: elevatorVolume
+  - guid: b2a665b85223bec4d99b4299999c96dd
+    name: enviromentVolume
+  - guid: 976faeee21ee59448a0199015433c9c6
+    name: gameVolume
+  - guid: d66299bf421c04d42bbf2bdc56ba5de1
+    name: menuVolume
+  - guid: c148fb09eecb9394292c7d76aa81c13e
     name: volume
+  - guid: 5cac9d2fbafe766428e99bb0580195c3
+    name: musicVolume
+  - guid: 9f2bf247408439e4092bdf2e763f5e3e
+    name: playerVolume
+  - guid: cb4af330ffe8eb543b0690772028aec8
+    name: effectsVolume
+  - guid: cb5d985e03833d14d9d7ea210867b76e
+    name: uiVolume
   m_AudioMixerGroupViews:
   - guids:
     - 2e2c00df7c5a2a94ba07f183a9707645
@@ -246,7 +262,7 @@ AudioMixerSnapshotController:
     f8d5d24ea84c076498dd3564f7239e03: 0.609
     d33e7f4e6aa21ec4f8fe3c884bae41eb: 0.01
     5559268edeb279a4cb67f6f54d99405b: 1.49
-    5cac9d2fbafe766428e99bb0580195c3: -25.6
+    5cac9d2fbafe766428e99bb0580195c3: -20.56696
     188b5f5f627cf2747a2a3a520a329bad: 1
   m_TransitionOverrides: {}
 --- !u!243 &1113162071228701169

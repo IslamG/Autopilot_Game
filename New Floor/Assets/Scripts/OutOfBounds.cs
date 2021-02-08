@@ -44,6 +44,7 @@ public class OutOfBounds : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Respawn(other);
+        //Debug.Log("Fell out of bounds");
     }
     //Position back in boundries
     private void Respawn(Collider other)
@@ -51,6 +52,9 @@ public class OutOfBounds : MonoBehaviour
         //If respawning player
         //tbd respawn roughly back where the character started
         //currently moves character up and back
+        if (other.gameObject.name.Equals("Cone")){
+            return;
+        }
         if (other.gameObject.CompareTag("Player"))
         {
             Vector3 root = gameObject.transform.position;

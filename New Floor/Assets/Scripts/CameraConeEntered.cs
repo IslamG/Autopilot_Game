@@ -4,11 +4,5 @@ using UnityEngine;
 
 public class CameraConeEntered : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Entered camera FOV");
-        }
-    }
+    
 }

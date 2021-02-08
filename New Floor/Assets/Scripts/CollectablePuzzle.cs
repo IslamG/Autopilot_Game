@@ -47,4 +47,5 @@ public class CollectablePuzzle : PathStarter
 
         //return true;
     }
+
 }

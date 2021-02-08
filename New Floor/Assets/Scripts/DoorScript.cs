@@ -11,6 +11,7 @@ public class DoorScript : MonoBehaviour
     private GameObject snapper;
     Vector3 oldEulerAngles;
  
+
     void Start(){
 
         oldEulerAngles = transform.localEulerAngles;
@@ -25,6 +26,24 @@ public class DoorScript : MonoBehaviour
             GameObject door=gameObject.transform.parent.gameObject;
             door.GetComponent<Rigidbody>().constraints = 
                 RigidbodyConstraints.FreezeRotation;
+        }
+    }
+
+    public void SetLock(bool state)
+    {
+        isLocked = state;
+        GameObject door = gameObject.transform.parent.gameObject;
+
+        if (state)
+        {
+            
+            door.GetComponent<Rigidbody>().constraints =
+                RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            door.GetComponent<Rigidbody>().constraints =
+                RigidbodyConstraints.None;
         }
     }
     //When door clicked
@@ -54,7 +73,8 @@ public class DoorScript : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             snapper.transform.Translate(0, 0, 0.02f);
-            source.Play();
+            if (source != null)
+                source.Play();
             Debug.Log("Did");
         }
         else
@@ -67,24 +87,24 @@ public class DoorScript : MonoBehaviour
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.angularVelocity = Vector3.zero;
                 transform.localEulerAngles = oldEulerAngles;
-                
-                source.Play();
+                if(source!=null)
+                    source.Play();
                 Debug.Log("Did2");
             }
         } 
     }
     //Stall doors unable to open all the way in
-    private void OnTriggerEnter(Collider other)
-    {
-        string name = other.gameObject.name.ToLower();
-        //Debug.Log(name);
-        //Stop swinging stall doors
-        if (name.Contains("stalls"))
-        {
-            Rigidbody rigidbody = GetComponent<Rigidbody>();
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
-            transform.localEulerAngles = oldEulerAngles;
-        }  
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    string name = other.gameObject.name.ToLower();
+    //    //Debug.Log(name);
+    //    //Stop swinging stall doors
+    //    if (name.Contains("stalls"))
+    //    {
+    //        Rigidbody rigidbody = GetComponent<Rigidbody>();
+    //        rigidbody.velocity = Vector3.zero;
+    //        rigidbody.angularVelocity = Vector3.zero;
+    //        transform.localEulerAngles = oldEulerAngles;
+    //    }  
+    //}
 }

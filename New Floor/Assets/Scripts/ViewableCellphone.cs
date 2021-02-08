@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ViewableCellphone : MonoBehaviour
+public class ViewableCellphone : Puzzle
 {
     [SerializeField]
     GameObject cellSpot;
@@ -10,6 +11,8 @@ public class ViewableCellphone : MonoBehaviour
     Camera cellCam;
     [SerializeField]
     RenderTexture cellView;
+    [SerializeField]
+    RawImage cellFocus;
     [SerializeField]
     GameObject[] focusObjects;
     [SerializeField]
@@ -35,15 +38,20 @@ public class ViewableCellphone : MonoBehaviour
     //When clicked transfer to viewable cell location
     //Disable gravity and collider so it doesn't fall or move
     //Parent to spot so it moves with the character
-    private void OnMouseDown()
+    private new void OnMouseDown()
     {
-        //cellCam.gameObject.SetActive(true);
-        gameObject.transform.position = cellSpot.transform.position;
-        gameObject.transform.eulerAngles = cellSpot.transform.eulerAngles; //new Vector3(-2, 0, -68);
-        gameObject.GetComponent<Rigidbody>().useGravity = false;
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        gameObject.transform.parent = cellSpot.transform;
-        isHeld = true;
+        //if (isActive)
+        //{
+            //cellCam.gameObject.SetActive(true);
+            gameObject.transform.position = cellSpot.transform.position;
+            gameObject.transform.eulerAngles = cellSpot.transform.eulerAngles; //new Vector3(-2, 0, -68);
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.transform.parent = cellSpot.transform;
+            isHeld = true;
+            Activate();
+        //}
+        
     }
     void Update()
     {
@@ -64,21 +72,34 @@ public class ViewableCellphone : MonoBehaviour
         if (isHeld)
         {
             //Check if cellphone camera is pointed at a photographic object
-            Ray ray = cellCam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = new Ray(cellCam.transform.position, cellCam.transform.forward); //cellCam.ScreenPointToRay(cellCam.transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 2f))
+            if (Physics.Raycast(ray, out hit, 1f))
             {
                 //Check if we're mousing over an object we can focus
-                Debug.DrawRay(cellCam.transform.position, transform.forward, Color.green);
+                Debug.DrawRay(cellCam.transform.position, cellCam.transform.forward, Color.green);
                 foreach (GameObject obj in focusObjects)
                 {
                     //If we'er over an object we can focus and it's not already photographed
                     if (hit.transform.gameObject == obj && !usedObjs.Contains(obj))
                     {
+                        //If isn't already displaying focus icon, turn icon on
+                        if (!isFocused)
+                        {
+                            cellFocus.color=new Color(65, 255, 0);
+                        }
                         isFocused = true;
                         currentObj = obj;
                     }
+                    
                 }
+            }else{
+                  //If is displaying focus icon, turn icon off
+                  if (isFocused)
+                  {
+                       cellFocus.color = Color.red;
+                       isFocused = false;
+                  }
             }
         }
     }
@@ -106,6 +127,7 @@ public class ViewableCellphone : MonoBehaviour
         else
         {
             //When not a target object show negative feedback
+            yield break;
         }
     }
     //Load image from location on disk
@@ -121,5 +143,41 @@ public class ViewableCellphone : MonoBehaviour
         Debug.Log("Image " + www.texture.name + " p " + 
             mat.GetTexture("_MainTex").name);
         usedObjs.Add(currentObj);
+        CheckFinish();
+    }
+    void CheckFinish()
+    {
+        if (usedObjs.Count == targetPairs.Count)
+        {
+            Solve();
+            Debug.Log("Solving cellphone");
+        }
+    }
+    protected override void Activate()
+    {
+        //Activate task based on attached task 
+        isActive = true;
+        Task task = gameObject.GetComponent<Task>();
+        //Invokes task listeners
+        task.ActivateTask();
+        //tbd show text ou
+        //PopUp pop = gameObject.GetComponent<PopUp>();
+        //pop.MessageHeader = task.TaskText;
+        //pop.ShowPop();
+
+        //fpc.enabled = false;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+
+
+        //tbd generic puzzle delegate method for pop up
+
+        //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        //popUpGen.gameObject.SetActive(true);
+
+
+
+
+        //return true;
     }
 }

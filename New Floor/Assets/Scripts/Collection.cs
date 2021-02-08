@@ -1,17 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
-public class Collection : MonoBehaviour
+public class Collection : Puzzle
 {
     //An Object reference to a collection
 
     //the collection items
     [SerializeField]
     DropItem[] collectables;
-    [SerializeField]
-    TaskMenu taskMenu;
 
     private int itemsFound = 0;
 
@@ -43,9 +40,12 @@ public class Collection : MonoBehaviour
         //When all items are found, task is complete
         if (itemsFound == collectables.Length)
         {
-            Task task = item.GetComponent<Task>();
-            task.IsCompleted = true;
-            taskMenu.RemoveTaskFromList(task);
+            Solve();
         }
+    }
+
+    protected override void Activate()
+    {
+        throw new System.NotImplementedException();
     }
 }

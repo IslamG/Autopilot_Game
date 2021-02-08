@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveGame 
 {
+
     //Constructor responsible for saving data
     public static void SaveData()
     {
@@ -11,7 +12,7 @@ public static class SaveGame
         //of game scope
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/save_info.sve";
-        
+        GameInitializer.ShowIcon(true);
         //stream serialized data to disk
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -19,6 +20,7 @@ public static class SaveGame
 
         formatter.Serialize(stream, data);
         stream.Close();
+        GameInitializer.ShowIcon(false);
     }
 
     //Load save file and put in SaveData object

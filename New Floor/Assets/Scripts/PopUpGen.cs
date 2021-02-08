@@ -13,18 +13,35 @@ public class PopUpGen : MonoBehaviour
     private GameObject buttonHolder;
     [SerializeField]
     private Button okBtn, cancelBtn;
+    [SerializeField]
+    private TMP_InputField inputField;
 
     MainMenu.DelegateFunc mainFunc;
     PauseMenu.DelegateFunc pauseFunc;
     Package.DelegateFunc packFunc;
+    SecutiryPuzzle.DelegateFunc securityFunc;
 
-    bool isTrue;
+    bool isTrue, created=false;
+
+    public string InputText { get; set; }
+
+    void Awake()
+    {
+        if (!created)
+        {
+            //DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
+        {
+            //Destroy(this.gameObject);
+        }
+    }
 
     //Function to generate and activate pop up with custom
     //message, header, and buttons
     public void GeneratePopUp(PopUp popUp)
     {
-        Debug.Log("p " + popUp.MessageHeader) ;
         //Assign text values from popUp object
         if(popUp.MessageHeader!=null)
             messageHeader.text = popUp.MessageHeader;
@@ -36,7 +53,21 @@ public class PopUpGen : MonoBehaviour
         {
             cancelBtn.gameObject.SetActive(true);
         }
+        if (popUp.IncludeField)
+        {
+            inputField.gameObject.SetActive(true);
+        }
         okBtn.gameObject.SetActive(true);
+    }
+    //Capture Text form input field
+    public void CaptureText()
+    {
+        InputText = inputField.text;
+        Debug.Log("pop input field writing: " + inputField.text);
+    }
+    public void DisableInputField(bool state)
+    {
+        inputField.gameObject.SetActive(state);
     }
     //Ok button pressed, invoke method delegated from original object
     public void Confirmation()
@@ -51,7 +82,8 @@ public class PopUpGen : MonoBehaviour
             Package.PackageOpened = true;
             packFunc.Invoke();
         }
-        
+        if (securityFunc != null)
+            securityFunc.Invoke();
         //Hide pop up
         gameObject.SetActive(false);
         isTrue = true;
@@ -90,5 +122,10 @@ public class PopUpGen : MonoBehaviour
     {
        packFunc = function;
         return isTrue;
+    }
+    //Overload for security
+    public void FunctionToDo(SecutiryPuzzle.DelegateFunc function)
+    {
+        securityFunc = function;
     }
 }

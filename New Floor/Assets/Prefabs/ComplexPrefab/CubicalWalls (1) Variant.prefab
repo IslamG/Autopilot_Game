@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1650240470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221978755282174531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a30221cf0bad914cbb2462b10d77a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PreReq: []
---- !u!114 &1650240473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221978755282174531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a4cd65485a3dd442b1df6e9f0e68e00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskText: Hand report in to manager
-  taskGroup: 98
 --- !u!114 &459603361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,6 +17,20 @@ MonoBehaviour:
   - This is Jeremy's desk
   - Nice guy, would've helped me
   - '....if we''d ever spoken before.'
+--- !u!114 &1650240473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221978755282174531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4cd65485a3dd442b1df6e9f0e68e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskText: Hand report in to manager
+  taskGroup: 98
 --- !u!114 &2121579887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,19 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskText: Log into Jeremy's PC
   taskGroup: 106
---- !u!114 &2121579888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3043641715243240978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a30221cf0bad914cbb2462b10d77a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PreReq: []
 --- !u!114 &2121579889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,15 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a92a69a3dde9847a882aea99e64679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginScreen: {fileID: 0}
-  crosshair: {fileID: 0}
-  closeUpCamera: {fileID: 0}
-  screenCamera: {fileID: 0}
   content: {fileID: 8400000, guid: 5fd692b83ee4cca458d7ec52db32ff9c, type: 2}
   helperText: {fileID: 0}
   tipControl: {fileID: 0}
-  fpc: {fileID: 0}
-  outline: {fileID: 0}
 --- !u!1001 &1327914101639702522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4139,7 +4107,7 @@ PrefabInstance:
     - target: {fileID: 6443941242600345114, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
         type: 3}
       propertyPath: m_Name
-      value: Cubical (3)
+      value: CubicalWalls (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6443941242600345114, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
         type: 3}
@@ -4245,21 +4213,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971355503742129693, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.208
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971355503742129693, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.054
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971355503742129693, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.788
       objectReference: {fileID: 0}
     - target: {fileID: 1841383341720470093, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
         type: 3}
@@ -4470,6 +4423,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1748
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971355503742129693, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.208
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971355503742129693, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.054
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971355503742129693, guid: 2ce62fe2289a02c4fa0534d7b8c0779a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.788
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce62fe2289a02c4fa0534d7b8c0779a, type: 3}
@@ -6995,6 +6963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0010640967
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497402669899563346, guid: 24d6d2b88e0a2504a89048f5f2ce8aeb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24d6d2b88e0a2504a89048f5f2ce8aeb, type: 3}

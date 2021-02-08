@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d161c5689beddad41b53bf8cae30b25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hud: {fileID: 0}
+  hud: {fileID: 8567933695631842749, guid: 58553426f6f0383408b43d7a1d4897b3, type: 3}
 --- !u!95 &892995911
 Animator:
   serializedVersion: 3
@@ -443,27 +443,27 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_FootstepSounds.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 371bc9fb81607ea41945b87cf3b513d9, type: 3}
+      objectReference: {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_FootstepSounds.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 65c4a7457adfe2c4d9a276e340ca6eae, type: 3}
+      objectReference: {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_FootstepSounds.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 65c4a7457adfe2c4d9a276e340ca6eae, type: 3}
+      objectReference: {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_FootstepSounds.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: a7d9b87baa0b4484abfb3438ac97c2db, type: 3}
+      objectReference: {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_JumpSound
       value: 
-      objectReference: {fileID: 8300000, guid: beb047bb2dc38e24894a2194cb571528, type: 3}
+      objectReference: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LandSound
       value: 
-      objectReference: {fileID: 8300000, guid: bcdc0db6f75f202479633db5b78270b7, type: 3}
+      objectReference: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
     - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -520,13 +520,14 @@ PrefabInstance:
     - target: {fileID: 9120086817112548836, guid: 5e9e851c0e142814dac026a256ba2ac0,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9120086817112548836, guid: 5e9e851c0e142814dac026a256ba2ac0,
         type: 3}
       propertyPath: hud
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8567933695631842749, guid: 58553426f6f0383408b43d7a1d4897b3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
 --- !u!1 &3769250739343851567 stripped

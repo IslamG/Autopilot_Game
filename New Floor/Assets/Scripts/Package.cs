@@ -9,6 +9,8 @@ public class Package : PathStarter
     
     [SerializeField]
     FirstPersonController fpc;
+    [SerializeField]
+    Puzzle moneyTask;
 
     private bool shown = false;
     public static bool PackageOpened { get; set; } = false;
@@ -16,10 +18,11 @@ public class Package : PathStarter
     //When a package is clicked, show pop up prompting to open
     protected new void  OnMouseDown()
     {
-        base.OnMouseDown();
+        
         //If pop up hasn't been shown before
         if (!shown)
         {
+            base.OnMouseDown();
             //Show pop up, disable movement, and show cursor
             PopUp pop = gameObject.GetComponent<PopUp>();
             Debug.Log("pp "+pop.MessageHeader);
@@ -41,11 +44,12 @@ public class Package : PathStarter
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Debug.Log("!");
-        if (!PackageOpened)
+        if (!PackageOpened || !moneyTask.IsActive)
         {
             //Do something later
             Debug.Log("Opened Package");
             DropItem di = gameObject.GetComponent<DropItem>();
+
             foreach (DropSpot spot in di.TargetSpot)
             {
                 //di.TargetSpot
@@ -54,6 +58,7 @@ public class Package : PathStarter
                     spot.gameObject.SetActive(false);
                 }
             }
+            
         }
     }
     protected override void Activate()

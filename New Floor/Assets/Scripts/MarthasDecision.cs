@@ -34,7 +34,7 @@ public class MarthasDecision : PathStarter
         {
             gameObject.transform.position = declineLocation.position;
         }
-        
+        Solve();
     }
 
     protected override void Activate()

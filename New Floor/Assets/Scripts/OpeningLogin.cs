@@ -9,6 +9,7 @@ public class OpeningLogin : LoginScreen
     {
         base.Start();
         ScreenToShow = loginScreen;
+        Debug.Log("Screen to show in opening loging " + ScreenToShow);
     }
     [SerializeField]
     private Image fadeBlack;
@@ -17,7 +18,14 @@ public class OpeningLogin : LoginScreen
         Debug.Log("Trying to log in");
         if (isUnlocked)
         {
-            taskMenu.RemoveTaskFromList(task);
+            if (taskToRemove != null)
+            {
+                foreach(Task task in taskToRemove)
+                {
+                    taskMenu.RemoveTaskFromList(task);
+                }
+            }
+                
             gameObject.GetComponentsInParent<InteractableScreen>()[0].MakeVisible(false);
             //Trigger fade out of scene
             fadeBlack.gameObject.SetActive(true);

@@ -59,7 +59,7 @@ public class SettingsPrefs : MonoBehaviour
 
     //Resolution[] resolutions;
 
-    private void Start()
+    private void Awake()
     {
         //tbd load from player prefs if available
         settings.Init();

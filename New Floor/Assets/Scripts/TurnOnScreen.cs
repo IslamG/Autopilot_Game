@@ -6,21 +6,22 @@ using UnityEngine.Video;
 using TMPro;
 using UnityEngine.SceneManagement;
 public class TurnOnScreen : MonoBehaviour
-{
-    
-    
+{  
     [SerializeField]
      RenderTexture content;
     [SerializeField]
      TMP_Text helperText;
     [SerializeField]
      TipsControl tipControl;
-
+    [SerializeField]
+     InteractableScreen openUI;
+    [SerializeField]
      VideoPlayer vidPlayer;
      Camera mainCam;
-     static bool introVideoPlayed = false, helperDisplayed = false;
+     bool introVideoPlayed = false, helperDisplayed = false;
      Timer textTimer;
-     InteractableScreen openUI;
+
+    public bool IsEnabled { get; set; } = true;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class TurnOnScreen : MonoBehaviour
         Cursor.visible = false;
         vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
-        openUI= gameObject.GetComponent<InteractableScreen>();
+        Debug.Log("Initializing in Trun on screen open ui= " + openUI);
     }
     //Switch view from closeup camera to main 
     void Update()
@@ -44,50 +45,57 @@ public class TurnOnScreen : MonoBehaviour
     }
     void Awake()
     {
-        vidPlayer = GetComponentInChildren<VideoPlayer>();
+        //vidPlayer = GetComponentInChildren<VideoPlayer>();
         vidPlayer.targetTexture.Release();
         textTimer = gameObject.AddComponent<Timer>();
         textTimer.Duration = 5;
     }
     void OnMouseDown()
     {
-        //base.OnMouseDown();
-        //if mouse isn't over a screen that can open 
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-        Debug.Log(gameObject.name+" is on");
-        if (SceneManager.GetActiveScene().name.Equals("Opening"))
-            tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
-        //Only play the boot up animation once
-        if (!introVideoPlayed)
+        if (IsEnabled)
         {
-            //Play start up animation
-            vidPlayer.Play();
-            introVideoPlayed = true;
+            //base.OnMouseDown();
+            //if mouse isn't over a screen that can open 
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            if (SceneManager.GetActiveScene().name.Equals("Opening"))
+                tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
+            //Only play the boot up animation once
+            if (!introVideoPlayed)
+            {
+                //Play start up animation
+                vidPlayer.Play();
+                introVideoPlayed = true;
+            }
+            else
+            {
+                openUI.SwitchToScreen();
+                //clear screen and revert back to main camera
+                //for viewing login screen
+                content.DiscardContents();
+                //remove?
+                mainCam.gameObject.SetActive(true);
+                //mainCam.GetComponent<AudioListener>().enabled = true;
+            }
         }
-        else
-        {
-            openUI.SwitchToScreen();
-            //clear screen and revert back to main camera
-            //for viewing login screen
-            content.DiscardContents();
-            //remove?
-            mainCam.gameObject.SetActive(true);
-            //mainCam.GetComponent<AudioListener>().enabled = true;
-        }
+        
     }
     //When startup animation finished playing
     void EndReached(VideoPlayer videoPlayer)
     {
-        openUI.SwitchToScreen();
-
-        //Display helper text only once
-        if (!helperDisplayed && helperText!=null)
+        if (IsEnabled)
         {
-            helperText.text = "I think I wrote clues to my password somewhere";
-            textTimer.Run();
-            helperDisplayed = true;
+            openUI.SwitchToScreen();
+
+            //Display helper text only once
+            if (!helperDisplayed && helperText!=null)
+            {
+                helperText.text = "I think I wrote clues to my password somewhere";
+                textTimer.Run();
+                helperDisplayed = true;
+            }
         }
+        
     }
     /*
     //Bring up login screen UI

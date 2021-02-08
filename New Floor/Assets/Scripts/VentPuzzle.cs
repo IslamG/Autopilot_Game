@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class VentPuzzle : MonoBehaviour
+public class VentPuzzle : Puzzle
 {
-    private void OnMouseDown()
+    private new void OnMouseDown()
     {
         if (gameObject.name.Equals("Exit"))
         {
@@ -13,7 +13,7 @@ public class VentPuzzle : MonoBehaviour
         }
         else
         {
-            LoadOut();
+            Activate();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -27,7 +27,7 @@ public class VentPuzzle : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                LoadOut();
+                Activate();
             }
         } 
     }
@@ -38,5 +38,14 @@ public class VentPuzzle : MonoBehaviour
     private void Exit()
     {
         //LevelTraversal.TargetLevel = "FloorTest";
+    }
+
+    protected override void Activate()
+    {
+        if (isActive)
+        {
+            LoadOut();
+        }
+        
     }
 }

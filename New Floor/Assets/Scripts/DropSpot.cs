@@ -7,8 +7,9 @@ public class DropSpot : MonoBehaviour
     //tbd better system trade-off between object and spot
     [SerializeField]
     GameObject targetObject;
+
     [SerializeField]
-    TaskMenu taskMenu;
+    VentPuzzle vent;
 
     private bool fired = false;
     
@@ -22,9 +23,7 @@ public class DropSpot : MonoBehaviour
             fired = true;
             //tbd add reaction to successful deposite
             //possibly change remove system
-            Task task = targetObject.GetComponent<Task>();
-            task.IsCompleted = true;
-            taskMenu.RemoveTaskFromList(task);
+            
             //Disable drop spot and item scripts
             
             OtherDisable(other.gameObject);
@@ -36,6 +35,15 @@ public class DropSpot : MonoBehaviour
                     spot.gameObject.SetActive(false);
                 }
             }
+            if (vent != null)
+            {
+                if (Package.PackageOpened)
+                {
+                    vent.IsActive = true;
+                }
+            }
+            Debug.Log("Drop spot trigger enter other puzzle " + other.GetComponent<Puzzle>());
+            other.GetComponent<Puzzle>().Solve();
             this.gameObject.SetActive(false);
         }
         else

@@ -18,6 +18,7 @@ public class MouseIndicator : MonoBehaviour
     private Transform _selection;
     private bool isFocused = false, itemHeld=false;
 
+
     private void Start()
     {
         viewCamera = gameObject.GetComponent<Camera>();

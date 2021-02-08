@@ -3,7 +3,17 @@ guid: 1ec5bcfe602adbb45bd4fa04f99fffc7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - defaultMouse: {fileID: 21300000, guid: e25dbdd28ed16204680ebfd61062eef8, type: 3}
+  - focusMouse: {fileID: 21300000, guid: 6565f4b400045b740895a5ce8caceac5, type: 3}
+  - clickMouse: {fileID: 21300000, guid: 6cb6d49256346c94aa5080565ae4ddf6, type: 3}
+  - lmb: {fileID: 21300000, guid: b708007eabeb95a4a9219191bc0758e3, type: 3}
+  - rmb: {fileID: 21300000, guid: 658162964daa2de4ab3ac212fb37c0d9, type: 3}
+  - handOpen: {fileID: 21300000, guid: bd18767e16b8b7a4f985d7b5135d6691, type: 3}
+  - handClosed: {fileID: 21300000, guid: d8b3c24a1f936654bbee4ee79315b8a6, type: 3}
+  - lookAt: {fileID: 21300000, guid: 7db6eea6c6522874a982247a0b73899a, type: 3}
+  - lookCloser: {fileID: 21300000, guid: f401e5794b9a25243b4822bc27e19f28, type: 3}
+  - crosshair: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -24,7 +24,7 @@ public class Elevator : MonoBehaviour
     [SerializeField]
     private Animator elevatorAnimator, lightAnimator;
     [SerializeField]
-    private GameObject doorAnim, player;
+    private GameObject doorAnim, player, saveIcon;
 
     Timer animationTimer, btnTimer;
     private void Start()
@@ -45,7 +45,9 @@ public class Elevator : MonoBehaviour
                 //and load in secret ending 
                 Vector3 player = GameObject.FindGameObjectWithTag("Player").transform.position;
                 SceneManager.LoadScene("SubconscienceFloor");
+                //saveIcon.SetActive(true);
                 SaveGame.SaveData();
+                //saveIcon.SetActive(false);
                 //SceneManager.UnloadSceneAsync("FloorTest");
                 //Resources.UnloadUnusedAssets();
             }

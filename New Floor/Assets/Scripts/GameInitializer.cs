@@ -16,18 +16,23 @@ public class GameInitializer : MonoBehaviour
     cakeslice.Outline outline;
     [SerializeField]
     Animator elevatorAnim;
+    [SerializeField]
+    GameObject save;
 
+    static GameObject saveIcon;
     //Singleton
     void Awake()
     {
         if (!created)
         {
+            //DontDestroyOnLoad(this.gameObject);
             created = true;
         }
         else
         {
             //Destroy(this.gameObject);
         }
+        saveIcon = save;
     }
     /// <summary>
     /// Awake is called before Start
@@ -47,6 +52,13 @@ public class GameInitializer : MonoBehaviour
         check if the opening scene and set next level to main level
         on the floor level puzzles will control if there'll 
         be another scene loaded in and what it is*/
+        
+
+        //Load game save
+        //LevelTraversal-> Set Active Scene
+        //PlayerPosition -> Set Position
+        //Puzzle Piece Manager -> SetPuzzles
+        //Endings -> Set Flags
 
         if (currenLvl.Equals("Opening"))
         {
@@ -88,5 +100,9 @@ public class GameInitializer : MonoBehaviour
             TipScript tip2 = Camera.main.GetComponents<TipScript>()[1];
             gameObject.GetComponent<TipsControl>().GenerateTip(tip2);
         }
+    }
+    static public void ShowIcon(bool flag)
+    {
+        saveIcon.SetActive(flag);
     }
 }

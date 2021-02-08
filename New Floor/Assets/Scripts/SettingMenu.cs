@@ -30,10 +30,21 @@ public class SettingMenu : MonoBehaviour
 
     Resolution[] resolutions;
     int resolutionIndex, qualityIndex;
-    bool isFullScreen;
+    bool isFullScreen, created=false;
     
     public bool Initialized { get; set; }
-
+    void Awake()
+    {
+        if (!created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     public void Init()
     {
         if (!Initialized)
@@ -57,6 +68,7 @@ public class SettingMenu : MonoBehaviour
             resolutionDropdown.AddOptions(options);
             resolutionDropdown.value = currentResolutionIndex;
             resolutionDropdown.RefreshShownValue();
+            Initialized = true;
         }
         
 
@@ -111,7 +123,16 @@ public class SettingMenu : MonoBehaviour
     {
         //Change main mixer to respond to volume change
        // Debug.Log("m " + staticMixer.name);
-        audioMixer.SetFloat("volume", volume);
+
+        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20 );
+        //audioMixer.SetFloat("uiVolume", volume);
+        //audioMixer.SetFloat("menuVolume", volume);
+        //audioMixer.SetFloat("musiceVolume", volume);
+        //audioMixer.SetFloat("enviromentVolume", volume);
+        //audioMixer.SetFloat("playerVolume", volume);
+        //audioMixer.SetFloat("effectsVolume", volume);
+        //audioMixer.SetFloat("gameVolume", volume);
+        //audioMixer.SetFloat("elevatorVolume", volume);
         //Save changes to player prefs
         PlayerPrefs.SetFloat(VOLUME, volume);
         PlayerPrefs.Save();

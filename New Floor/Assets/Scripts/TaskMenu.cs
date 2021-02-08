@@ -12,7 +12,7 @@ public class TaskMenu : MonoBehaviour
     public static TaskMenu instance;
 
     [SerializeField]
-    private GameObject starBurst, taskPanel, 
+    private GameObject starBurst, taskPanel, textDisplay,
         blueTape, orangeTape, greenTape, purpleTape, generalTab;
     [SerializeField]
     private TMP_Text taskText;
@@ -25,7 +25,7 @@ public class TaskMenu : MonoBehaviour
 
     private Rect menuRect, smallRect, paperRect;
     private static bool isDisplayed = false; 
-    private bool addedTask=false, tipShown=false;
+    private bool addedTask=false, tipShown=false, created=false;
     private Vector2 menuPosition, leftBottom;
     private char activeGroup='g';
     private float mouseScroll;
@@ -40,17 +40,17 @@ public class TaskMenu : MonoBehaviour
     #endregion
     #region Monobehavior methods
     //Singleton class
-    private void Awake()
+    void Awake()
     {
-        if (instance == null)
+        if (!created)
         {
             //DontDestroyOnLoad(this.gameObject);
+            created = true;
         }
         else
         {
             //Destroy(this.gameObject);
         }
-
     }
     void Start()
     {
@@ -67,7 +67,6 @@ public class TaskMenu : MonoBehaviour
         if (saveTimer.Finished)
         {
             saveIcon.SetActive(false);
-            Debug.Log("Hiding Save");
         }
         //If menu button pressed
         if (Input.GetKeyDown(KeyCode.M) && !PauseMenu.isPaused)
@@ -166,11 +165,12 @@ public class TaskMenu : MonoBehaviour
     private void AddActiveTaskToList(Task task)
     {
         starBurst.SetActive(true);
+        textDisplay.SetActive(true);
+        textDisplay.GetComponentInChildren<TextMeshProUGUI>().text = task.TaskText;
         activeTaskList.Add(task);
         activeTaskList = activeTaskList.Distinct().ToList();
         task.IsRegistered = true;
-        AddTaskToMenu();
-        //HighlightStrip();
+        AddTaskToMenu();;
     }
     //Show task text on menu
     //Called when a new task becomes active
@@ -182,7 +182,6 @@ public class TaskMenu : MonoBehaviour
         {
             Destroy(_child.gameObject);
             paperImg.GetComponentsInChildren<TextMeshProUGUI>();
-            Debug.Log("This many " + displayedTasks.Length + " in " + activeGroup);
         }
         foreach (Task task in activeTaskList)
         {
@@ -208,7 +207,6 @@ public class TaskMenu : MonoBehaviour
             }  
         }
         displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
-        Debug.Log("This many " + displayedTasks.Length + " in " + activeGroup);
         if (displayedTasks.Length < 1)
         {
             taskText.text = "No Active Tasks in this category";
@@ -242,33 +240,7 @@ public class TaskMenu : MonoBehaviour
         {
             //Jeremy's tasks active
             case 'j':
-                {/*
-                    Outline other = greenTape.GetComponent<Outline>();
-                    if (other != null)
-                    {
-                        Destroy(other);
-                    }
-                    other = orangeTape.GetComponent<Outline>();
-                    if (other != null)
-                    {
-                        Destroy(other);
-                    }
-                    other = blueTape.GetComponent<Outline>();
-                    if (other != null)
-                    {
-                        Destroy(other);
-                    }
-                    other = purpleTape.GetComponent<Outline>();
-                    if (other != null)
-                    {
-                        Destroy(other);
-                    }
-
-                    Outline outline=blueTape.AddComponent<Outline>();
-                    outline.effectDistance = new Vector2(6, -6);
-                    outline.effectColor = new Color(255,255,0, 0.25f);
-                    */
-
+                {
                     paperImg.transform.parent.SetAsLastSibling();
                     blueTape.transform.SetAsLastSibling();
                     starBurst.transform.SetAsLastSibling();

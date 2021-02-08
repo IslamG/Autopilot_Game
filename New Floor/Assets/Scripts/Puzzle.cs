@@ -8,11 +8,14 @@ public abstract class Puzzle : MonoBehaviour
     protected List<Puzzle> PreReq;
     [SerializeField]
     protected PopUpGen popUpGen;
+    [SerializeField]
+    protected TaskMenu taskMenu;
 
     protected bool isActive = false, isSolved = false;
 
-    public bool IsActive { get => isActive;}
+    public bool IsActive { get => isActive; set => isActive=value; }
     public bool IsSolved { get => isSolved;}
+    public bool IsEnabled { get; set; } = true;
 
     //Unlock/make active item to access puzzle game
     protected void CheckRequisites()
@@ -21,7 +24,6 @@ public abstract class Puzzle : MonoBehaviour
         //if is leaf item unlock
         if (PreReq.Count == 0)
         {
-            Debug.Log("Pre req = zero source: " + name);
             Activate();
         }
         //else if all prerequisites are met unlock
@@ -40,78 +42,35 @@ public abstract class Puzzle : MonoBehaviour
                 Activate();
             }
         }
-        if (IsActive)
-        {
-            CheckItem();
-        }
+        //if (IsActive)
+        //{
+        //    CheckItem();
+        //}
 
     }
     //Puzzle Piece can only be solved if is active
     //Replace with puzzle game code or call
-    /*private void Solve ()
-    {
-        
-    }*/
-    /*private void Puzzle()
-    {
-        if (IsActive)
-        {
-            //do puzzle
-            //if done correctly
-            //Solve();
-            Debug.Log("Puzzling source: "+name);
-        }
-    }*/
     protected abstract void Activate();
-        /*
-            //Activate task based on attached task 
-            isActive = true;
-            Task task=gameObject.GetComponent<Task>();
-            //Invokes task listeners
-            task.ActivateTask();
-            //Hides cosmatic arrow in scene, invokes path activated listeners
-            if (isPathStarter)
-            {
-                arrow.SetActive(false);
-                pathActivated.Invoke(JeremyPath.instance);
-            }
-            //tbd show text outlining the task on activation 
-
-            //PopUp pop = gameObject.GetComponent<PopUp>();
-            //pop.MessageHeader = task.TaskText;
-            //pop.ShowPop();
-
-            //fpc.enabled = false;
-            //Cursor.lockState = CursorLockMode.None;
-            //Cursor.visible = true;
-
-
-            //tbd generic puzzle delegate method for pop up
-
-            //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
-            //popUpGen.gameObject.SetActive(true);
-
-
-            //Activate drop spot for tasks with drop spots
-            DropItem di = gameObject.GetComponent<DropItem>();
-            //if dropppable object
-            if (di != null && !task.IsCompleted) 
-            { 
-                foreach(DropSpot spot in di.TargetSpot)
-                {
-                    //di.TargetSpot
-                    spot.gameObject.SetActive(true);
-                }          
-            }
-
-            //return true;
-            */
-    
+    public virtual void Solve()
+    {
+        if (IsEnabled)
+        {
+        Task task = gameObject.GetComponent<Task>();
+            isSolved = true;
+            task.IsCompleted = true;
+            taskMenu.RemoveTaskFromList(task);
+        }
+        
+    }
     protected void OnMouseDown()
     {
-        Debug.Log("Calling puzzle active checker, source: " + gameObject.name +" / "+name);
-        //check if item is unlocked (leaf or solved)
-        CheckRequisites(); 
+        if (IsEnabled)
+        {
+            //check if item is unlocked (leaf or solved)
+            CheckRequisites();
+            Debug.Log("Puzzle Mouse from " + gameObject);
+        }
+        
     }
     protected void CheckItem()
     {

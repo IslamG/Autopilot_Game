@@ -29,17 +29,18 @@ public class PauseMenu : MonoBehaviour
     float timeScale;
     bool fpcEnabled;
 
-    void Awake()
-    {
-        if (!created)
-        {
-            created = true;
-        }
-        else
-        {
-            //Destroy(this.gameObject);
-        }
-    }
+    //void Awake()
+    //{
+    //    if (!created)
+    //    {
+    //        DontDestroyOnLoad(this.gameObject);
+    //        created = true;
+    //    }
+    //    else
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
     void Update()
     {
         //pause button pressed to pause and unpause

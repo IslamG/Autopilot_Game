@@ -11,8 +11,6 @@ public class OpeningMoniter : InteractableScreen
     
     [SerializeField]
     protected GameObject loginScreen;
-    
-
 
     private Camera mainCam;
     protected new void Start()
@@ -21,6 +19,8 @@ public class OpeningMoniter : InteractableScreen
         mainCam = Camera.main;
         outline = mainCam.GetComponent<OutlineEffect>();
         ScreenToShow = loginScreen;
+        Debug.Log("Intializing opening monitor screen to show = "+ loginScreen);
+
     }
     //Switch view from closeup camera to main 
     protected new void Update()
@@ -33,8 +33,9 @@ public class OpeningMoniter : InteractableScreen
             mainCam.GetComponent<AudioListener>().enabled = true;
             closeUpCamera.gameObject.SetActive(false);
             closeUpCamera.GetComponent<AudioListener>().enabled = false;
+            MakeVisible(false);
         }
-        base.Update();
+        //base.Update();
     }
     protected new void OnMouseDown()
     {
@@ -47,12 +48,11 @@ public class OpeningMoniter : InteractableScreen
              closeUpCamera.GetComponent<AudioListener>().enabled = true;
              mainCam.gameObject.SetActive(false);
              mainCam.GetComponent<AudioListener>().enabled = false;
-            Debug.Log("Doing on Mouse down from opening puzzle from " + gameObject.name);
         }
 
     }
     //Bring up login screen UI
-    protected new private void SwitchToScreen()
+    public override void SwitchToScreen()
     {
         outline.enabled = false;
         screenCamera.gameObject.SetActive(true);

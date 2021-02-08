@@ -10,6 +10,7 @@ public class SaveData
     private float timeInGame;
     private float[] playerPosition;
     private string levelName;
+    
 
     public float TimeInGame { get => timeInGame;}
     public float[] PlayerPosition { get => playerPosition;}

@@ -5,44 +5,41 @@ public class DesktopScreen : InteractableScreen
 {
     [SerializeField]
     FirstPersonController fpc;
-    /*
-    protected override void DisableScreen()
-    {
-        if (isUnlocked)
-        {
+    [SerializeField]
+    protected GameObject screen;
 
-            taskMenu.RemoveTaskFromList(task);
+    private void Awake()
+    {
+        ScreenToShow = this.gameObject;
+    }
+    protected new void Update()
+    {
+        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused)
+        {
             fpc.enabled = true;
             MakeVisible(false);
         }
     }
-    public new void MakeVisible(bool ctrl)
-    {
-        //if hiding the UI lock the mouse and reactivate the crosshair
-        if (!ctrl)
-        {
-            base.MakeVisible(ctrl);
-            fpc.enabled = true;
-        }
-        else
-        {
-            fpc.enabled = false;
-            base.MakeVisible(ctrl);
-        }
-    }*/
     public void HideDesktop()
     {
+        fpc.enabled = true;
         MakeVisible(false);
     }
     public void ShowDesktop()
     {
-        MakeVisible(true);
-        if (!IsActive)
-        {
-            Activate();
-        }
+        MakeVisible(true); 
     }
-
+    /**
+     * Once is fully rendered [OnGUI] activate task
+     * Placing the activate code in the ShowDesktop method would cause the invoke call
+     * to fire before desktop screen is active 
+     * i.e. before TaskMenu could add itself as a listener for the task event
+    **/
+    private void OnGUI()
+    {
+        if(!isActive)
+            Activate();
+    }
     protected override void Activate()
     {
         //Activate task based on attached task 
@@ -50,30 +47,5 @@ public class DesktopScreen : InteractableScreen
         Task task = gameObject.GetComponent<Task>();
         //Invokes task listeners
         task.ActivateTask();
-
-        //tbd show text outlining the task on activation 
-
-        //PopUp pop = gameObject.GetComponent<PopUp>();
-        //pop.MessageHeader = task.TaskText;
-        //pop.ShowPop();
-
-        //fpc.enabled = false;
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
-
-
-        //tbd generic puzzle delegate method for pop up
-
-        //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
-        //popUpGen.gameObject.SetActive(true);
-
-
-
-
-        //return true;
     }
-    /*protected override void DisableScreen()
-    {
-        HideDesktop();
-    }*/
 }

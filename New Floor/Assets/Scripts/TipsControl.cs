@@ -15,6 +15,7 @@ public class TipsControl : MonoBehaviour
     {
         if (!created)
         {
+            //DontDestroyOnLoad(this.gameObject);
             created = true;
         }
         else
@@ -110,7 +111,6 @@ public class TipsControl : MonoBehaviour
     {
         Tip tip = Tip.CreateInstance<Tip>();
         tip.DisplayText = tipScript.TipText;
-        Debug.Log("tip: " + tipScript.TipText);
         tip.ID = tipScript.GetInstanceID();//TipID;
         //If tips are enabled display
         if (TipsEnabled)

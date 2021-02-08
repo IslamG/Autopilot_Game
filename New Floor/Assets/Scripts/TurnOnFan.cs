@@ -12,7 +12,8 @@ public class TurnOnFan : MonoBehaviour
     private bool isOn = false;
     private AudioSource source;
 
-    
+    public bool IsEnabled { get; set; } = true;
+
     void Start()
     {
         fanimator = gameObject.GetComponentInChildren<Animator>();
@@ -22,18 +23,22 @@ public class TurnOnFan : MonoBehaviour
     //When object clicked switch animation on/off
     private void OnMouseDown()
     {
-        isOn = !isOn;
-        if (isOn)
+        if (IsEnabled)
         {
-            fanimator.SetBool("fanOn", true);
-            //Uncomment when clip is added
-            source.Play();
+            isOn = !isOn;
+            if (isOn)
+            {
+                fanimator.SetBool("fanOn", true);
+                //Uncomment when clip is added
+                source.Play();
+            }
+            else
+            {
+                fanimator.SetBool("fanOn", false);
+                //Uncomment when clip is added
+                source.Stop();
+            }
         }
-        else
-        {
-            fanimator.SetBool("fanOn", false);
-            //Uncomment when clip is added
-            source.Stop();
-        }
+        
     }
 }

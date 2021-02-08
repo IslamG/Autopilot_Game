@@ -7,15 +7,19 @@ public class PourLiquid : MonoBehaviour
 {
     [SerializeField]
     GameObject liquid;
-
+    public bool IsEnabled { get; set; } = true;
     //When item clicked, play/stop pour animation
     //tbd switch based on part of item pressed for objects
     //with multiple outputs of liquid
     private void OnMouseDown()
     {
-        //Switch active state
-        liquid.SetActive(!liquid.activeSelf);
-        Debug.Log("Liquid Trigger");
+        if (IsEnabled)
+        {
+            //Switch active state
+            liquid.SetActive(!liquid.activeSelf);
+            Debug.Log("Liquid Trigger");
+        }
+        
     }
 
 }
