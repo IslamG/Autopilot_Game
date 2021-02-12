@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using cakeslice;
+﻿using UnityEngine;
 
 namespace cakeslice
 {
@@ -20,18 +17,18 @@ namespace cakeslice
         {
             Color c = GetComponent<OutlineEffect>().lineColor0;
 
-            if(pingPong)
+            if (pingPong)
             {
                 c.a += Time.deltaTime;
 
-                if(c.a >= 1)
+                if (c.a >= 1)
                     pingPong = false;
             }
             else
             {
                 c.a -= Time.deltaTime;
 
-                if(c.a <= 0)
+                if (c.a <= 0)
                     pingPong = true;
             }
 

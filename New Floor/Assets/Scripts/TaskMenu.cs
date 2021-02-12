@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -22,21 +21,30 @@ public class TaskMenu : MonoBehaviour
     private Image paperImg;
     [SerializeField]
     private GameObject saveIcon;
+    [SerializeField]
+    ToDoList toDo;
+    [SerializeField]
+    TargettingBehavior activeTarget;
 
     private Rect menuRect, smallRect, paperRect;
-    private static bool isDisplayed = false; 
-    private bool addedTask=false, tipShown=false, created=false;
+    private static bool isDisplayed = false;
+    private bool addedTask = false, tipShown = false, created = false;
     private Vector2 menuPosition, leftBottom;
-    private char activeGroup='g';
+    private char activeGroup = 'g';
     private float mouseScroll;
     private Timer saveTimer;
+    AudioSource scribbleSound;
 
     private List<Task> activeTaskList = new List<Task>();
     private List<Task> completedTaskList = new List<Task>();
+
+
+
     //private Dictionary<char, Task> pairList = new Dictionary<char, Task>();
     #endregion
     #region Properties
     public static bool IsDisplayed { get => isDisplayed; }
+    public List<Task> CompletedTaskList { get => completedTaskList; }
     #endregion
     #region Monobehavior methods
     //Singleton class
@@ -61,6 +69,7 @@ public class TaskMenu : MonoBehaviour
         EventManager.AddListener(AddActiveTaskToList);
         saveTimer = gameObject.AddComponent<Timer>();
         saveTimer.Duration = 1;
+        scribbleSound = gameObject.GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -92,11 +101,11 @@ public class TaskMenu : MonoBehaviour
             }
         }
         //Allow to scroll through tabs
-        if(isDisplayed && !PauseMenu.isPaused)
+        if (isDisplayed && !PauseMenu.isPaused)
         {
-            if (Input.GetAxis("Mouse ScrollWheel")<0)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
-                mouseScroll -= 1; 
+                mouseScroll -= 1;
                 mouseScroll = Mathf.Clamp(mouseScroll, -4, 4);//prevents value from exceeding specified range
                 SwitchPages();
             }
@@ -109,7 +118,7 @@ public class TaskMenu : MonoBehaviour
 
         }
     }
-    
+
     #endregion
     #region custom methods
     //Open up menu in screen middle
@@ -127,7 +136,7 @@ public class TaskMenu : MonoBehaviour
             0, 0), Quaternion.identity);
         if (taskPanel.GetComponent<Text>() != null)
             taskPanel.GetComponent<Text>().gameObject.SetActive(true);
-        
+
         blueTape.SetActive(true);
         orangeTape.SetActive(true);
         greenTape.SetActive(true);
@@ -170,13 +179,15 @@ public class TaskMenu : MonoBehaviour
         activeTaskList.Add(task);
         activeTaskList = activeTaskList.Distinct().ToList();
         task.IsRegistered = true;
-        AddTaskToMenu();;
+        if (activeTarget != null)
+            activeTarget.target = task.gameObject.transform;
+        AddTaskToMenu();
     }
     //Show task text on menu
     //Called when a new task becomes active
     private void AddTaskToMenu()
     {
-        
+
         TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI _child in displayedTasks)
         {
@@ -190,39 +201,41 @@ public class TaskMenu : MonoBehaviour
             {
                 taskText.text = "";
                 GameObject _obj = new GameObject("Text");
-                TextMeshProUGUI _text=_obj.AddComponent<TextMeshProUGUI>();
-                _text.text = ("•   "+task.TaskText);
+                TextMeshProUGUI _text = _obj.AddComponent<TextMeshProUGUI>();
+                _text.text = ("•   " + task.TaskText);
                 if (isDisplayed)
                 {
                     _text.fontSize = 32;
                 }
                 else
                 {
-                     _text.fontSize = 8;
+                    _text.fontSize = 8;
                 }
                 _text.color = Color.black;
-            
+
                 _obj.transform.SetParent(paperImg.transform);
 
-            }  
+            }
         }
         displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
+        scribbleSound.Play();
         if (displayedTasks.Length < 1)
         {
             taskText.text = "No Active Tasks in this category";
-        } 
+        }
         if (SceneManager.GetActiveScene().name.Equals("Opening"))
         {
             TipScript script = this.gameObject.GetComponent<TipScript>();
-            if(script!=null)
+            if (script != null)
                 tipControl.GenerateTip(script);
         }
-        
+
     }
     //Remove task text from menu
     //Used mainly when active task is completed
     public void RemoveTaskFromList(Task task)
     {
+        completedTaskList.Add(task);
         activeTaskList.Remove(task);
         //SaveGame.SaveData();
         //saveIcon.SetActive(true);
@@ -231,6 +244,8 @@ public class TaskMenu : MonoBehaviour
             starBurst.SetActive(false);
             taskText.text = "No Active Tasks in This Catagory";
         }
+        if (toDo != null)
+            toDo.RemoveTask();
         AddTaskToMenu();
     }
     private void HighlightStrip()
@@ -291,7 +306,7 @@ public class TaskMenu : MonoBehaviour
             activeGroup = 'j';
         }
 
-        else if(mouseScroll == (-2) || mouseScroll == (3))
+        else if (mouseScroll == (-2) || mouseScroll == (3))
         {
             activeGroup = 'm';
         }

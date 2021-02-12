@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class USBDelivery : Puzzle
 {
@@ -24,13 +22,11 @@ public class USBDelivery : Puzzle
         Debug.Log("Solve Solve usb delivery");
         base.Solve();
     }
-    protected override void Activate()
+    public override void Activate()
     {
-            //Activate task based on attached task 
-            Task task = gameObject.GetComponent<Task>();
-            //Invokes task listeners
-            task.ActivateTask();
-            security.ShowCones();
+        base.Activate();
+
+        security.ShowCones();
         TipScript tip = gameObject.GetComponent<TipScript>(); ;
         tipControl.GenerateTip(tip);
 

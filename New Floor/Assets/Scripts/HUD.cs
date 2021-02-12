@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
     public static HUD instance;
     void Awake()
     {
-        if (instance==null)
+        if (instance == null)
         {
             //create
         }

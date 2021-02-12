@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
 //Class for managing sitting down and display and animation
 //functionality suspended
@@ -34,7 +32,7 @@ public class Sit : MonoBehaviour
                 rigidbody.angularVelocity = Vector3.zero;
             }
         }
-     }
+    }
     private void OnTriggerExit(Collider other)
     {
         //tbd remove message and disallow sitting

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DropSpot : MonoBehaviour
 {
@@ -12,23 +10,23 @@ public class DropSpot : MonoBehaviour
     VentPuzzle vent;
 
     private bool fired = false;
-    
+
     //If correct object placed inside of drop spot
     private void OnTriggerEnter(Collider other)
     {
         GameObject otherObj = other.gameObject;
-        if (!fired && otherObj==targetObject)
+        if (!fired && otherObj == targetObject)
         {
             Debug.Log("depositied item");
             fired = true;
             //tbd add reaction to successful deposite
             //possibly change remove system
-            
+
             //Disable drop spot and item scripts
-            
+
             OtherDisable(other.gameObject);
             DropSpot[] allSpots = other.gameObject.GetComponent<DropItem>().TargetSpot;
-            foreach(DropSpot spot in allSpots)
+            foreach (DropSpot spot in allSpots)
             {
                 if (spot.gameObject != gameObject)
                 {
@@ -49,7 +47,7 @@ public class DropSpot : MonoBehaviour
         else
         {//???
             Collider[] col = gameObject.GetComponents<Collider>();
-            foreach(Collider bump in col)
+            foreach (Collider bump in col)
             {
                 if (!bump.isTrigger)
                 {
@@ -81,5 +79,5 @@ public class DropSpot : MonoBehaviour
         }
         drop.enabled = false;
     }
-    
+
 }

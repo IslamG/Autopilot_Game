@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimerController : MonoBehaviour
@@ -16,14 +15,14 @@ public class TimerController : MonoBehaviour
     //Singleton class
     private void Awake()
     {
-        if (instance==null)
+        if (instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
-        } 
+        }
     }
 
     private void Start()

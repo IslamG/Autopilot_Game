@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class JeremyPath : AdventurePath
+﻿public class JeremyPath : AdventurePath
 {
     public static JeremyPath instance;
     void Awake()

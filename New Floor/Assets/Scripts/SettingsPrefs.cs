@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class SettingsPrefs : MonoBehaviour
 {
@@ -91,11 +87,11 @@ public class SettingsPrefs : MonoBehaviour
     }
 
     //Volume slider changed
-    private  void SetVolume()
+    private void SetVolume()
     {
         //Change main mixer to respond to volume change
         settings.SetVolume(PlayerPrefs.GetFloat(VOLUME));
-        Debug.Log("voluming "+ PlayerPrefs.GetFloat(VOLUME));
+        Debug.Log("voluming " + PlayerPrefs.GetFloat(VOLUME));
     }
 
     //Quality dropdown changed
@@ -103,7 +99,7 @@ public class SettingsPrefs : MonoBehaviour
     {
         //Change quality based on index value
         settings.SetQuality(PlayerPrefs.GetInt(GRAPHICS));
-        
+
     }
 
     //Fullscren checkbox value changed

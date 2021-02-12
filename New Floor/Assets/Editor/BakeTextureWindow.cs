@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using System;
 using System.IO;
-using System;
+using UnityEditor;
+using UnityEngine;
 
 public class BakeTextureWindow : EditorWindow
 {

@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ElevatorSequence : MonoBehaviour
 {
@@ -24,12 +23,12 @@ public class ElevatorSequence : MonoBehaviour
     [SerializeField]
     private GameObject elevator;
 
-    private const string sequence="11513249";
+    private const string sequence = "11513249";
     private static string input = "";
-    private static bool isUnlocked= false;
+    private static bool isUnlocked = false;
 
     private Timer timer;
-    private bool finishedWaiting = false, startedCounting=false;
+    private bool finishedWaiting = false, startedCounting = false;
     private int elapsedTime = 0;
     private Coroutine theWait;
 
@@ -46,7 +45,7 @@ public class ElevatorSequence : MonoBehaviour
         input += btn.GetComponentInChildren<TMP_Text>().text;
         Debug.Log("clicked: " + input);
         //Start count from button press
-        StartCoroutine(Check()); 
+        StartCoroutine(Check());
     }
     //Compare if unlocked
     private IEnumerator Check()
@@ -60,7 +59,7 @@ public class ElevatorSequence : MonoBehaviour
         {
             isUnlocked = true;
         }
-        elevator.GetComponent<Elevator>().SequenceAction();       
+        elevator.GetComponent<Elevator>().SequenceAction();
     }
     //Upon exit from button window reset input
     public void Reset()

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Puzzle : MonoBehaviour
+public class Puzzle : MonoBehaviour, IPuzzle
 {
     [SerializeField]
     protected List<Puzzle> PreReq;
@@ -12,13 +11,24 @@ public abstract class Puzzle : MonoBehaviour
     protected TaskMenu taskMenu;
 
     protected bool isActive = false, isSolved = false;
+    protected Task task;
 
-    public bool IsActive { get => isActive; set => isActive=value; }
-    public bool IsSolved { get => isSolved;}
+    public bool IsActive { get => isActive; set => isActive = value; }
+    public bool IsSolved { get => isSolved; }
     public bool IsEnabled { get; set; } = true;
 
+    public void Initialize()
+    {
+        task = gameObject.GetComponent<Task>();
+        if (task != null)
+            Debug.Log("Puzzle start task: " + task.TaskText + " called from " + gameObject.name);
+    }
+    protected virtual void Start()
+    {
+        Initialize();
+    }
     //Unlock/make active item to access puzzle game
-    protected void CheckRequisites()
+    public void CheckRequisites()
     {
         int step = 0;
         //if is leaf item unlock
@@ -50,17 +60,47 @@ public abstract class Puzzle : MonoBehaviour
     }
     //Puzzle Piece can only be solved if is active
     //Replace with puzzle game code or call
-    protected abstract void Activate();
+    public virtual void Activate()
+    {
+        isActive = true;
+        //Invokes task listeners
+        if (task != null)
+            task.ActivateTask();
+        //Hides cosmatic arrow in scene, invokes path activated listeners
+        //arrow.SetActive(false);
+        //pathActivated.Invoke(JeremyPath.instance);
+
+        //tbd show text outlining the task on activation 
+
+        //PopUp pop = gameObject.GetComponent<PopUp>();
+        //pop.MessageHeader = task.TaskText;
+        //pop.ShowPop();
+
+        //fpc.enabled = false;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+
+
+        //tbd generic puzzle delegate method for pop up
+
+        //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+        //popUpGen.gameObject.SetActive(true);
+
+
+
+
+        //return true;
+    }
     public virtual void Solve()
     {
         if (IsEnabled)
         {
-        Task task = gameObject.GetComponent<Task>();
+            Task task = gameObject.GetComponent<Task>();
             isSolved = true;
             task.IsCompleted = true;
             taskMenu.RemoveTaskFromList(task);
         }
-        
+
     }
     protected void OnMouseDown()
     {
@@ -70,9 +110,9 @@ public abstract class Puzzle : MonoBehaviour
             CheckRequisites();
             Debug.Log("Puzzle Mouse from " + gameObject);
         }
-        
+
     }
-    protected void CheckItem()
+    public void CheckItem()
     {
         if (IsActive)
         {

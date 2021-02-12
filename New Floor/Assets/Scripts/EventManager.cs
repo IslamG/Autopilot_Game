@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
 public static class EventManager
 {
     static List<Task> taskInvokers = new List<Task>();
     static List<UnityAction<Task>> taskListeners = new List<UnityAction<Task>>();
-    
+
     //tbd figureout haulmark invokers
     static List<Tip> haulmarkInvokers = new List<Tip>();
     static List<UnityAction<Tip>> haulmarkListeners = new List<UnityAction<Tip>>();
@@ -35,7 +33,7 @@ public static class EventManager
         taskListeners.Add(handler);
         foreach (Task task in taskInvokers)
         {
-           task.AddListener(handler);
+            task.AddListener(handler);
         }
     }
     //Haulmark overload
@@ -71,7 +69,7 @@ public static class EventManager
     }
     public static void AddListener(UnityAction<DropItem> handler)
     {
-       foundListeners.Add(handler);
+        foundListeners.Add(handler);
         foreach (DropItem item in foundInvokers)
         {
             item.AddListener(handler);

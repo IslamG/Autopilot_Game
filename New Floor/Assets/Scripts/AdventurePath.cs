@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class AdventurePath : MonoBehaviour
 {
@@ -12,12 +9,12 @@ public abstract class AdventurePath : MonoBehaviour
     public TMP_Text titleText;
     public GameObject[] segments;
     public GameObject titleHolder;
-    
+
     public OnPathActivated pathActivated = new OnPathActivated();
 
     protected Timer displayTimer;
     protected static int currentSegment = 0;
-    protected bool wasDisplayed=false;
+    protected bool wasDisplayed = false;
 
     protected void Start()
     {
@@ -47,7 +44,7 @@ public abstract class AdventurePath : MonoBehaviour
             titleHolder.SetActive(true);
             displayTimer.Run();
         }
-        
+
     }
     /*public void AddListener(UnityAction<AdventurePath> handler)
     {

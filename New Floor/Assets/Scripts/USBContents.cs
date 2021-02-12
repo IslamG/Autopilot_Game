@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class USBContents : Puzzle
 {
@@ -22,11 +20,9 @@ public class USBContents : Puzzle
         moneyTask.Solve();
         base.Solve();
     }
-    protected override void Activate()
+    public override void Activate()
     {
-        Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        task.ActivateTask();
+        base.Activate();
         usbDelivery.IsActive = true;
     }
 }

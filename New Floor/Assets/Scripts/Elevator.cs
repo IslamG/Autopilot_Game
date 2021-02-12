@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Elevator : MonoBehaviour
@@ -70,7 +67,7 @@ public class Elevator : MonoBehaviour
     private void FakeTransition()
     {
         //Close keypad
-        if(!SceneManager.GetActiveScene().name.Equals("SubconscienceFloor"))
+        if (!SceneManager.GetActiveScene().name.Equals("SubconscienceFloor"))
             GetComponentInChildren<ElevatorKeypad>().LeaveKeypad();
         animationTimer.Run();
     }

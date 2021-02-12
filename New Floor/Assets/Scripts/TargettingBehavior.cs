@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Make object face and follow target
 //functionalty suspended
@@ -11,13 +9,18 @@ public class TargettingBehavior : MonoBehaviour
     //or replace with switching between animations
     public Transform target;
     public float speed = 2.5f;
+    public bool moveable = false;
+
     private bool inRange = false;
     private Vector3 dir;
 
     private void Update()
     {
-        transform.LookAt(target);
-        Move();
+        //transform.LookAt(gameObject.transform.position);
+        //transform.rotation=Quaternion.LookRotation(target.position);
+        transform.rotation = Quaternion.LookRotation(transform.position - target.position);
+        if (moveable)
+            Move();
     }
     //When NPC is too close to an object
     private void OnTriggerEnter(Collider other)
@@ -36,7 +39,7 @@ public class TargettingBehavior : MonoBehaviour
         int amount;
         if (inRange)
         {
-            dir = transform.position *-1;
+            dir = transform.position * -1;
             amount = 4;
         }
         else

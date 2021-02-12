@@ -1,6 +1,6 @@
-﻿using UnityEditor;
+﻿using System.IO;
+using UnityEditor;
 using UnityEngine;
-using System.IO;
 
 public static class ReverseAnimationContext
 {

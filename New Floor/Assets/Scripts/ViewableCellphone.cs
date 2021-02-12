@@ -20,16 +20,17 @@ public class ViewableCellphone : Puzzle
 
 
     private bool isHeld = false, isFocused;
-    private Dictionary<GameObject, Material> targetPairs=  
+    private Dictionary<GameObject, Material> targetPairs =
         new Dictionary<GameObject, Material>();
     private GameObject currentObj;
-    private List<GameObject> usedObjs= new List<GameObject>();
+    private List<GameObject> usedObjs = new List<GameObject>();
 
     //Add collectable materials as value to collectable objects key
     //Consider changing arrays to lists, to pop used objects later
-    private void Start()
+    protected override void Start()
     {
-        for(int i=0; i < focusObjects.Length; i++)
+        base.Start();
+        for (int i = 0; i < focusObjects.Length; i++)
         {
             targetPairs.Add(focusObjects[i], collectables[i]);
         }
@@ -42,16 +43,16 @@ public class ViewableCellphone : Puzzle
     {
         //if (isActive)
         //{
-            //cellCam.gameObject.SetActive(true);
-            gameObject.transform.position = cellSpot.transform.position;
-            gameObject.transform.eulerAngles = cellSpot.transform.eulerAngles; //new Vector3(-2, 0, -68);
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            gameObject.transform.parent = cellSpot.transform;
-            isHeld = true;
-            Activate();
+        //cellCam.gameObject.SetActive(true);
+        gameObject.transform.position = cellSpot.transform.position;
+        gameObject.transform.eulerAngles = cellSpot.transform.eulerAngles; //new Vector3(-2, 0, -68);
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.transform.parent = cellSpot.transform;
+        isHeld = true;
+        Activate();
         //}
-        
+
     }
     void Update()
     {
@@ -86,20 +87,22 @@ public class ViewableCellphone : Puzzle
                         //If isn't already displaying focus icon, turn icon on
                         if (!isFocused)
                         {
-                            cellFocus.color=new Color(65, 255, 0);
+                            cellFocus.color = new Color(65, 255, 0);
                         }
                         isFocused = true;
                         currentObj = obj;
                     }
-                    
+
                 }
-            }else{
-                  //If is displaying focus icon, turn icon off
-                  if (isFocused)
-                  {
-                       cellFocus.color = Color.red;
-                       isFocused = false;
-                  }
+            }
+            else
+            {
+                //If is displaying focus icon, turn icon off
+                if (isFocused)
+                {
+                    cellFocus.color = Color.red;
+                    isFocused = false;
+                }
             }
         }
     }
@@ -109,7 +112,7 @@ public class ViewableCellphone : Puzzle
      * call the screenshot class
      * then reinable cell camera
      */
-    private IEnumerator TakePic() 
+    private IEnumerator TakePic()
     {
         cellCam.enabled = false;
         gameObject.GetComponentInChildren<AudioSource>().Play();
@@ -117,11 +120,11 @@ public class ViewableCellphone : Puzzle
         yield return new WaitForSecondsRealtime(1f);
         cellCam.enabled = true;
         cellCam.targetTexture = cellView;
-        
+
         //If the photograph taken was of a collectable object
         //load into image texture
         if (isFocused)
-        {      
+        {
             StartCoroutine(LoadImage());
         }
         else
@@ -140,7 +143,7 @@ public class ViewableCellphone : Puzzle
             yield return null;
         Material mat = targetPairs[currentObj];
         mat.SetTexture("_MainTex", www.texture);
-        Debug.Log("Image " + www.texture.name + " p " + 
+        Debug.Log("Image " + www.texture.name + " p " +
             mat.GetTexture("_MainTex").name);
         usedObjs.Add(currentObj);
         CheckFinish();
@@ -152,32 +155,5 @@ public class ViewableCellphone : Puzzle
             Solve();
             Debug.Log("Solving cellphone");
         }
-    }
-    protected override void Activate()
-    {
-        //Activate task based on attached task 
-        isActive = true;
-        Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        task.ActivateTask();
-        //tbd show text ou
-        //PopUp pop = gameObject.GetComponent<PopUp>();
-        //pop.MessageHeader = task.TaskText;
-        //pop.ShowPop();
-
-        //fpc.enabled = false;
-        //Cursor.lockState = CursorLockMode.None;
-        //Cursor.visible = true;
-
-
-        //tbd generic puzzle delegate method for pop up
-
-        //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
-        //popUpGen.gameObject.SetActive(true);
-
-
-
-
-        //return true;
     }
 }

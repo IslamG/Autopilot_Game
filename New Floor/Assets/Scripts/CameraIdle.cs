@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityStandardAssets.Characters.FirstPerson;
+﻿using UnityEngine;
 
 public class CameraIdle : MonoBehaviour
 {
@@ -31,7 +26,7 @@ public class CameraIdle : MonoBehaviour
             timeOutTimer += Time.deltaTime;
         }
         //Mouse moved, reset timer
-        if (Input.GetAxis("Mouse X") !=0 || Input.GetAxis("Mouse Y") != 0)
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
         {
             DisableIdle();
         }
@@ -44,7 +39,7 @@ public class CameraIdle : MonoBehaviour
         if (timeOutTimer > timeOut)
         {
             //Face camera forward and start idle animation
-            if(!idleCam.enabled)
+            if (!idleCam.enabled)
                 idleCam.transform.rotation = Quaternion.LookRotation(idleCam.transform.up);
             anim.SetBool("isActive", false);
             mainCam.enabled = false;

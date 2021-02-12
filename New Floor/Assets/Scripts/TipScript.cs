@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TipScript : MonoBehaviour
 {
@@ -15,8 +13,8 @@ public class TipScript : MonoBehaviour
 
     private bool wasDisplayed = false;
     //Use to set and access tip scriptable object
-    public string TipText { get=>tipText; }
-    public int TipID { get=>tipID; }
+    public string TipText { get => tipText; }
+    public int TipID { get => tipID; }
     public bool WasDisplayed { get; set; }
     //public Animation AnimationImg { get => animationImg; }
 

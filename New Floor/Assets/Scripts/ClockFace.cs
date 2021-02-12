@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class ClockFace : MonoBehaviour
@@ -22,8 +19,8 @@ public class ClockFace : MonoBehaviour
 
     private void Start()
     {
-         self = GetComponentInChildren<Camera>();
-         main = Camera.main;
+        self = GetComponentInChildren<Camera>();
+        main = Camera.main;
     }
     public void SetNewTime(float minutes, float hours)
     {
@@ -31,17 +28,17 @@ public class ClockFace : MonoBehaviour
         newAngle.z -= minutes;
         minuteArm.transform.localEulerAngles = newAngle;
 
-        newAngle =hourArm.transform.localEulerAngles;
+        newAngle = hourArm.transform.localEulerAngles;
         newAngle.z -= hours;
         hourArm.transform.localEulerAngles = newAngle;
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)&&!inClock)
+        if (Input.GetMouseButtonDown(0) && !inClock)
         {
             MouseOverClock();
         }
-        if (Input.GetMouseButtonDown(1)&& inClock)
+        if (Input.GetMouseButtonDown(1) && inClock)
         {
             ExitGameView();
         }
@@ -86,7 +83,7 @@ public class ClockFace : MonoBehaviour
         {
             //Debug.DrawRay(transform.position, transform.forward, Color.green);
             GameObject hitObj = hit.collider.gameObject;
-            if (hitObj==this.gameObject)//.name.Equals("Clock"))
+            if (hitObj == this.gameObject)//.name.Equals("Clock"))
             {
                 EnterGameView();
             }
@@ -102,9 +99,9 @@ public class ClockFace : MonoBehaviour
             //Debug.DrawRay(transform.position, transform.forward, Color.green);
             GameObject hitObj = hit.collider.gameObject;
             Transform[] children = gameObject.GetComponentsInChildren<Transform>();
-            foreach(Transform child in children)
+            foreach (Transform child in children)
             {
-                if (hitObj==child.gameObject && hitObj!=self.gameObject 
+                if (hitObj == child.gameObject && hitObj != self.gameObject
                     && hitObj != gameObject)
                 {
                     Vector3 newAngle = hitObj.transform.localEulerAngles;
@@ -122,7 +119,7 @@ public class ClockFace : MonoBehaviour
                     break;
                 }
             }
-            
+
         }
     }
 }

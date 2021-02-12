@@ -5,9 +5,8 @@
 
 
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
 [HelpURL("https://nvjob.github.io/unity/alpha-flashing-text")]
 [AddComponentMenu("#NVJOB/Tools/Alpha Flashing UI/Text")]
@@ -38,7 +37,7 @@ public class AlphaFlashingText : MonoBehaviour
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
 
     void Awake()
     {
@@ -62,10 +61,10 @@ public class AlphaFlashingText : MonoBehaviour
 
         //---------------------------------
     }
-    
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
 
     void LateUpdate()
     {
@@ -79,7 +78,7 @@ public class AlphaFlashingText : MonoBehaviour
 
         //---------------------------------
     }
-    
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

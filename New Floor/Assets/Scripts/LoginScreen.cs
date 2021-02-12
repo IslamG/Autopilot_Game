@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
 
 public abstract class LoginScreen : InteractableScreen
@@ -40,5 +40,5 @@ public abstract class LoginScreen : InteractableScreen
             MakeVisible(false);
         }
     }
-    
+
 }

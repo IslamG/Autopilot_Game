@@ -1,19 +1,21 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
-public abstract class PathStarter : Puzzle
+public class PathStarter : Puzzle, IPathStarter
 {
-    [SerializeField]
-    protected GameObject arrow;
-
     public OnPathActivated pathActivated = new OnPathActivated();
 
-    protected void Start()
+    protected override void Start()
     {
-        EventManager.AddInvoker(this);
+        base.Start();
+        AddSelfAsInvoker();
     }
     public void AddListener(UnityAction<AdventurePath> handler)
     {
         pathActivated.AddListener(handler);
+    }
+
+    public void AddSelfAsInvoker()
+    {
+        EventManager.AddInvoker(this);
     }
 }

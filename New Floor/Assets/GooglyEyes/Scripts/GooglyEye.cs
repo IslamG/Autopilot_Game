@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GooglyEye : MonoBehaviour
 {
@@ -41,12 +39,12 @@ public class GooglyEye : MonoBehaviour
         var direction = new Vector2(position.x, position.y);
         var angle = Mathf.Atan2(direction.y, direction.x);
 
-        if(direction.magnitude > maxDistance)
+        if (direction.magnitude > maxDistance)
         {
             var normal = -direction.normalized;
 
             _velocity = Vector2.Reflect(new Vector2(_velocity.x, _velocity.y), normal) * Bounciness;
-            
+
             position = new Vector3(
                 Mathf.Cos(angle) * maxDistance,
                 Mathf.Sin(angle) * maxDistance,

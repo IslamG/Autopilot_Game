@@ -1,17 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CollectablePuzzle : PathStarter
 {
-    protected override void Activate()
+    [SerializeField]
+    GameObject arrow;
+    //Possbily add dropstop specific puzzle type
+    public override void Activate()
     {
-        //Activate task based on attached task 
-        isActive = true;
-        Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        task.ActivateTask();
-        //Hides cosmatic arrow in scene, invokes path activated listeners
+        base.Activate();
 
         arrow.SetActive(false);
         pathActivated.Invoke(JeremyPath.instance);

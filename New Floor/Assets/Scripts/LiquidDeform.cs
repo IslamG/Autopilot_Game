@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 //Script blendshape animation
 //tbd probably remove
 public class LiquidDeform : MonoBehaviour

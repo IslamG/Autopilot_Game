@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DistanceConstraint : MonoBehaviour
 {
@@ -8,14 +6,14 @@ public class DistanceConstraint : MonoBehaviour
     private bool xConstrain, yConstrain, zConstrain;
     [SerializeField]
     private float minX, maxX, minY, maxY, minZ, maxZ;
-    
+
     private Vector3 currentPosition;
     private AudioSource source;
 
     private void Start()
     {
         currentPosition = transform.localPosition;
-        source=gameObject.GetComponent<AudioSource>();
+        source = gameObject.GetComponent<AudioSource>();
     }
     private void OnMouseDrag()
     {
@@ -28,10 +26,11 @@ public class DistanceConstraint : MonoBehaviour
     {
         // get the position to a variable
         currentPosition = transform.localPosition;
-        if (xConstrain) { 
-        // modify the variable to keep x within minX to maxX
-        currentPosition.x =
-           Mathf.Clamp(currentPosition.x, minX, maxX);
+        if (xConstrain)
+        {
+            // modify the variable to keep x within minX to maxX
+            currentPosition.x =
+               Mathf.Clamp(currentPosition.x, minX, maxX);
         }
         if (yConstrain)
         {

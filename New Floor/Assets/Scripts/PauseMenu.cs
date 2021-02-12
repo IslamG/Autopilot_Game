@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -24,8 +21,8 @@ public class PauseMenu : MonoBehaviour
     private VideoPlayer vid;
 
     CursorLockMode currentMouse;
-    bool isCursorVisible; 
-    static bool created=false;
+    bool isCursorVisible;
+    static bool created = false;
     float timeScale;
     bool fpcEnabled;
 
@@ -71,7 +68,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Cursor called");
 
         //Enable look control
-        if (fpc!=null)
+        if (fpc != null)
             fpc.enabled = fpcEnabled;
         else
         {
@@ -86,7 +83,7 @@ public class PauseMenu : MonoBehaviour
             {
                 vid.Play();
             }
-        }  
+        }
     }
     //Display pause menu and pause gametime and fpc controller
     void Pause()
@@ -111,7 +108,7 @@ public class PauseMenu : MonoBehaviour
             fpc.enabled = false;
         else
         {
-            foreach(CameraLook cam in cams)
+            foreach (CameraLook cam in cams)
             {
                 cam.enabled = false;
             }
@@ -123,11 +120,11 @@ public class PauseMenu : MonoBehaviour
                 vid.Pause();
             }
         }
-        
+
     }
     public void MenuClicked()
     {
-       menuPopUp.GetComponent<PopUp>().ShowPop();
+        menuPopUp.GetComponent<PopUp>().ShowPop();
         del = LoadMenu;
         popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
         popUpGen.gameObject.SetActive(true);
@@ -140,7 +137,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         SceneManager.LoadScene("MainScreen");
     }
-    
+
     //When quit clicked turn on confirmation pop up
     //and delegate quit action to pop up
     public void QuitClicked()

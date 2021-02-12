@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AheadClock : MonoBehaviour
+public class AheadClock : Puzzle
 {
     [SerializeField]
     DelayedClock delayedClock;
@@ -14,7 +12,7 @@ public class AheadClock : MonoBehaviour
 
     public void Forward()
     {
-        
+
         minutes = delayedClock.Minutes - 30;
         hours = delayedClock.Hours - (30 * 2);
 

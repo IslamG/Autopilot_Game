@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using TMPro;
 public class SettingMenu : MonoBehaviour
 {
-    public static SettingMenu instance; 
+    public static SettingMenu instance;
 
     private const string VOLUME = "Volume";
     private const string RESOLUTION = "Resolution";
@@ -14,9 +13,9 @@ public class SettingMenu : MonoBehaviour
     private const string FULL_SCREEN = "Full_Screen";
 
     [SerializeField]
-     AudioMixer audioMixer;
+    AudioMixer audioMixer;
     [SerializeField]
-     Dropdown resolutionDropdown;
+    Dropdown resolutionDropdown;
     [SerializeField]
     private Slider volume;
     [SerializeField]
@@ -30,8 +29,8 @@ public class SettingMenu : MonoBehaviour
 
     Resolution[] resolutions;
     int resolutionIndex, qualityIndex;
-    bool isFullScreen, created=false;
-    
+    bool isFullScreen, created = false;
+
     public bool Initialized { get; set; }
     void Awake()
     {
@@ -70,7 +69,7 @@ public class SettingMenu : MonoBehaviour
             resolutionDropdown.RefreshShownValue();
             Initialized = true;
         }
-        
+
 
     }
     //tbd change graphics of menu;
@@ -100,11 +99,11 @@ public class SettingMenu : MonoBehaviour
             {
                 isFullScreen = true;
             }
-        }       
+        }
     }
 
     //Resolution drop down changed
-    public  void SetResolution (int resolutionIndex)
+    public void SetResolution(int resolutionIndex)
     {
         //Get the value at selected index
         //and set screen resolutino to it
@@ -115,16 +114,16 @@ public class SettingMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
         //Set player prefs with changed information and save
         PlayerPrefs.SetInt(RESOLUTION, resolutionIndex);
-        PlayerPrefs.Save();     
+        PlayerPrefs.Save();
     }
 
     //Volume slider changed
-    public  void SetVolume (float volume)
+    public void SetVolume(float volume)
     {
         //Change main mixer to respond to volume change
-       // Debug.Log("m " + staticMixer.name);
+        // Debug.Log("m " + staticMixer.name);
 
-        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20 );
+        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
         //audioMixer.SetFloat("uiVolume", volume);
         //audioMixer.SetFloat("menuVolume", volume);
         //audioMixer.SetFloat("musiceVolume", volume);
@@ -139,7 +138,7 @@ public class SettingMenu : MonoBehaviour
     }
 
     //Quality dropdown changed
-    public  void SetQuality (int qualityIndex)
+    public void SetQuality(int qualityIndex)
     {
         //Change quality based on index value
         QualitySettings.SetQualityLevel(qualityIndex);
@@ -149,7 +148,7 @@ public class SettingMenu : MonoBehaviour
     }
 
     //Fullscren checkbox value changed
-    public  void SetFullScreen (bool isFullScreen)
+    public void SetFullScreen(bool isFullScreen)
     {
         //Set fullscreen value based on checkbox
         Screen.fullScreen = isFullScreen;

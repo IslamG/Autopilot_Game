@@ -1,5 +1,5 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 // CopyComponents - by Michael L. Croswell for Colorado Game Coders, LLC
 // March 2010
 //Modified by Kristian Helle Jespersen

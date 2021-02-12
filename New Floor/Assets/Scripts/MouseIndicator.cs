@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MouseIndicator : MonoBehaviour
@@ -16,7 +13,7 @@ public class MouseIndicator : MonoBehaviour
     Animator crosshairAnimator;
     Camera viewCamera;
     private Transform _selection;
-    private bool isFocused = false, itemHeld=false;
+    private bool isFocused = false, itemHeld = false;
 
 
     private void Start()
@@ -45,7 +42,7 @@ public class MouseIndicator : MonoBehaviour
                 itemHeld = false;
                 SetCursor();
             }
-        }  
+        }
     }
     private void SetCursor()
     {
@@ -96,7 +93,7 @@ public class MouseIndicator : MonoBehaviour
         if (!isFocused)
         {
             RectTransform rect = crosshair.rectTransform;
-            rect.sizeDelta=new Vector2(rect.rect.width*0.5f, rect.rect.height * 0.5f);
+            rect.sizeDelta = new Vector2(rect.rect.width * 0.5f, rect.rect.height * 0.5f);
             isFocused = true;
         }
     }

@@ -10,24 +10,26 @@
     --------------------------------------------------
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenshotHandler : MonoBehaviour {
+public class ScreenshotHandler : MonoBehaviour
+{
 
     private static ScreenshotHandler instance;
 
     private Camera myCamera;
     private bool takeScreenshotOnNextFrame;
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
         myCamera = gameObject.GetComponent<Camera>();
     }
 
-    private void OnPostRender() {
-        if (takeScreenshotOnNextFrame) {
+    private void OnPostRender()
+    {
+        if (takeScreenshotOnNextFrame)
+        {
             takeScreenshotOnNextFrame = false;
             RenderTexture renderTexture = myCamera.targetTexture;
 
@@ -37,7 +39,7 @@ public class ScreenshotHandler : MonoBehaviour {
 
             byte[] byteArray = renderResult.EncodeToPNG();
             System.IO.File.WriteAllBytes(Application.dataPath + "/CameraScreenshot.png", byteArray);
-            Debug.Log("Saved CameraScreenshot.png "+Application.dataPath);
+            Debug.Log("Saved CameraScreenshot.png " + Application.dataPath);
 
             //RenderTexture.ReleaseTemporary(renderTexture);
             //myCamera.targetTexture = null;
@@ -45,12 +47,14 @@ public class ScreenshotHandler : MonoBehaviour {
         }
     }
 
-    private void TakeScreenshot(int width, int height) {
+    private void TakeScreenshot(int width, int height)
+    {
         myCamera.targetTexture = RenderTexture.GetTemporary(width, height, 16);
         takeScreenshotOnNextFrame = true;
     }
 
-    public static void TakeScreenshot_Static(int width, int height) {
+    public static void TakeScreenshot_Static(int width, int height)
+    {
         instance.TakeScreenshot(width, height);
     }
 }

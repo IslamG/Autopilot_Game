@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
 public class GamplayTips : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class GamplayTips : MonoBehaviour
     TMP_Text txt;
     string autoSaveTip, menuTip, timeTip;
     string[] tips;
-    
+
     //initialize available tips
     //tbd populate dynamically
     void Start()

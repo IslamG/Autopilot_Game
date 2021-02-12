@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class LightSwitch : MonoBehaviour
         if (switchOn)
         {
             //When switch on, turn on lights associated with button
-            foreach(Light bulb in lights)
+            foreach (Light bulb in lights)
             {
                 bulb.enabled = true;
             }

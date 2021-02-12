@@ -1,25 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Video;
-using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 public class TurnOnScreen : MonoBehaviour
-{  
+{
     [SerializeField]
-     RenderTexture content;
+    RenderTexture content;
     [SerializeField]
-     TMP_Text helperText;
+    TMP_Text helperText;
     [SerializeField]
-     TipsControl tipControl;
+    TipsControl tipControl;
     [SerializeField]
-     InteractableScreen openUI;
+    InteractableScreen openUI;
     [SerializeField]
-     VideoPlayer vidPlayer;
-     Camera mainCam;
-     bool introVideoPlayed = false, helperDisplayed = false;
-     Timer textTimer;
+    VideoPlayer vidPlayer;
+    Camera mainCam;
+    bool introVideoPlayed = false, helperDisplayed = false;
+    Timer textTimer;
 
     public bool IsEnabled { get; set; } = true;
 
@@ -78,7 +76,7 @@ public class TurnOnScreen : MonoBehaviour
                 //mainCam.GetComponent<AudioListener>().enabled = true;
             }
         }
-        
+
     }
     //When startup animation finished playing
     void EndReached(VideoPlayer videoPlayer)
@@ -88,14 +86,14 @@ public class TurnOnScreen : MonoBehaviour
             openUI.SwitchToScreen();
 
             //Display helper text only once
-            if (!helperDisplayed && helperText!=null)
+            if (!helperDisplayed && helperText != null)
             {
                 helperText.text = "I think I wrote clues to my password somewhere";
                 textTimer.Run();
                 helperDisplayed = true;
             }
         }
-        
+
     }
     /*
     //Bring up login screen UI

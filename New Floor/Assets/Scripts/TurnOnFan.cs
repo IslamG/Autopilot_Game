@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 
 public class TurnOnFan : MonoBehaviour
@@ -39,6 +37,6 @@ public class TurnOnFan : MonoBehaviour
                 source.Stop();
             }
         }
-        
+
     }
 }

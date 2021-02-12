@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class TipsControl : MonoBehaviour
 {
@@ -41,9 +40,9 @@ public class TipsControl : MonoBehaviour
     private bool nothingDisplayed = true;
     private Timer tipTimer;
     private Tip tip;
-    private List<Tip> finishedTipList = new List<Tip>(); 
-    private List<Tip> listQueue=new List<Tip>();
-    
+    private List<Tip> finishedTipList = new List<Tip>();
+    private List<Tip> listQueue = new List<Tip>();
+
 
     //Return and set enabled property
     public static bool TipsEnabled { get { return tipsEnabled; } set { tipsEnabled = value; } }
@@ -51,8 +50,8 @@ public class TipsControl : MonoBehaviour
     private void Start()
     {
         EventManager.AddListener(DisplayTip);
-        tipTimer=gameObject.AddComponent<Timer>();
-        tipTimer.Duration = 5;
+        tipTimer = gameObject.AddComponent<Timer>();
+        tipTimer.Duration = 8;
         //showSource.outputAudioMixerGroup = mainMixer.outputAudioMixerGroup;
     }
     private void Update()
@@ -68,7 +67,7 @@ public class TipsControl : MonoBehaviour
                 nothingDisplayed = true;
                 listQueue.Remove(tip);
                 //If there are other tips waiting, display next
-                if (listQueue.Count>0)
+                if (listQueue.Count > 0)
                 {
                     DisplayTip(listQueue.First());
                 }
@@ -79,7 +78,7 @@ public class TipsControl : MonoBehaviour
     //utilize WasDisplayed
     public void DisplayTip(Tip tip)
     {
-        bool isUsed=false;
+        bool isUsed = false;
         foreach (Tip aTip in finishedTipList)
         {
             if (aTip.ID == tip.ID)
@@ -92,7 +91,7 @@ public class TipsControl : MonoBehaviour
         if (!isUsed)
         {
             tipHolder.gameObject.SetActive(true);
-            tipText.text=tip.DisplayText;
+            tipText.text = tip.DisplayText;
             //Pick a random sticky note sprite
             int index = Random.Range(0, tipSprites.Length);
             tipHolder.sprite = tipSprites[index];
@@ -105,7 +104,7 @@ public class TipsControl : MonoBehaviour
             this.tip = tip;
             showSource.Play();
         }
-        
+
     }
     public Tip GenerateTip(TipScript tipScript)
     {
@@ -115,7 +114,7 @@ public class TipsControl : MonoBehaviour
         //If tips are enabled display
         if (TipsEnabled)
         {
-            if(nothingDisplayed)
+            if (nothingDisplayed)
                 DisplayTip(tip);
             else
             {
@@ -132,7 +131,7 @@ public class TipsControl : MonoBehaviour
             }
             tip.WasDisplayed = true;
         }
-        
+
         //Can be removed, does nothing so far
         return tip;
     }

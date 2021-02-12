@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 using UnityEngine.Audio;
 
 public class OutOfBounds : MonoBehaviour
@@ -52,7 +50,8 @@ public class OutOfBounds : MonoBehaviour
         //If respawning player
         //tbd respawn roughly back where the character started
         //currently moves character up and back
-        if (other.gameObject.name.Equals("Cone")){
+        if (other.gameObject.name.Equals("Cone"))
+        {
             return;
         }
         if (other.gameObject.CompareTag("Player"))
@@ -74,9 +73,9 @@ public class OutOfBounds : MonoBehaviour
         AudioSource source = other.GetComponent<AudioSource>();
         if (source == null)
         {
-            source=other.gameObject.AddComponent<AudioSource>();
+            source = other.gameObject.AddComponent<AudioSource>();
             source.outputAudioMixerGroup = mixer.FindMatchingGroups("Enviroment")[0];
-            int rand= Random.Range(0, appearSound.Length);
+            int rand = Random.Range(0, appearSound.Length);
             source.clip = appearSound[rand];
         }
         source.Play();
@@ -110,7 +109,7 @@ public class OutOfBounds : MonoBehaviour
                 }
             default:
                 {
-                    helperText.text = "This stopped being fun "+(fallTimes - 3)+ " times ago";
+                    helperText.text = "This stopped being fun " + (fallTimes - 3) + " times ago";
                     break;
                 }
         }

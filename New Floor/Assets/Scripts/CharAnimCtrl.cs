@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class CharAnimCtrl : Sit
 {
     private Animator anim;
     private Camera cam;
-    private bool isSitting=false, isCrouched= false;
+    private bool isSitting = false, isCrouched = false;
     private FirstPersonController fpc;
 
     //Initialize variables
@@ -23,11 +21,12 @@ public class CharAnimCtrl : Sit
         Vector3 camPos = cam.transform.localPosition;
         //Movement key pressed
         //tbd replace with motion axis
-        if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")){
-           //State 1: Walk cycle
-            anim.SetInteger("motionState",1);
+        if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
+        {
+            //State 1: Walk cycle
+            anim.SetInteger("motionState", 1);
         }
-        
+
         //tbd add in run button and animation
 
         //Jump key pressed
@@ -90,12 +89,12 @@ public class CharAnimCtrl : Sit
         {
             //Default to idle stance 
             //If needed so that a sitting or crouched character is left in that state
-        //    if (!isSitting && !isCrouched)
-        //    {
-                //State 0: Idle animation
-                anim.SetInteger("motionState", 0);
-                cam.transform.localPosition = camPos;
-         //   }
+            //    if (!isSitting && !isCrouched)
+            //    {
+            //State 0: Idle animation
+            anim.SetInteger("motionState", 0);
+            cam.transform.localPosition = camPos;
+            //   }
         }
     }
 }

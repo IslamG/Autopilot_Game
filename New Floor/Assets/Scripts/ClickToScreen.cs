@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ClickToScreen : MonoBehaviour
 {
@@ -19,9 +17,9 @@ public class ClickToScreen : MonoBehaviour
     {
         cam = Camera.main;
         screenTransform = screen.transform;
-        Debug.Log("Screen: "+screenTransform);
+        Debug.Log("Screen: " + screenTransform);
     }
-    
+
     void Update()
     {
         getCursorWorldPosition();
@@ -31,20 +29,20 @@ public class ClickToScreen : MonoBehaviour
     {
         //finding point in world in cursor position
         //Plane screen = new Plane(Vector3.up, new Vector3(gameObject.transform.position.x, 
-            //gameObject.transform.position.y, gameObject.transform.position.z));
+        //gameObject.transform.position.y, gameObject.transform.position.z));
         ray = cam.ScreenPointToRay(Input.mousePosition);
         float distance;
         //simply initializing vector3 point, nothing else, this vector zero does nothing
         Vector3 point = Vector3.zero;
-        
+
         if (Physics.Raycast(ray, out RaycastHit hit, 3))
         {
             if (hit.collider.gameObject.name == "ScreenDisplay")
             {
-                Debug.Log("did hit "+ hit.collider.gameObject+ " at "
-                    +hit.point);
+                Debug.Log("did hit " + hit.collider.gameObject + " at "
+                    + hit.point);
                 outputCam.ViewportPointToRay(hit.point);
-                Debug.Log("is "+RectTransformUtility.RectangleContainsScreenPoint((RectTransform)screenTransform,hit.point));
+                Debug.Log("is " + RectTransformUtility.RectangleContainsScreenPoint((RectTransform)screenTransform, hit.point));
                 //Texture tex = GetComponent<RawImage>().texture;
                 Vector2 localCursor = hit.point;
                 Rect r = GetComponent<RectTransform>().rect;
@@ -64,7 +62,7 @@ public class ClickToScreen : MonoBehaviour
         }
         return point;
     }
-    
+
 
 
     private void CastMiniMapRayToWorld(Vector2 localCursor)
@@ -74,13 +72,13 @@ public class ClickToScreen : MonoBehaviour
         if (Physics.Raycast(miniMapRay, out miniMapHit, 5f))
         {
             //Debug.DrawRay(outputCam.transform.position,Vector3.down, Color.green, Mathf.Infinity);
-            Debug.DrawLine(outputCam.transform.position,Vector3.down, Color.red);// outputCam.transform.up
+            Debug.DrawLine(outputCam.transform.position, Vector3.down, Color.red);// outputCam.transform.up
             Debug.Log("something");
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("miniMapHit: " + miniMapHit.collider.gameObject);
             }
-            
+
         }
 
     }

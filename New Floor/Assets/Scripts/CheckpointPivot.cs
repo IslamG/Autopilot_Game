@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
 public class CheckpointPivot : MonoBehaviour
 {
@@ -9,9 +7,10 @@ public class CheckpointPivot : MonoBehaviour
     private TMP_Text helperText;
     [SerializeField]
     private string[] dialogueParts;
-
+    [SerializeField]
+    BasicTutorial manager;
     Timer timer;
-    bool showingHelper = false, showed=false;
+    bool showingHelper = false, showed = false;
     int i = 0;
 
     private void Start()
@@ -24,10 +23,11 @@ public class CheckpointPivot : MonoBehaviour
         //Switch between text parts
         if (showingHelper)
         {   //When part displayed for set amount of time
-            if (timer.Finished && i<dialogueParts.Length)
+            if (timer.Finished && i < dialogueParts.Length)
             {
-                StartHintDisplay();   
+                DisplaySequence();
                 i++;
+                Debug.Log("Checkpoint update time finished 1");
             }//When all parts done displaying
             else if (timer.Finished && i >= dialogueParts.Length)
             {
@@ -35,33 +35,36 @@ public class CheckpointPivot : MonoBehaviour
                 helperText.faceColor = Color.white;
                 showingHelper = false;
                 //this.gameObject.SetActive(false);
+                Debug.Log("Checkpoint update time finished 2");
             }
         }
     }
-    private void OnMouseDown()
+    public void StartHintDisplay()
     {
-        StartHintDisplay();
+        DisplaySequence();
+        showingHelper = true;
     }
-    private void StartHintDisplay()
+    private void DisplaySequence()
     {
         //If text hasn't been shown before, show hint and hide post
-        if (!showed)
+        //if (!showed)
+        //{
+        //Show text and start timer for switching parts
+        if (helperText != null)
         {
-            //Show text and start timer for switching parts
-            if (helperText != null)
+            //showed = true;
+            Debug.Log("." + dialogueParts[i].ToString());
+            helperText.text = dialogueParts[i];
+            timer.Run();
+            //tbd different highlight for different tasks
+            if (i == dialogueParts.Length - 1)
             {
-                showed = true;
-                Debug.Log("."+dialogueParts[i].ToString());
-                helperText.text = dialogueParts[i];
-                timer.Run();
-                showingHelper = true;
-                //tbd different highlight for different tasks
-                if (i == dialogueParts.Length-1)
-                {
-                    helperText.faceColor = Color.cyan;
-                    //helperText.outlineWidth = 0.25f;
-                }
+                //helperText.faceColor = Color.cyan;
+                //helperText.outlineWidth = 0.25f;
+                if (manager != null)
+                    manager.InputEnabled = true;
             }
+            // }
         }
     }
 }

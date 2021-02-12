@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class BossMonitor : InteractableScreen
@@ -10,11 +8,11 @@ public class BossMonitor : InteractableScreen
     [SerializeField]
     protected GameObject loginScreen;
 
-    protected new void Start()
+    protected override void Start()
     {
-        //base.Start();
+        base.Start();
         ScreenToShow = loginScreen;
-        Debug.Log("! ! "+loginScreen);
+        Debug.Log("! ! " + loginScreen);
     }
     protected new void Update()
     {
@@ -32,14 +30,5 @@ public class BossMonitor : InteractableScreen
         Debug.Log("Switch to screen from boss ");
         base.SwitchToScreen();
         //this.enabled = false;
-    }
-
-    protected override void Activate()
-    {
-        //Activate task based on attached task 
-        isActive = true;
-        //Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        //task.ActivateTask();
     }
 }

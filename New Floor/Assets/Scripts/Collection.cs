@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Collection : Puzzle
@@ -14,16 +13,17 @@ public class Collection : Puzzle
 
     public int ItemsFound { get => itemsFound; }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         EventManager.AddListener(FoundItem);
     }
     //Start wait before moving
     private void FoundItem(DropItem item)
     {
-        StartCoroutine(Move(item));     
+        StartCoroutine(Move(item));
     }
-    private IEnumerator Move (DropItem item)
+    private IEnumerator Move(DropItem item)
     {
         yield return new WaitForSeconds(1f);
         itemsFound += 1;
@@ -42,10 +42,5 @@ public class Collection : Puzzle
         {
             Solve();
         }
-    }
-
-    protected override void Activate()
-    {
-        throw new System.NotImplementedException();
     }
 }

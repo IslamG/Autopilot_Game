@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public delegate void DelegateFunc();
     DelegateFunc del;
-    
+
     [SerializeField]
     private Animator transition;
     [SerializeField]
@@ -26,7 +23,7 @@ public class MainMenu : MonoBehaviour
     GameObject mainMenu, restartPopUp, quitPopUp, popUpGen;
     [SerializeField]
     private Button newButton;
-    
+
     //[SerializeField]
     //ZoomTransition zt;
 
@@ -67,7 +64,7 @@ public class MainMenu : MonoBehaviour
         //find value at time/%
         //tbd replace with current time get, calculate percent
         //then assign evaluate value to background tint;
-        Debug.Log("The color at quarter: "+gradient.Evaluate(0.25f));
+        Debug.Log("The color at quarter: " + gradient.Evaluate(0.25f));
         if (!hasSave)
         {
             //No file= new day, earliest time
@@ -103,7 +100,7 @@ public class MainMenu : MonoBehaviour
         {
             newButton.gameObject.SetActive(true);
         }
-        
+
     }
     //change play game button text depending on if there's a save file
     private void Start()
@@ -118,7 +115,7 @@ public class MainMenu : MonoBehaviour
         }
     }
     //hide menu and start transition animation
-    public void PlayGame()  
+    public void PlayGame()
     {
         mainMenu.SetActive(false);
         transition.SetBool("startNew", true);

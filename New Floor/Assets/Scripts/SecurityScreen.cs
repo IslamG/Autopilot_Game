@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class SecurityScreen : InteractableScreen
@@ -30,9 +28,5 @@ public class SecurityScreen : InteractableScreen
     public void ShowDesktop()
     {
         MakeVisible(true);
-    }
-    protected override void Activate()
-    {
-        throw new System.NotImplementedException();
     }
 }

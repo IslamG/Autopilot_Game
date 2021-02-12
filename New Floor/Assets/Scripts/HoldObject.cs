@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Allows non-kinmatic rigid body objects to be picked up and dropped.
@@ -11,7 +9,7 @@ public class HoldObject : MonoBehaviour
     MouseIndicator mouse;
     Camera viewCamera;
     GameObject selectedObj;
-    int colLoop = 0; 
+    int colLoop = 0;
 
     private void Start()
     {
@@ -63,7 +61,7 @@ public class HoldObject : MonoBehaviour
         {
             selectedObj.transform.position = gameObject.transform.position;
             //Disable colliders to prevent unwanted bumping into things
-            foreach(Collider col in selectedObj.GetComponents<Collider>())
+            foreach (Collider col in selectedObj.GetComponents<Collider>())
             {
                 col.enabled = false;
             }
@@ -76,7 +74,7 @@ public class HoldObject : MonoBehaviour
             foreach (Collider col in selectedObj.GetComponents<Collider>())
             {
                 col.enabled = true;
-                colLoop++; 
+                colLoop++;
 
             }
             //Only release item when all colliders are enabled
@@ -86,14 +84,13 @@ public class HoldObject : MonoBehaviour
              * to process and execute, if item released before it is done
              * item will fall through ground
              */
-            if(colLoop == selectedObj.GetComponents<Collider>().Length)
+            if (colLoop == selectedObj.GetComponents<Collider>().Length)
             {
                 isHeld = false;
                 selectedObj = null;
                 Debug.Log("Done freeing objects");
             }
-                
         }
-        
+
     }
 }

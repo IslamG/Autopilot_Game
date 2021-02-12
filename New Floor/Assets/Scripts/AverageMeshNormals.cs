@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
-public class AverageMeshNormals : MonoBehaviour {
+public class AverageMeshNormals : MonoBehaviour
+{
     public MeshFilter[] meshSources;
     private static readonly Vector3 zeroVec = Vector3.zero;
     // Use this for initialization
-    void Start() {
-        foreach (MeshFilter meshSource in meshSources) {
+    void Start()
+    {
+        foreach (MeshFilter meshSource in meshSources)
+        {
             Vector3[] verts = meshSource.mesh.vertices;
             Vector3[] normals = meshSource.mesh.normals;
             VertInfo[] vertInfo = new VertInfo[verts.Length];
-            for (int i = 0; i < verts.Length; i++) {
-                vertInfo[i] = new VertInfo() {
+            for (int i = 0; i < verts.Length; i++)
+            {
+                vertInfo[i] = new VertInfo()
+                {
                     vert = verts[i],
                     origIndex = i,
                     normal = normals[i]
@@ -23,14 +25,18 @@ public class AverageMeshNormals : MonoBehaviour {
             var groups = vertInfo.GroupBy(x => x.vert);
             VertInfo[] processedVertInfo = new VertInfo[vertInfo.Length];
             int index = 0;
-            foreach (IGrouping<Vector3, VertInfo> group in groups) {
+            foreach (IGrouping<Vector3, VertInfo> group in groups)
+            {
                 Vector3 avgNormal = zeroVec;
-                foreach (VertInfo item in group) {
+                foreach (VertInfo item in group)
+                {
                     avgNormal += item.normal;
                 }
                 avgNormal = avgNormal / group.Count();
-                foreach (VertInfo item in group) {
-                    processedVertInfo[index] = new VertInfo() {
+                foreach (VertInfo item in group)
+                {
+                    processedVertInfo[index] = new VertInfo()
+                    {
                         vert = item.vert,
                         origIndex = item.origIndex,
                         normal = item.normal,
@@ -40,7 +46,8 @@ public class AverageMeshNormals : MonoBehaviour {
                 }
             }
             Color[] colors = new Color[verts.Length];
-            for (int i = 0; i < processedVertInfo.Length; i++) {
+            for (int i = 0; i < processedVertInfo.Length; i++)
+            {
                 VertInfo info = processedVertInfo[i];
 
                 int origIndex = info.origIndex;
@@ -52,15 +59,17 @@ public class AverageMeshNormals : MonoBehaviour {
         }
     }
 
-    private struct VertInfo {
+    private struct VertInfo
+    {
         public Vector3 vert;
         public int origIndex;
         public Vector3 normal;
         public Vector3 averagedNormal;
     }
-    
+
     // Update is called once per frame
-    void Update () {
-        
+    void Update()
+    {
+
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //GameObject that persists throughout all levels and controls 
@@ -10,7 +8,7 @@ public class LevelTraversal : MonoBehaviour
 {
     [SerializeField]
     private static string sourceLevel, targetLevel;
-    private static bool created=false;
+    private static bool created = false;
     //Properties to pass data between scenes
     public static string SourceLevel { get => sourceLevel; set => sourceLevel = value; }
     public static string TargetLevel { get => targetLevel; set => targetLevel = value; }

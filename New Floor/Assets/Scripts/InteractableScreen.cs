@@ -2,12 +2,12 @@
 using UnityEngine.Video;
 
 
-public abstract class InteractableScreen : PathStarter 
-{ 
+public class InteractableScreen : Puzzle
+{
     [SerializeField]
     protected GameObject crosshair;
-    [SerializeField]
-    protected Task task;
+    //[SerializeField]
+    //protected Task task;
     [SerializeField]
     protected Camera[] sceneCameras;
     [SerializeField]
@@ -71,15 +71,15 @@ public abstract class InteractableScreen : PathStarter
             Debug.Log("Interactable Screen Making visible " + ScreenToShow);
             ScreenToShow.SetActive(ctrl);
         }
-        
+
     }
     public virtual void SwitchToScreen()
     {
         if (IsEnabled)
         {
-             //Show login screen
+            //Show login screen
             MakeVisible(true);
         }
-        
+
     }
 }

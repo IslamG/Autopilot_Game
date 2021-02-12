@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using cakeslice;
 
 namespace cakeslice
 {
@@ -21,7 +19,7 @@ namespace cakeslice
             transform.Rotate(Vector3.up, Time.deltaTime * 20);
 
             timer -= Time.deltaTime;
-            if(timer < 0)
+            if (timer < 0)
             {
                 timer = time;
                 //GetComponent<Outline>().enabled = !GetComponent<Outline>().enabled;

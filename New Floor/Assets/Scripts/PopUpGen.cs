@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class PopUpGen : MonoBehaviour
@@ -21,7 +19,7 @@ public class PopUpGen : MonoBehaviour
     Package.DelegateFunc packFunc;
     SecutiryPuzzle.DelegateFunc securityFunc;
 
-    bool isTrue, created=false;
+    bool isTrue, created = false;
 
     public string InputText { get; set; }
 
@@ -43,7 +41,7 @@ public class PopUpGen : MonoBehaviour
     public void GeneratePopUp(PopUp popUp)
     {
         //Assign text values from popUp object
-        if(popUp.MessageHeader!=null)
+        if (popUp.MessageHeader != null)
             messageHeader.text = popUp.MessageHeader;
         if (popUp.MessageBody != null)
             messageBody.text = popUp.MessageBody;
@@ -97,10 +95,10 @@ public class PopUpGen : MonoBehaviour
             Package.PackageOpened = false;
             packFunc.Invoke();
         }
-        
+
         //hide pop up
         gameObject.SetActive(false);
-        isTrue= false;
+        isTrue = false;
     }
 
     //FunctionToDo is the function delegated to
@@ -120,7 +118,7 @@ public class PopUpGen : MonoBehaviour
     //Overload for package
     public bool FunctionToDo(Package.DelegateFunc function)
     {
-       packFunc = function;
+        packFunc = function;
         return isTrue;
     }
     //Overload for security

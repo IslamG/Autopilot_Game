@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SecutiryPuzzle : Puzzle
 {
@@ -56,7 +54,7 @@ public class SecutiryPuzzle : Puzzle
 
         foreach (GameObject cone in cameraCones)
         {
-            if(cone.Equals(clickedCone))
+            if (cone.Equals(clickedCone))
                 cone.SetActive(!cone.activeSelf);
         }
     }
@@ -91,9 +89,5 @@ public class SecutiryPuzzle : Puzzle
             passwordBeep.Play();
         }
         popUpGen.DisableInputField(false);
-    }
-    protected override void Activate()
-    {
-        throw new System.NotImplementedException();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EmailNotification : Puzzle
 {
@@ -17,11 +15,11 @@ public class EmailNotification : Puzzle
     public void HideNotification()
     {
         gameObject.SetActive(false);
-        
+
         if (!readEmail)
         {
             //Show notification in tray
-            
+
         }
     }
     public void ShowMailWindow()
@@ -35,16 +33,7 @@ public class EmailNotification : Puzzle
             Activate();
             mailTask.Solve();
         }
-        
+
         //gameObject.GetComponent<PuzzlePiece>().enabled = true;
-    }
-  
-    protected override void Activate()
-    {
-        //Activate task based on attached task 
-        isActive = true;
-        Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        task.ActivateTask();
     }
 }

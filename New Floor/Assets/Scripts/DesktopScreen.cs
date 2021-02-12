@@ -27,7 +27,7 @@ public class DesktopScreen : InteractableScreen
     }
     public void ShowDesktop()
     {
-        MakeVisible(true); 
+        MakeVisible(true);
     }
     /**
      * Once is fully rendered [OnGUI] activate task
@@ -37,15 +37,7 @@ public class DesktopScreen : InteractableScreen
     **/
     private void OnGUI()
     {
-        if(!isActive)
+        if (!isActive)
             Activate();
-    }
-    protected override void Activate()
-    {
-        //Activate task based on attached task 
-        isActive = true;
-        Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        task.ActivateTask();
     }
 }

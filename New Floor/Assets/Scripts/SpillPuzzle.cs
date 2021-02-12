@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpillPuzzle : Puzzle
 {
@@ -26,19 +24,22 @@ public class SpillPuzzle : Puzzle
         storageDoor.SetLock(false);
         this.enabled = false;
     }
+    /*
+     * Unity counts the collider of children object as part of 
+     * parent object colliders, therefor trigger colliders can fire on  
+     * both parent and child objects either way, even with seperate scripts
+     * so it's important to check the name of the object firing the trigger
+     */
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("Liquid") && !HasCoffee)
+        if (gameObject.name.Equals("PaperCup") && other.name.Equals("Liquid") && !HasCoffee)
         {
             Filled();
+            Debug.Log("Cup spill hit: " + other.name);
         }
-        if (other.name.Equals("Building") && HasCoffee)
+        if (gameObject.name.Equals("PaperCup") && other.name.Equals("Building") && HasCoffee)
         {
             Spilled();
         }
-    }
-    protected override void Activate()
-    {
-        throw new System.NotImplementedException();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CircuitBreaker : MonoBehaviour
 {
@@ -13,11 +11,11 @@ public class CircuitBreaker : MonoBehaviour
     [SerializeField]
     InteractableScreen[] interactableScreens;
     [SerializeField]
-    GameObject[] glowingMats;
+    GameObject[] glowingMats, secutiryCams, machines, lvlScreens;
     [SerializeField]
     Material replacement, darkSky;
     [SerializeField]
-    GameObject[] secutiryCams;
+    AudioSource[] soundMakers;
 
     Light[] lights;
     TurnOnFan[] fans;
@@ -34,6 +32,7 @@ public class CircuitBreaker : MonoBehaviour
         fans = GameObject.FindObjectsOfType<TurnOnFan>();
         foreach (TurnOnFan fan in fans)
         {
+            fan.GetComponentInChildren<Animator>().enabled = false;
             fan.enabled = false;
             fan.IsEnabled = false;
         }
@@ -68,11 +67,23 @@ public class CircuitBreaker : MonoBehaviour
         }
         foreach (GameObject mat in glowingMats)
         {
-            mat.GetComponent<MeshRenderer>().material=replacement;
+            mat.GetComponent<MeshRenderer>().material = replacement;
         }
         foreach (GameObject cam in secutiryCams)
         {
             cam.SetActive(false);
+        }
+        foreach (GameObject scrn in lvlScreens)
+        {
+            scrn.SetActive(false);
+        }
+        foreach (GameObject machine in machines)
+        {
+            machine.GetComponent<ButtonPress>().IsEnabled = false;
+        }
+        foreach (AudioSource source in soundMakers)
+        {
+            source.Stop();
         }
         //RenderSettings.skybox.SetFloat("_Exposure",2f);
         RenderSettings.ambientIntensity = 0.25f;

@@ -1,20 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class JeremyMonitor : InteractableScreen
+public class JeremyMonitor : InteractableScreen, IPathStarter
 {
 
     [SerializeField]
     FirstPersonController fpc;
     [SerializeField]
-    protected GameObject loginScreen;
- 
-    protected new void Start()
+    protected GameObject loginScreen, arrow;
+
+    PathStarter pathStarter = new PathStarter();
+
+    protected override void Start()
     {
         base.Start();
         ScreenToShow = loginScreen;
+        AddSelfAsInvoker();
     }
     protected new void Update()
     {
@@ -25,50 +27,29 @@ public class JeremyMonitor : InteractableScreen
         }
     }
 
-    //protected new void OnMouseDown()
-    //{
-    //    base.OnMouseDown();
-    //}
-       
     //Bring up login screen UI
     public override void SwitchToScreen()
-     {
+    {
         fpc.enabled = false;
         Debug.Log("Switch to screen from Jeremy ");
         base.SwitchToScreen();
         //this.enabled = false;
     }
 
-    protected override void Activate()
+    public override void Activate()
     {
-        //Activate task based on attached task 
-        isActive = true;
-        Task task = gameObject.GetComponent<Task>();
-        //Invokes task listeners
-        task.ActivateTask();
-        //Hides cosmatic arrow in scene, invokes path activated listeners
+        base.Activate();
         arrow.SetActive(false);
-        pathActivated.Invoke(JeremyPath.instance);
+        pathStarter.pathActivated.Invoke(JeremyPath.instance);
+    }
 
-        //tbd show text outlining the task on activation 
+    public void AddSelfAsInvoker()
+    {
+        pathStarter.AddSelfAsInvoker();
+    }
 
-        //PopUp pop = gameObject.GetComponent<PopUp>();
-        //pop.MessageHeader = task.TaskText;
-        //pop.ShowPop();
-
-         //fpc.enabled = false;
-         //Cursor.lockState = CursorLockMode.None;
-         //Cursor.visible = true;
-
-
-         //tbd generic puzzle delegate method for pop up
-
-        //popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
-        //popUpGen.gameObject.SetActive(true);
-
-
-
-
-        //return true;
-    }   
+    public void AddListener(UnityAction<AdventurePath> handler)
+    {
+        pathStarter.AddListener(handler);
+    }
 }

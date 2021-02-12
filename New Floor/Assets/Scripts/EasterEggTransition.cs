@@ -1,19 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EasterEggTransition : MonoBehaviour
 {
     [SerializeField]
-    Material newSky, oldSky;
+    Material newSky;
     [SerializeField]
     GameObject returnSign, markerSign;
 
     bool isFound = false;
+    Material oldSky;
 
+    void Start()
+    {
+        oldSky = RenderSettings.skybox;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")&&!isFound)
+        if (other.CompareTag("Player") && !isFound)
         {
             RenderSettings.skybox = newSky;
             isFound = true;
@@ -30,7 +33,7 @@ public class EasterEggTransition : MonoBehaviour
     }
     public void reSpawn()
     {
-        GameObject player=GameObject.FindGameObjectsWithTag("Player")[0];
+        GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
         player.transform.position = markerSign.transform.position;
     }
 }

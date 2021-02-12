@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class CloseUpCamera : MonoBehaviour
@@ -28,18 +26,18 @@ public class CloseUpCamera : MonoBehaviour
         {
             //Check if we're mousing over an object we can focus
             //Debug.DrawRay(transform.position, transform.forward, Color.green);
-            foreach(GameObject obj in focusObjects)
+            foreach (GameObject obj in focusObjects)
             {
                 //If we'er over an object we can focus and mouse is clicked
                 if (hit.transform.gameObject == obj && Input.GetMouseButton(0) && !isFocused)
                 {
                     //Move camera to focus position
                     focusPoint = hit.transform;
-                    originalPos= closeUpCam.transform.position;
+                    originalPos = closeUpCam.transform.position;
                     FocusCamera();
                     isFocused = true;
                 }
-            }            
+            }
         }
         //Unfocus camera on right click
         if (isFocused && Input.GetMouseButton(1))
@@ -54,11 +52,11 @@ public class CloseUpCamera : MonoBehaviour
         //Disable movement control if is active
         if (gameObject.name.Equals("FirstPersonCharacter"))
         {
-            gameObject.GetComponentInParent<FirstPersonController>().CanMove= false;
+            gameObject.GetComponentInParent<FirstPersonController>().CanMove = false;
         }
-        float xDiff=0, zDiff=0;
+        float xDiff = 0, zDiff = 0;
         //Find where the camera is facing the object from
-        Vector3 target = focusPoint.position, 
+        Vector3 target = focusPoint.position,
             point = closeUpCam.transform.position;
         float angle = GetAngle(point, target);
         //Debug.Log("Angle: " + angle);
@@ -72,12 +70,12 @@ public class CloseUpCamera : MonoBehaviour
                     //Calculate angle to decide where to move camera to
                     if (angle > 45)
                     {
-                        xDiff = target.x; 
+                        xDiff = target.x;
                         zDiff = target.z + space;
                     }
                     else
                     {
-                        xDiff = target.x + space;  
+                        xDiff = target.x + space;
                         zDiff = target.z;
                     }
                     break;
@@ -88,12 +86,12 @@ public class CloseUpCamera : MonoBehaviour
                     //Calculate angle to decide where to move camera to
                     if (angle > 115)
                     {
-                        xDiff = target.x;  
+                        xDiff = target.x;
                         zDiff = target.z + space;
                     }
                     else
                     {
-                        xDiff = target.x - space;  
+                        xDiff = target.x - space;
                         zDiff = target.z;
                     }
                     break;
@@ -105,12 +103,12 @@ public class CloseUpCamera : MonoBehaviour
                     //Calculate angle to decide where to move camera to
                     if (angle > 225)
                     {
-                        xDiff = target.x;  
+                        xDiff = target.x;
                         zDiff = target.z - space;
                     }
                     else
                     {
-                        xDiff = target.x - space;  
+                        xDiff = target.x - space;
                         zDiff = target.z;
                     }
                     break;
@@ -133,7 +131,7 @@ public class CloseUpCamera : MonoBehaviour
                 }
         }
         //Set the new close position
-        closeUpCam.transform.position = new Vector3(xDiff, target.y+0.05f, zDiff);
+        closeUpCam.transform.position = new Vector3(xDiff, target.y + 0.05f, zDiff);
         //closeUpCam.transform.LookAt(target);
         mouse.Focus();
     }
@@ -143,7 +141,7 @@ public class CloseUpCamera : MonoBehaviour
         //Reinable movement if available
         if (gameObject.name.Equals("FirstPersonCharacter"))
         {
-            gameObject.GetComponentInParent<FirstPersonController>().CanMove=true;
+            gameObject.GetComponentInParent<FirstPersonController>().CanMove = true;
         }
         closeUpCam.transform.position = originalPos;
         mouse.Unfocus();

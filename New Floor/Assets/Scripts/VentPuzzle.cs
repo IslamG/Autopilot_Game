@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class VentPuzzle : Puzzle
@@ -29,7 +27,7 @@ public class VentPuzzle : Puzzle
             {
                 Activate();
             }
-        } 
+        }
     }
     private void LoadOut()
     {
@@ -40,12 +38,12 @@ public class VentPuzzle : Puzzle
         //LevelTraversal.TargetLevel = "FloorTest";
     }
 
-    protected override void Activate()
+    public override void Activate()
     {
         if (isActive)
         {
             LoadOut();
         }
-        
+
     }
 }

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 
-public static class SaveGame 
+public static class SaveGame
 {
 
     //Constructor responsible for saving data
@@ -38,7 +38,7 @@ public static class SaveGame
             stream.Close();
 
             return data;
-        } 
+        }
         else
         {
             //Trying to load a file that doesn't exist
