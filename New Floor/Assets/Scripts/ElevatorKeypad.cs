@@ -8,7 +8,7 @@ public class ElevatorKeypad : MonoBehaviour
     [SerializeField]
     private FirstPersonController fpc;
     [SerializeField]
-    private GameObject padImage, crosshair;
+    private GameObject padImage, crosshair, targetHolder;
     private bool isPaused;
     CursorLockMode currentMouse;
 
@@ -20,6 +20,7 @@ public class ElevatorKeypad : MonoBehaviour
         currentMouse = Cursor.lockState;
         padImage.SetActive(true);
         crosshair.SetActive(false);
+        targetHolder.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
@@ -39,6 +40,7 @@ public class ElevatorKeypad : MonoBehaviour
         //Hide keypad image and revert controls to normal
         padImage.SetActive(false);
         crosshair.SetActive(true);
+        targetHolder.SetActive(true);
         Time.timeScale = 01f;
         isPaused = false;
         Cursor.lockState = currentMouse;

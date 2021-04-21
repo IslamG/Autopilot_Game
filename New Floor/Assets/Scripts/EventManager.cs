@@ -50,9 +50,9 @@ public static class EventManager
     public static void AddListener(UnityAction<Tip> handler)
     {
         haulmarkListeners.Add(handler);
-        foreach (Tip tip in haulmarkInvokers)
+        foreach (Tip path in haulmarkInvokers)
         {
-            tip.AddListener(handler);
+            path.AddListener(handler);
         }
     }
 

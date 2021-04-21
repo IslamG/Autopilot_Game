@@ -6,15 +6,16 @@ public class DesktopScreen : InteractableScreen
     [SerializeField]
     FirstPersonController fpc;
     [SerializeField]
-    protected GameObject screen;
+    protected TurnOnScreen screen;
 
     private void Awake()
     {
         ScreenToShow = this.gameObject;
+        screen.OpenUI = this;
     }
     protected new void Update()
     {
-        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused)
+        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused && IsUp)
         {
             fpc.enabled = true;
             MakeVisible(false);
@@ -24,10 +25,13 @@ public class DesktopScreen : InteractableScreen
     {
         fpc.enabled = true;
         MakeVisible(false);
+        Debug.Log("Mouse hide desktop " + Cursor.lockState);
     }
     public void ShowDesktop()
     {
+        fpc.enabled = false;
         MakeVisible(true);
+        Debug.Log("Mouse show desktop " + Cursor.lockState);
     }
     /**
      * Once is fully rendered [OnGUI] activate task
@@ -39,5 +43,13 @@ public class DesktopScreen : InteractableScreen
     {
         if (!isActive)
             Activate();
+        if (!Cursor.visible)
+        {
+            Debug.Log("On GUI Desktop showing mouse");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            fpc.enabled = false;
+        }
+       
     }
 }

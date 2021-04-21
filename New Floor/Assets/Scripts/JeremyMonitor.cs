@@ -20,7 +20,7 @@ public class JeremyMonitor : InteractableScreen, IPathStarter
     }
     protected new void Update()
     {
-        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused)
+        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused && IsUp)
         {
             fpc.enabled = true;
             MakeVisible(false);
@@ -38,9 +38,13 @@ public class JeremyMonitor : InteractableScreen, IPathStarter
 
     public override void Activate()
     {
-        base.Activate();
-        arrow.SetActive(false);
-        pathStarter.pathActivated.Invoke(JeremyPath.instance);
+        if (!isActive)
+        {
+            base.Activate();
+            arrow.SetActive(false);
+            pathStarter.pathActivated.Invoke(JeremyPath.instance);
+        }
+        
     }
 
     public void AddSelfAsInvoker()

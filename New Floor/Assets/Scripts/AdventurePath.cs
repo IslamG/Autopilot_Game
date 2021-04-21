@@ -4,11 +4,12 @@ using UnityEngine;
 public abstract class AdventurePath : MonoBehaviour
 {
     public char pathType;
-    public int pathEndignsNum, pathSegments;
+    public int pathEndignsNum, pathSegments;//?
     public string pathTag;
     public TMP_Text titleText;
-    public GameObject[] segments;
+    public Puzzle[] segments;
     public GameObject titleHolder;
+    public bool attainedItem = false;
 
     public OnPathActivated pathActivated = new OnPathActivated();
 
@@ -22,6 +23,7 @@ public abstract class AdventurePath : MonoBehaviour
         Debug.Log("I am " + this.name);
         displayTimer = gameObject.AddComponent<Timer>();
         displayTimer.Duration = 3;
+        //SegmentCompleted(segments[0]);
     }
     protected void Update()
     {
@@ -34,7 +36,7 @@ public abstract class AdventurePath : MonoBehaviour
     //Action when end reached
     public abstract void EndingReacherd();
     //Action when path object aka segment completed 
-    public abstract void PathObjectConsumed();
+    public abstract void PathObjectEarned(AdventurePath callSource, Puzzle puzzle);
     //When Path activated event invoked
     public void PathActivated(AdventurePath piece)
     {
@@ -45,6 +47,26 @@ public abstract class AdventurePath : MonoBehaviour
             displayTimer.Run();
         }
 
+    }
+    //Possible handler for segment complete
+    //A segment is a leaf puzzle of a path
+    protected void SegmentCompleted(Puzzle puzzle)
+    {
+        foreach (Puzzle segment in segments)
+        {
+            if (!segment.IsSolved)
+            {
+                Debug.Log("Adventure path checking segments");
+                attainedItem = false;
+                break;
+            }
+            else
+            {
+                attainedItem = true;
+            }
+            Debug.Log("Adventure path broke inside of each");
+        }
+        Debug.Log("Adventure path broke outide of each");
     }
     /*public void AddListener(UnityAction<AdventurePath> handler)
     {

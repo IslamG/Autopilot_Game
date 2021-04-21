@@ -12,11 +12,10 @@ public class BossMonitor : InteractableScreen
     {
         base.Start();
         ScreenToShow = loginScreen;
-        Debug.Log("! ! " + loginScreen);
     }
     protected new void Update()
     {
-        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused)
+        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused && IsUp)
         {
             fpc.enabled = true;
             MakeVisible(false);

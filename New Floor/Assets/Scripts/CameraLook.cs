@@ -11,7 +11,6 @@ public class CameraLook : MonoBehaviour
         //Cursor.lockState=CursorLockMode.Locked;
         cam = gameObject.GetComponent<Camera>();
         rotation = new Vector2(cam.transform.rotation.x, cam.transform.rotation.y);
-        Cursor.lockState = CursorLockMode.Locked;
     }
     //Get mouse position on screen and change camera rotation
     //tbd add slerp to smooth movement

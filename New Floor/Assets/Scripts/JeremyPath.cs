@@ -1,6 +1,12 @@
-﻿public class JeremyPath : AdventurePath
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class JeremyPath : AdventurePath
 {
     public static JeremyPath instance;
+    [SerializeField]
+    Dictionary<AdventurePath, GameObject> finalItems;
+
     void Awake()
     {
         if (instance == null)
@@ -9,11 +15,15 @@
     }
     public override void EndingReacherd()
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public override void PathObjectConsumed()
+    public override void PathObjectEarned(AdventurePath callSource, Puzzle puzzle)
     {
-        throw new System.NotImplementedException();
+        SegmentCompleted(puzzle);
+        if (callSource.attainedItem)
+        {
+            Debug.Log("Jeremy Path do a thing");
+        }
     }
 }

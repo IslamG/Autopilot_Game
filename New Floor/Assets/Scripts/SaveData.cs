@@ -19,7 +19,7 @@ public class SaveData
     {
         timeInGame = TimerController.totalTime;
 
-        Vector3 pos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        Vector3 pos = GameObject.FindGameObjectWithTag("Player").transform.localPosition;
         playerPosition = new float[3];
         playerPosition[0] = pos.x;
         playerPosition[1] = pos.y;

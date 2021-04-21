@@ -10,7 +10,10 @@ public abstract class LoginScreen : InteractableScreen
     protected GameObject loginScreen;
     [SerializeField]
     protected Task[] taskToRemove;
-
+    [SerializeField]
+    protected AudioClip confirm, deny;
+    [SerializeField]
+    protected AudioSource source;
 
     //tbd simplify password
     protected string password = "1234";//"28212433110";
@@ -26,6 +29,11 @@ public abstract class LoginScreen : InteractableScreen
         if (password.Equals(input))
         {
             isUnlocked = true;
+            source.PlayOneShot(confirm);
+        }
+        else
+        {
+            source.PlayOneShot(deny);
         }
     }
     //Called by loginscreen loginbutton OnClick

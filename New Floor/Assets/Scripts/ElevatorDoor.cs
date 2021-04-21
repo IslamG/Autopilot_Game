@@ -6,12 +6,12 @@ public class ElevatorDoor : MonoBehaviour
     private Animator anim, lvlNum;
     [SerializeField]
     AudioSource sound;
-    private static bool doorOpen = false, isPressed = false;
+    private static bool doorOpen = false, isPressed = false, isEnabled=true;
     [SerializeField]
     GameObject arrowUp, arrowDown;
 
     //Field to control responsiveness for other scripts
-    public bool IsEnabled { get; set; } = true;
+    public bool IsEnabled { get => isEnabled; set => isEnabled = value; }
 
     private void Update()
     {
@@ -24,6 +24,7 @@ public class ElevatorDoor : MonoBehaviour
                 //When the clip is finished take action and be receptive to new clicks
                 PressAction();
                 isPressed = false;
+                IsEnabled = true;
             }
         }
     }
@@ -49,6 +50,7 @@ public class ElevatorDoor : MonoBehaviour
                     arrowDown.SetActive(true);
                     arrowDown.GetComponent<Animation>().Play();
                 }
+                IsEnabled = false;
             }
             //The door is already open 
             //no need for elevator call sequence

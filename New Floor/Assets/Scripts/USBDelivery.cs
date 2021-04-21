@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Video;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class USBDelivery : Puzzle
 {
@@ -8,6 +10,12 @@ public class USBDelivery : Puzzle
     USBContents usbContents;
     [SerializeField]
     TipsControl tipControl;
+    [SerializeField]
+    AdventurePath jeremyPath;
+    [SerializeField]
+    GameObject credits;
+    [SerializeField]
+    FirstPersonController fpc;
 
     private new void OnMouseDown()
     {
@@ -21,27 +29,35 @@ public class USBDelivery : Puzzle
         usbContents.Solve();
         Debug.Log("Solve Solve usb delivery");
         base.Solve();
+        jeremyPath.PathObjectEarned(jeremyPath, this);
+        fpc.CanMove = false;
+        credits.SetActive(true);
+        credits.GetComponent<VideoPlayer>().Play();
     }
     public override void Activate()
     {
-        base.Activate();
-
-        security.ShowCones();
-        TipScript tip = gameObject.GetComponent<TipScript>(); ;
-        tipControl.GenerateTip(tip);
-
-
-        //Activate drop spot for tasks with drop spots
-        DropItem di = gameObject.GetComponent<DropItem>();
-        //if dropppable object
-        if (!task.IsCompleted)
+        if (!isActive)
         {
-            foreach (DropSpot spot in di.TargetSpot)
+            base.Activate();
+
+            security.ShowCones();
+            TipScript tip = gameObject.GetComponent<TipScript>(); ;
+            tipControl.GenerateTip(tip);
+
+
+            //Activate drop spot for tasks with drop spots
+            DropItem di = gameObject.GetComponent<DropItem>();
+            //if dropppable object
+            if (!task.IsCompleted)
             {
-                //di.TargetSpot
-                spot.gameObject.SetActive(true);
+                foreach (DropSpot spot in di.TargetSpot)
+                {
+                    //di.TargetSpot
+                    spot.gameObject.SetActive(true);
+                }
             }
         }
+        
 
     }
 }

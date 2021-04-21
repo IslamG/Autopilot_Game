@@ -15,19 +15,24 @@ public class TurnOnScreen : MonoBehaviour
     InteractableScreen openUI;
     [SerializeField]
     VideoPlayer vidPlayer;
+    [SerializeField]
+    Camera screenCam;
+
     Camera mainCam;
     bool introVideoPlayed = false, helperDisplayed = false;
     Timer textTimer;
 
     public bool IsEnabled { get; set; } = true;
+    public InteractableScreen OpenUI { get => openUI; set => openUI = value; }
 
     void Start()
     {
         //initialize variables
         //base.Start();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        vidPlayer.loopPointReached += EndReached;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        if(vidPlayer!=null)
+            vidPlayer.loopPointReached += EndReached;
         mainCam = Camera.main;
         Debug.Log("Initializing in Trun on screen open ui= " + openUI);
     }
@@ -44,38 +49,77 @@ public class TurnOnScreen : MonoBehaviour
     void Awake()
     {
         //vidPlayer = GetComponentInChildren<VideoPlayer>();
-        vidPlayer.targetTexture.Release();
+        if (vidPlayer != null)
+            vidPlayer.targetTexture.Release();
         textTimer = gameObject.AddComponent<Timer>();
         textTimer.Duration = 5;
     }
     void OnMouseDown()
     {
-        if (IsEnabled)
+        if (IsEnabled && !openUI.IsUp)
         {
-            //base.OnMouseDown();
-            //if mouse isn't over a screen that can open 
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-            if (SceneManager.GetActiveScene().name.Equals("Opening"))
-                tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
-            //Only play the boot up animation once
-            if (!introVideoPlayed)
+            Camera useCam;
+            if (screenCam != null)
             {
-                //Play start up animation
-                vidPlayer.Play();
-                introVideoPlayed = true;
+                useCam = screenCam;
             }
             else
             {
-                openUI.SwitchToScreen();
-                //clear screen and revert back to main camera
-                //for viewing login screen
-                content.DiscardContents();
-                //remove?
-                mainCam.gameObject.SetActive(true);
-                //mainCam.GetComponent<AudioListener>().enabled = true;
+                useCam = mainCam;
+            }
+            Ray ray = useCam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            //item within grab distance i.e. 5 units 
+            if (Physics.Raycast(ray, out hit, 3))
+            {
+                //base.OnMouseDown();
+                //if mouse isn't over a screen that can open 
+                if (EventSystem.current.IsPointerOverGameObject())
+                    return;
+                if (SceneManager.GetActiveScene().name.Equals("Opening"))
+                    tipControl.GenerateTip(this.gameObject.GetComponent<TipScript>());
+                if (vidPlayer != null)
+                {
+                    //Only play the boot up animation once
+                    if (!introVideoPlayed)
+                    {
+                        //Play start up animation
+                        vidPlayer.Play();
+                        introVideoPlayed = true;
+                    }
+                    else
+                    {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                        Debug.Log("Open ui turn on screen : " + openUI.name);
+                        openUI.SwitchToScreen();
+                        //clear screen and revert back to main camera
+                        //for viewing login screen
+                        if (content != null)
+                            content.DiscardContents();
+                        //remove?
+                        mainCam.gameObject.SetActive(true);
+                        //mainCam.GetComponent<AudioListener>().enabled = true;
+                    }
+                }
+                //Original if was here
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    Debug.Log("Open ui turn on screen : " + openUI.name);
+                    openUI.SwitchToScreen();
+                    //clear screen and revert back to main camera
+                    //for viewing login screen
+                    if (content != null)
+                        content.DiscardContents();
+                    //remove?
+                    mainCam.gameObject.SetActive(true);
+                    //mainCam.GetComponent<AudioListener>().enabled = true;
+                }
             }
         }
+            
 
     }
     //When startup animation finished playing

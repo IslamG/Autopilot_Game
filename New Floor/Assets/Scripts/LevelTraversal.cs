@@ -16,6 +16,7 @@ public class LevelTraversal : MonoBehaviour
     //Singleton class
     void Awake()
     {
+        Application.targetFrameRate = 60;
         if (!created)
         {
             DontDestroyOnLoad(this.gameObject);
@@ -33,6 +34,6 @@ public class LevelTraversal : MonoBehaviour
     }
     public void Load()
     {
-        SceneManager.LoadScene(TargetLevel);
+        SceneManager.LoadSceneAsync(TargetLevel);
     }
 }

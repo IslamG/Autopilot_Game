@@ -13,10 +13,10 @@ public class CheckpointPivot : MonoBehaviour
     bool showingHelper = false, showed = false;
     int i = 0;
 
-    private void Start()
+    private void Awake()
     {
         timer = gameObject.AddComponent<Timer>();
-        timer.Duration = 3;
+        timer.Duration = 4;
     }
     private void Update()
     {

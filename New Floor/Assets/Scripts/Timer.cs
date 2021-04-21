@@ -57,6 +57,8 @@ public class Timer : MonoBehaviour
         get { return running; }
     }
 
+    public float ElapsedSeconds { get => elapsedSeconds; }
+
     #endregion
 
     #region Methods

@@ -79,6 +79,7 @@ public class OutOfBounds : MonoBehaviour
             source.clip = appearSound[rand];
         }
         source.Play();
+        Debug.Log("This item fell " + other.gameObject.name);
     }
     //Show text when object is thrown put of the building
     //And run timer to make the text disappear

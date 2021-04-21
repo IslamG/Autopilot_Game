@@ -25,16 +25,21 @@ public class OpeningMoniter : InteractableScreen
     protected new void Update()
     {
         //Back out of login screen on right click if up
-        if (Input.GetMouseButton(1) && closeUpCamera.isActiveAndEnabled
-            && !loginScreen.activeSelf && !PauseMenu.isPaused)
+        if (Input.GetMouseButton(1)   && !PauseMenu.isPaused) //&& !loginScreen.activeSelf
         {
-            mainCam.gameObject.SetActive(true);
-            mainCam.GetComponent<AudioListener>().enabled = true;
-            closeUpCamera.gameObject.SetActive(false);
-            closeUpCamera.GetComponent<AudioListener>().enabled = false;
-            MakeVisible(false);
+            Debug.Log("Update inside of opening monitor");
+            if (closeUpCamera.isActiveAndEnabled)
+            {
+                mainCam.gameObject.SetActive(true);
+                mainCam.GetComponent<AudioListener>().enabled = true;
+                closeUpCamera.gameObject.SetActive(false);
+                closeUpCamera.GetComponent<AudioListener>().enabled = false;
+            }
+            
+            if(IsUp)
+                MakeVisible(false);
         }
-        //base.Update();
+        
     }
     protected new void OnMouseDown()
     {

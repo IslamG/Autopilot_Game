@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour, IPuzzle
 {
@@ -12,16 +13,24 @@ public class Puzzle : MonoBehaviour, IPuzzle
 
     protected bool isActive = false, isSolved = false;
     protected Task task;
+    protected CheckpointPivot exposition;
 
+    //protected OnHaulmarkReachedEvent haulmarkReached = new OnHaulmarkReachedEvent();
     public bool IsActive { get => isActive; set => isActive = value; }
     public bool IsSolved { get => isSolved; }
     public bool IsEnabled { get; set; } = true;
 
+    //public void AddListener(UnityAction<Puzzle> handler)
+    //{
+    //    haulmarkReached.AddListener(handler);
+    //}
     public void Initialize()
     {
+       // EventManager.AddInvoker(this);
         task = gameObject.GetComponent<Task>();
         if (task != null)
             Debug.Log("Puzzle start task: " + task.TaskText + " called from " + gameObject.name);
+        exposition = gameObject.GetComponent<CheckpointPivot>();
     }
     protected virtual void Start()
     {
@@ -62,10 +71,18 @@ public class Puzzle : MonoBehaviour, IPuzzle
     //Replace with puzzle game code or call
     public virtual void Activate()
     {
-        isActive = true;
-        //Invokes task listeners
-        if (task != null)
-            task.ActivateTask();
+        if (!isActive)
+        {
+            isActive = true;
+            //Invokes task listeners
+            if (task != null)
+                task.ActivateTask();
+            if (exposition != null)
+            {
+                //exposition.StartHintDisplay();
+            }
+        }
+        
         //Hides cosmatic arrow in scene, invokes path activated listeners
         //arrow.SetActive(false);
         //pathActivated.Invoke(JeremyPath.instance);
@@ -93,12 +110,19 @@ public class Puzzle : MonoBehaviour, IPuzzle
     }
     public virtual void Solve()
     {
-        if (IsEnabled)
+        if (IsEnabled && !isSolved)
         {
             Task task = gameObject.GetComponent<Task>();
             isSolved = true;
-            task.IsCompleted = true;
-            taskMenu.RemoveTaskFromList(task);
+            if (task != null)
+            {
+                task.IsCompleted = true;
+                task.Deactivate();
+                taskMenu.RemoveTaskFromList(task);
+                Debug.Log("Is solving task: " + task.TaskText);
+            }
+            //IsEnabled = false;
+            //this.enabled = false;
         }
 
     }
@@ -109,6 +133,7 @@ public class Puzzle : MonoBehaviour, IPuzzle
             //check if item is unlocked (leaf or solved)
             CheckRequisites();
             Debug.Log("Puzzle Mouse from " + gameObject);
+
         }
 
     }

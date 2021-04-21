@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ViewableCellphone : Puzzle
 {
     [SerializeField]
-    GameObject cellSpot;
+    GameObject cellSpot, disarmCode;
     [SerializeField]
     Camera cellCam;
     [SerializeField]
@@ -17,6 +17,8 @@ public class ViewableCellphone : Puzzle
     GameObject[] focusObjects;
     [SerializeField]
     Material[] collectables;
+    [SerializeField]
+    AdventurePath bossPath;
 
 
     private bool isHeld = false, isFocused;
@@ -152,8 +154,10 @@ public class ViewableCellphone : Puzzle
     {
         if (usedObjs.Count == targetPairs.Count)
         {
+            disarmCode.SetActive(true);
             Solve();
             Debug.Log("Solving cellphone");
+            bossPath.PathObjectEarned(bossPath, this);
         }
     }
 }

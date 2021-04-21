@@ -33,6 +33,7 @@ public class Elevator : MonoBehaviour
     {
         if (animationTimer.Finished)
         {
+            Debug.Log("Elevator animator end, current scene: " + SceneManager.GetActiveScene().name.Equals("SubconscienceFloor"));
             //Stop animations and open elevator doors
             lightAnimator.SetBool("isMoving", false);
             elevatorAnimator.Play("ElevatorOpen");

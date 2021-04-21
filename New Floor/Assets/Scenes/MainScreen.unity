@@ -423,6 +423,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!1 &384585494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384585496}
+  - component: {fileID: 384585495}
+  m_Layer: 0
+  m_Name: Localization
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &384585495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384585494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultLanguage: 
+  DetectLanguage: 1
+  SaveLanguage: 1
+  languages:
+  - name: Arabic
+    cultures:
+    - ar
+    - ar-SA
+    - ar-IQ
+    - ar-EG
+    - ar-LY
+    - ar-DZ
+    - ar-MA
+    - ar-TN
+    - ar-OM
+    - ar-YE
+    - ar-SY
+    - ar-JO
+    - ar-LB
+    - ar-KW
+    - ar-AE
+    - ar-BH
+    - ar-QA
+  prefabs: []
+--- !u!4 &384585496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384585494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.712048, y: 0.6499264, z: -17.500809}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &402924350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1257,9 @@ MonoBehaviour:
   messageBody: 
   includeCancel: 1
   includeField: 0
+  isImage: 0
   popUpGen: {fileID: 1514962012}
+  displayImage: {fileID: 0}
 --- !u!1 &740415517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1275,7 @@ GameObject:
   - component: {fileID: 740415522}
   - component: {fileID: 740415523}
   - component: {fileID: 740415524}
+  - component: {fileID: 740415525}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -1432,6 +1502,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &740415525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740415517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65dba056618ef244aa5f7a41138f642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &770290699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,7 +2452,9 @@ MonoBehaviour:
   messageBody: If you continue, all previous progress will be lost
   includeCancel: 1
   includeField: 0
+  isImage: 0
   popUpGen: {fileID: 1514962012}
+  displayImage: {fileID: 0}
 --- !u!1 &1162430125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8001484200374752842, guid: 45fdd8370e0d0074aa4c513430d4572c,

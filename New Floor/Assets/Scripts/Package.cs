@@ -14,6 +14,7 @@ public class Package : PathStarter
     GameObject arrow;
 
     private bool shown = false;
+    PopUp pop2;
     public static bool PackageOpened { get; set; } = false;
 
     //When a package is clicked, show pop up prompting to open
@@ -25,7 +26,8 @@ public class Package : PathStarter
         {
             base.OnMouseDown();
             //Show pop up, disable movement, and show cursor
-            PopUp pop = gameObject.GetComponent<PopUp>();
+            PopUp pop = gameObject.GetComponents<PopUp>()[0];
+            pop2 = gameObject.GetComponents<PopUp>()[1];
             Debug.Log("pp " + pop.MessageHeader);
             pop.ShowPop();
             del = AskToOpen;
@@ -44,22 +46,38 @@ public class Package : PathStarter
         fpc.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Debug.Log("!");
-        if (!PackageOpened || !moneyTask.IsActive)
+        Debug.Log("! " +PackageOpened);
+        //If package isn't opened we don't know we can give it to Jeremy
+        if (!PackageOpened)
         {
-            //Do something later
-            Debug.Log("Opened Package");
-            DropItem di = gameObject.GetComponent<DropItem>();
-
-            foreach (DropSpot spot in di.TargetSpot)
+            //If we don't know Jeremy needs money we can't give it to him
+            if (!moneyTask.IsActive)
             {
-                //di.TargetSpot
-                if (spot.gameObject.CompareTag("JeremyPuzzle"))
-                {
-                    spot.gameObject.SetActive(false);
-                }
-            }
+                //Do something later
+                Debug.Log("Opened Package");
+                DropItem di = gameObject.GetComponent<DropItem>();
 
+                foreach (DropSpot spot in di.TargetSpot)
+                {
+                    //di.TargetSpot
+                    if (spot.gameObject.CompareTag("JeremyPuzzle"))
+                    {
+                        spot.gameObject.SetActive(false);
+                    }
+                }
+            }  
+        }
+        else
+        {
+            ////Show got money image
+            //pop2.ShowPop();
+            ////del = AskToOpen;
+            //fpc.enabled = false;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            ////popUpGen.GetComponent<PopUpGen>().FunctionToDo(del);
+            //popUpGen.gameObject.SetActive(true);
+            //Debug.Log("Showing Gen");
         }
     }
     public override void Activate()

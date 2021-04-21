@@ -12,7 +12,7 @@ public class TaskMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject starBurst, taskPanel, textDisplay,
-        blueTape, orangeTape, greenTape, purpleTape, generalTab;
+        blueTape, orangeTape, greenTape, purpleTape, generalTab, textDescription;
     [SerializeField]
     private TMP_Text taskText;
     [SerializeField]
@@ -25,6 +25,8 @@ public class TaskMenu : MonoBehaviour
     ToDoList toDo;
     [SerializeField]
     TargettingBehavior activeTarget;
+    [SerializeField]
+    AudioClip addTaskSfx, winTaskSfx;
 
     private Rect menuRect, smallRect, paperRect;
     private static bool isDisplayed = false;
@@ -103,13 +105,13 @@ public class TaskMenu : MonoBehaviour
         //Allow to scroll through tabs
         if (isDisplayed && !PauseMenu.isPaused)
         {
-            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKeyDown(KeyCode.I))
             {
                 mouseScroll -= 1;
                 mouseScroll = Mathf.Clamp(mouseScroll, -4, 4);//prevents value from exceeding specified range
                 SwitchPages();
             }
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKeyDown(KeyCode.K))
             {
                 mouseScroll += 1;
                 mouseScroll = Mathf.Clamp(mouseScroll, -5, 5);
@@ -141,6 +143,7 @@ public class TaskMenu : MonoBehaviour
         orangeTape.SetActive(true);
         greenTape.SetActive(true);
         purpleTape.SetActive(true);
+        textDescription.SetActive(true);
 
         TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI _child in displayedTasks)
@@ -162,6 +165,7 @@ public class TaskMenu : MonoBehaviour
         orangeTape.SetActive(false);
         greenTape.SetActive(false);
         purpleTape.SetActive(false);
+        textDescription.SetActive(false);
 
         TextMeshProUGUI[] displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI _child in displayedTasks)
@@ -181,7 +185,20 @@ public class TaskMenu : MonoBehaviour
         task.IsRegistered = true;
         if (activeTarget != null)
             activeTarget.target = task.gameObject.transform;
+        CreateAndAddDescription(task);
         AddTaskToMenu();
+    }
+    private void CreateAndAddDescription(Task task)
+    {
+        GameObject newText = new GameObject(task.TaskDescription.Replace(" ", "-"), typeof(RectTransform));
+        var newTextComp = newText.AddComponent<TextMeshProUGUI>();
+        newTextComp.text = task.TaskDescription;
+        //newTextComp.font = Font.CreateDynamicFontFromOSFont;
+        // newTextComp.color = Color.black;
+        newTextComp.alignment = TextAlignmentOptions.Midline;
+        newTextComp.fontSize = 15;
+
+        newText.transform.SetParent(textDescription.transform);
     }
     //Show task text on menu
     //Called when a new task becomes active
@@ -218,7 +235,7 @@ public class TaskMenu : MonoBehaviour
             }
         }
         displayedTasks = paperImg.GetComponentsInChildren<TextMeshProUGUI>();
-        scribbleSound.Play();
+        scribbleSound.PlayOneShot(addTaskSfx);
         if (displayedTasks.Length < 1)
         {
             taskText.text = "No Active Tasks in this category";
@@ -237,6 +254,7 @@ public class TaskMenu : MonoBehaviour
     {
         completedTaskList.Add(task);
         activeTaskList.Remove(task);
+        scribbleSound.PlayOneShot(winTaskSfx);
         //SaveGame.SaveData();
         //saveIcon.SetActive(true);
         if (activeTaskList.Count < 1)

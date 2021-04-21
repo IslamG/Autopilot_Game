@@ -6,8 +6,8 @@ public class EmailNotification : Puzzle
 
     [SerializeField]
     GameObject emailWindow;
-    [SerializeField]
-    Puzzle mailTask;
+    //[SerializeField]
+    //Puzzle mailTask;
 
     private bool readEmail = false;
 
@@ -25,14 +25,14 @@ public class EmailNotification : Puzzle
     public void ShowMailWindow()
     {
         //emailWindow.SetActive(true);
-        readEmail = true;
+        //readEmail = true;
         HideNotification();
         //taskMenu.RemoveTaskFromList(taskToHide);
-        if (!isActive)
-        {
-            Activate();
-            mailTask.Solve();
-        }
+        //if (!isActive)
+        //{
+        //    Activate();
+        //    //mailTask.Solve();
+        //}
 
         //gameObject.GetComponent<PuzzlePiece>().enabled = true;
     }

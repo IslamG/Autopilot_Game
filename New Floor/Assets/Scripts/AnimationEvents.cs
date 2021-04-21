@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class AnimationEvents : MonoBehaviour
@@ -30,15 +32,24 @@ public class AnimationEvents : MonoBehaviour
     {
         basicTutorial.First();
     }
+    [SerializeField]
+    TaskMenu taskMenu;
     public void ViewMotion()
     {
         walkThroughCam.gameObject.GetComponent<CameraLook>().enabled = true;
         walkThroughCam.gameObject.GetComponent<Animator>().enabled = false;
+        taskMenu.gameObject.SetActive(true);
     }
     public void CameraSwitch()
     {
         fpCam.gameObject.SetActive(true);
         walkThroughCam.gameObject.SetActive(false);
         fpCam.gameObject.GetComponentInParent<FirstPersonController>().enabled = true;
+    }
+    [SerializeField]
+    VideoPlayer vid;
+    public void CreditEnd()
+    {
+        SceneManager.LoadScene(1);
     }
 }

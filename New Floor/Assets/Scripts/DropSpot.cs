@@ -4,21 +4,30 @@ public class DropSpot : MonoBehaviour
 {
     //tbd better system trade-off between object and spot
     [SerializeField]
-    GameObject targetObject;
+    GameObject[] targetObject;
 
     [SerializeField]
     VentPuzzle vent;
 
-    private bool fired = false;
+    private bool fired = false, isTarget=false;
 
     //If correct object placed inside of drop spot
     private void OnTriggerEnter(Collider other)
     {
         GameObject otherObj = other.gameObject;
-        if (!fired && otherObj == targetObject)
+        foreach(GameObject item in targetObject)
+        {
+            if (item == otherObj)
+            {
+                isTarget = true;
+                break;
+            }
+        }
+        if (isTarget)//!fired && 
         {
             Debug.Log("depositied item");
             fired = true;
+            isTarget = false;
             //tbd add reaction to successful deposite
             //possibly change remove system
 
@@ -41,7 +50,12 @@ public class DropSpot : MonoBehaviour
                 }
             }
             Debug.Log("Drop spot trigger enter other puzzle " + other.GetComponent<Puzzle>());
-            other.GetComponent<Puzzle>().Solve();
+            if (!other.name.Contains("Figurine"))
+            {
+                if(other.GetComponent<Puzzle>()!=null)
+                    other.GetComponent<Puzzle>().Solve();
+            }
+                
             this.gameObject.SetActive(false);
         }
         else

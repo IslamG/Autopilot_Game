@@ -25,12 +25,14 @@ public class VentPuzzle : Puzzle
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                Debug.Log("Triggered vent player exit");
                 Activate();
             }
         }
     }
     private void LoadOut()
     {
+        Debug.Log("Vent loading out");
         SceneManager.LoadScene("LoadingScreen");
     }
     private void Exit()
@@ -40,7 +42,7 @@ public class VentPuzzle : Puzzle
 
     public override void Activate()
     {
-        if (isActive)
+        if (isActive || SceneManager.GetActiveScene().name.Equals("AirVents"))
         {
             LoadOut();
         }

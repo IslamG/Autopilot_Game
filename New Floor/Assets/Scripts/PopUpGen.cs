@@ -13,6 +13,8 @@ public class PopUpGen : MonoBehaviour
     private Button okBtn, cancelBtn;
     [SerializeField]
     private TMP_InputField inputField;
+    [SerializeField]
+    private Image image;
 
     MainMenu.DelegateFunc mainFunc;
     PauseMenu.DelegateFunc pauseFunc;
@@ -40,6 +42,14 @@ public class PopUpGen : MonoBehaviour
     //message, header, and buttons
     public void GeneratePopUp(PopUp popUp)
     {
+        if (popUp.IsImage)
+        {
+            //messageHeader.gameObject.SetActive(false);
+            messageBody.gameObject.SetActive(false);
+            image.sprite = popUp.DisplayImage;
+            //cancelBtn.gameObject.SetActive(true);
+            image.gameObject.SetActive(true);
+        }
         //Assign text values from popUp object
         if (popUp.MessageHeader != null)
             messageHeader.text = popUp.MessageHeader;
@@ -63,7 +73,7 @@ public class PopUpGen : MonoBehaviour
         InputText = inputField.text;
         Debug.Log("pop input field writing: " + inputField.text);
     }
-    public void DisableInputField(bool state)
+    public void ShowInputField(bool state)
     {
         inputField.gameObject.SetActive(state);
     }
@@ -83,7 +93,8 @@ public class PopUpGen : MonoBehaviour
         if (securityFunc != null)
             securityFunc.Invoke();
         //Hide pop up
-        gameObject.SetActive(false);
+        LeavePopUp();
+        //Debug.Log("Hiding Gen from ok");
         isTrue = true;
     }
     //Cancel button pressed, do nothing and hide pop up
@@ -98,6 +109,7 @@ public class PopUpGen : MonoBehaviour
 
         //hide pop up
         gameObject.SetActive(false);
+        Debug.Log("Hiding Gen from cancel");
         isTrue = false;
     }
 
@@ -109,11 +121,13 @@ public class PopUpGen : MonoBehaviour
     public void FunctionToDo(MainMenu.DelegateFunc function)
     {
         mainFunc = function;
+        //LeavePopUp();
     }
     //Overload for pause menu
     public void FunctionToDo(PauseMenu.DelegateFunc function)
     {
         pauseFunc = function;
+        //LeavePopUp();
     }
     //Overload for package
     public bool FunctionToDo(Package.DelegateFunc function)
@@ -125,5 +139,10 @@ public class PopUpGen : MonoBehaviour
     public void FunctionToDo(SecutiryPuzzle.DelegateFunc function)
     {
         securityFunc = function;
+        //LeavePopUp();
+    }
+    private void LeavePopUp()
+    {
+        gameObject.SetActive(false);
     }
 }

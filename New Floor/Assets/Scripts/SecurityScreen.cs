@@ -14,7 +14,7 @@ public class SecurityScreen : InteractableScreen
     }
     protected new void Update()
     {
-        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused)
+        if (Input.GetMouseButton(1) && gameObject.activeSelf && !PauseMenu.isPaused && IsUp)
         {
             fpc.enabled = true;
             MakeVisible(false);

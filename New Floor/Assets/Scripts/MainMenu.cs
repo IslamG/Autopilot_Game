@@ -100,6 +100,8 @@ public class MainMenu : MonoBehaviour
         {
             newButton.gameObject.SetActive(true);
         }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
     //change play game button text depending on if there's a save file
